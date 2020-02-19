@@ -1,0 +1,1912 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="FastAPI framework, high performance, easy to learn, fast to code, ready for production">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../img/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.6.3">
+    
+    
+      
+        <title>OpenAPI Callbacks - FastAPI Docs CN</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.adb8469c.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.a8b3c06d.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#009688">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.86422ebf.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="teal" data-md-color-accent="amber">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#an-app-with-callbacks" tabindex="0" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../.." title="FastAPI Docs CN" aria-label="FastAPI Docs CN" class="md-header-nav__button md-logo">
+          
+            <img alt="logo" src="../../img/icon-white.svg" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              FastAPI Docs CN
+            </span>
+            <span class="md-header-nav__topic">
+              
+                OpenAPI Callbacks
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" aria-label="search" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../.." title="FastAPI Docs CN" class="md-nav__button md-logo">
+      
+        <img alt="logo" src="../../img/icon-white.svg" width="48" height="48">
+      
+    </a>
+    FastAPI Docs CN
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="FastAPI" class="md-nav__link">
+      FastAPI
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../features/" title="Features" class="md-nav__link">
+      Features
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../python-types/" title="Python types intro" class="md-nav__link">
+      Python types intro
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Tutorial - User Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Tutorial - User Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/" title="Tutorial - User Guide - Intro" class="md-nav__link">
+      Tutorial - User Guide - Intro
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/first-steps/" title="First Steps" class="md-nav__link">
+      First Steps
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/path-params/" title="Path Parameters" class="md-nav__link">
+      Path Parameters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/query-params/" title="Query Parameters" class="md-nav__link">
+      Query Parameters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/body/" title="Request Body" class="md-nav__link">
+      Request Body
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/query-params-str-validations/" title="Query Parameters and String Validations" class="md-nav__link">
+      Query Parameters and String Validations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/path-params-numeric-validations/" title="Path Parameters and Numeric Validations" class="md-nav__link">
+      Path Parameters and Numeric Validations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/body-multiple-params/" title="Body - Multiple Parameters" class="md-nav__link">
+      Body - Multiple Parameters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/body-fields/" title="Body - Fields" class="md-nav__link">
+      Body - Fields
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/body-nested-models/" title="Body - Nested Models" class="md-nav__link">
+      Body - Nested Models
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/extra-data-types/" title="Extra data types" class="md-nav__link">
+      Extra data types
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/cookie-params/" title="Cookie Parameters" class="md-nav__link">
+      Cookie Parameters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/header-params/" title="Header Parameters" class="md-nav__link">
+      Header Parameters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/response-model/" title="Response Model" class="md-nav__link">
+      Response Model
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/extra-models/" title="Extra Models" class="md-nav__link">
+      Extra Models
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/response-status-code/" title="Response Status Code" class="md-nav__link">
+      Response Status Code
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/request-forms/" title="Form Data" class="md-nav__link">
+      Form Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/request-files/" title="Request Files" class="md-nav__link">
+      Request Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/request-forms-and-files/" title="Request Forms and Files" class="md-nav__link">
+      Request Forms and Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/handling-errors/" title="Handling Errors" class="md-nav__link">
+      Handling Errors
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/path-operation-configuration/" title="Path Operation Configuration" class="md-nav__link">
+      Path Operation Configuration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/encoder/" title="JSON Compatible Encoder" class="md-nav__link">
+      JSON Compatible Encoder
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/body-updates/" title="Body - updates" class="md-nav__link">
+      Body - updates
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-24" type="checkbox" id="nav-4-24">
+    
+    <label class="md-nav__link" for="nav-4-24">
+      Dependencies
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-24">
+        Dependencies
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/dependencies/" title="First Steps" class="md-nav__link">
+      First Steps
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/dependencies/classes-as-dependencies/" title="Classes as Dependencies" class="md-nav__link">
+      Classes as Dependencies
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/dependencies/sub-dependencies/" title="Sub-dependencies" class="md-nav__link">
+      Sub-dependencies
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/dependencies/dependencies-in-path-operation-decorators/" title="Dependencies in path operation decorators" class="md-nav__link">
+      Dependencies in path operation decorators
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/dependencies/dependencies-with-yield/" title="Dependencies with yield" class="md-nav__link">
+      Dependencies with yield
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-25" type="checkbox" id="nav-4-25">
+    
+    <label class="md-nav__link" for="nav-4-25">
+      Security
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-25">
+        Security
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/security/" title="Security Intro" class="md-nav__link">
+      Security Intro
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/security/first-steps/" title="First Steps" class="md-nav__link">
+      First Steps
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/security/get-current-user/" title="Get Current User" class="md-nav__link">
+      Get Current User
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/security/simple-oauth2/" title="Simple OAuth2 with Password and Bearer" class="md-nav__link">
+      Simple OAuth2 with Password and Bearer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/security/oauth2-jwt/" title="OAuth2 with Password (and hashing), Bearer with JWT tokens" class="md-nav__link">
+      OAuth2 with Password (and hashing), Bearer with JWT tokens
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/middleware/" title="Middleware" class="md-nav__link">
+      Middleware
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/cors/" title="CORS (Cross-Origin Resource Sharing)" class="md-nav__link">
+      CORS (Cross-Origin Resource Sharing)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/sql-databases/" title="SQL (Relational) Databases" class="md-nav__link">
+      SQL (Relational) Databases
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/bigger-applications/" title="Bigger Applications - Multiple Files" class="md-nav__link">
+      Bigger Applications - Multiple Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/background-tasks/" title="Background Tasks" class="md-nav__link">
+      Background Tasks
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/application-configuration/" title="Application Configuration" class="md-nav__link">
+      Application Configuration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/static-files/" title="Static Files" class="md-nav__link">
+      Static Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/testing/" title="Testing" class="md-nav__link">
+      Testing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/debugging/" title="Debugging" class="md-nav__link">
+      Debugging
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+    
+    <label class="md-nav__link" for="nav-5">
+      Advanced User Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Advanced User Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../" title="Advanced User Guide - Intro" class="md-nav__link">
+      Advanced User Guide - Intro
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../path-operation-advanced-configuration/" title="Path Operation Advanced Configuration" class="md-nav__link">
+      Path Operation Advanced Configuration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../additional-status-codes/" title="Additional Status Codes" class="md-nav__link">
+      Additional Status Codes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../response-directly/" title="Return a Response Directly" class="md-nav__link">
+      Return a Response Directly
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../custom-response/" title="Custom Response Class" class="md-nav__link">
+      Custom Response Class
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../additional-responses/" title="Additional Responses in OpenAPI" class="md-nav__link">
+      Additional Responses in OpenAPI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../response-cookies/" title="Response Cookies" class="md-nav__link">
+      Response Cookies
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../response-headers/" title="Response Headers" class="md-nav__link">
+      Response Headers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../response-change-status-code/" title="Response - Change Status Code" class="md-nav__link">
+      Response - Change Status Code
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../advanced-dependencies/" title="Advanced Dependencies" class="md-nav__link">
+      Advanced Dependencies
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-11" type="checkbox" id="nav-5-11">
+    
+    <label class="md-nav__link" for="nav-5-11">
+      Advanced Security
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-11">
+        Advanced Security
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../security/" title="Advanced Security - Intro" class="md-nav__link">
+      Advanced Security - Intro
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../security/oauth2-scopes/" title="OAuth2 scopes" class="md-nav__link">
+      OAuth2 scopes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../security/http-basic-auth/" title="HTTP Basic Auth" class="md-nav__link">
+      HTTP Basic Auth
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../using-request-directly/" title="Using the Request Directly" class="md-nav__link">
+      Using the Request Directly
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../sql-databases-peewee/" title="SQL (Relational) Databases with Peewee" class="md-nav__link">
+      SQL (Relational) Databases with Peewee
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../async-sql-databases/" title="Async SQL (Relational) Databases" class="md-nav__link">
+      Async SQL (Relational) Databases
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../nosql-databases/" title="NoSQL (Distributed / Big Data) Databases" class="md-nav__link">
+      NoSQL (Distributed / Big Data) Databases
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../sub-applications-proxy/" title="Sub Applications - Behind a Proxy" class="md-nav__link">
+      Sub Applications - Behind a Proxy
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../templates/" title="Templates" class="md-nav__link">
+      Templates
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../graphql/" title="GraphQL" class="md-nav__link">
+      GraphQL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../websockets/" title="WebSockets" class="md-nav__link">
+      WebSockets
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../events/" title="Events: startup - shutdown" class="md-nav__link">
+      Events: startup - shutdown
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../custom-request-and-route/" title="Custom Request and APIRoute class" class="md-nav__link">
+      Custom Request and APIRoute class
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../testing-websockets/" title="Testing WebSockets" class="md-nav__link">
+      Testing WebSockets
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../testing-events/" title="Testing Events: startup - shutdown" class="md-nav__link">
+      Testing Events: startup - shutdown
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../testing-dependencies/" title="Testing Dependencies with Overrides" class="md-nav__link">
+      Testing Dependencies with Overrides
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../extending-openapi/" title="Extending OpenAPI" class="md-nav__link">
+      Extending OpenAPI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        OpenAPI Callbacks
+      </label>
+    
+    <a href="./" title="OpenAPI Callbacks" class="md-nav__link md-nav__link--active">
+      OpenAPI Callbacks
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#an-app-with-callbacks" class="md-nav__link">
+    An app with callbacks
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-normal-fastapi-app" class="md-nav__link">
+    The normal FastAPI app
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#documenting-the-callback" class="md-nav__link">
+    Documenting the callback
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#write-the-callback-documentation-code" class="md-nav__link">
+    Write the callback documentation code
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-a-callback-apirouter" class="md-nav__link">
+    Create a callback APIRouter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-the-callback-path-operation" class="md-nav__link">
+    Create the callback path operation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-callback-path-expression" class="md-nav__link">
+    The callback path expression
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-the-callback-router" class="md-nav__link">
+    Add the callback router
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-the-docs" class="md-nav__link">
+    Check the docs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../async/" title="Concurrency and async / await" class="md-nav__link">
+      Concurrency and async / await
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../deployment/" title="Deployment" class="md-nav__link">
+      Deployment
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../project-generation/" title="Project Generation - Template" class="md-nav__link">
+      Project Generation - Template
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../alternatives/" title="Alternatives, Inspiration and Comparisons" class="md-nav__link">
+      Alternatives, Inspiration and Comparisons
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../history-design-future/" title="History, Design and Future" class="md-nav__link">
+      History, Design and Future
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../external-links/" title="External Links and Articles" class="md-nav__link">
+      External Links and Articles
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../benchmarks/" title="Benchmarks" class="md-nav__link">
+      Benchmarks
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../help-fastapi/" title="Help FastAPI - Get Help" class="md-nav__link">
+      Help FastAPI - Get Help
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../contributing/" title="Development - Contributing" class="md-nav__link">
+      Development - Contributing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../release-notes/" title="Release Notes" class="md-nav__link">
+      Release Notes
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#an-app-with-callbacks" class="md-nav__link">
+    An app with callbacks
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-normal-fastapi-app" class="md-nav__link">
+    The normal FastAPI app
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#documenting-the-callback" class="md-nav__link">
+    Documenting the callback
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#write-the-callback-documentation-code" class="md-nav__link">
+    Write the callback documentation code
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-a-callback-apirouter" class="md-nav__link">
+    Create a callback APIRouter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-the-callback-path-operation" class="md-nav__link">
+    Create the callback path operation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-callback-path-expression" class="md-nav__link">
+    The callback path expression
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-the-callback-router" class="md-nav__link">
+    Add the callback router
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-the-docs" class="md-nav__link">
+    Check the docs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>OpenAPI Callbacks</h1>
+                
+                <p>You could create an API with a <em>path operation</em> that could trigger a request to an <em>external API</em> created by someone else (probably the same developer that would be <em>using</em> your API).</p>
+<p>The process that happens when your API app calls the <em>external API</em> is named a "callback". Because the software that the external developer wrote sends a request to your API and then your API <em>calls back</em>, sending a request to an <em>external API</em> (that was probably created by the same developer).</p>
+<p>In this case, you could want to document how that external API <em>should</em> look like. What <em>path operation</em> it should have, what body it should expect, what response it should return, etc.</p>
+<h2 id="an-app-with-callbacks">An app with callbacks<a class="headerlink" href="#an-app-with-callbacks" title="Permanent link">&para;</a></h2>
+<p>Let's see all this with an example.</p>
+<p>Imagine you develop an app that allows creating invoices.</p>
+<p>These invoices will have an <code>id</code>, <code>title</code> (optional), <code>customer</code>, and <code>total</code>.</p>
+<p>The user of your API (an external developer) will create an invoice in your API with a POST request.</p>
+<p>Then your API will (let's imagine):</p>
+<ul>
+<li>Send the invoice to some customer of the external developer.</li>
+<li>Collect the money.</li>
+<li>Send a notification back to the API user (the external developer).<ul>
+<li>This will be done by sending a POST request (from <em>your API</em>) to some <em>external API</em> provided by that external developer (this is the "callback").</li>
+</ul>
+</li>
+</ul>
+<h2 id="the-normal-fastapi-app">The normal <strong>FastAPI</strong> app<a class="headerlink" href="#the-normal-fastapi-app" title="Permanent link">&para;</a></h2>
+<p>Let's first see how the normal API app would look like before adding the callback.</p>
+<p>It will have a <em>path operation</em> that will receive an <code>Invoice</code> body, and a query parameter <code>callback_url</code> that will contain the URL for the callback.</p>
+<p>This part is pretty normal, most of the code is probably already familiar to you:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">APIRouter</span><span class="p">,</span> <span class="n">FastAPI</span>
+<span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">HttpUrl</span>
+<span class="kn">from</span> <span class="nn">starlette.responses</span> <span class="kn">import</span> <span class="n">JSONResponse</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+
+
+<span class="hll"><span class="k">class</span> <span class="nc">Invoice</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span class="hll">    <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span>
+</span><span class="hll">    <span class="n">title</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span class="hll">    <span class="n">customer</span><span class="p">:</span> <span class="nb">str</span>
+</span><span class="hll">    <span class="n">total</span><span class="p">:</span> <span class="nb">float</span>
+</span>
+
+<span class="k">class</span> <span class="nc">InvoiceEvent</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">description</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">paid</span><span class="p">:</span> <span class="nb">bool</span>
+
+
+<span class="k">class</span> <span class="nc">InvoiceEventReceived</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">ok</span><span class="p">:</span> <span class="nb">bool</span>
+
+
+<span class="n">invoices_callback_router</span> <span class="o">=</span> <span class="n">APIRouter</span><span class="p">(</span><span class="n">default_response_class</span><span class="o">=</span><span class="n">JSONResponse</span><span class="p">)</span>
+
+
+<span class="nd">@invoices_callback_router</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+    <span class="s2">&quot;{$callback_url}/invoices/{$request.body.id}&quot;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">InvoiceEventReceived</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">invoice_notification</span><span class="p">(</span><span class="n">body</span><span class="p">:</span> <span class="n">InvoiceEvent</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+
+<span class="hll"><span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/invoices/&quot;</span><span class="p">,</span> <span class="n">callbacks</span><span class="o">=</span><span class="n">invoices_callback_router</span><span class="o">.</span><span class="n">routes</span><span class="p">)</span>
+</span><span class="hll"><span class="k">def</span> <span class="nf">create_invoice</span><span class="p">(</span><span class="n">invoice</span><span class="p">:</span> <span class="n">Invoice</span><span class="p">,</span> <span class="n">callback_url</span><span class="p">:</span> <span class="n">HttpUrl</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+</span><span class="hll">    <span class="sd">&quot;&quot;&quot;</span>
+</span><span class="hll"><span class="sd">    Create an invoice.</span>
+</span><span class="hll">
+</span><span class="hll"><span class="sd">    This will (let&#39;s imagine) let the API user (some external developer) create an</span>
+</span><span class="hll"><span class="sd">    invoice.</span>
+</span><span class="hll">
+</span><span class="hll"><span class="sd">    And this path operation will:</span>
+</span><span class="hll">
+</span><span class="hll"><span class="sd">    * Send the invoice to the client.</span>
+</span><span class="hll"><span class="sd">    * Collect the money from the client.</span>
+</span><span class="hll"><span class="sd">    * Send a notification back to the API user (the external developer), as a callback.</span>
+</span><span class="hll"><span class="sd">        * At this point is that the API will somehow send a POST request to the</span>
+</span><span class="hll"><span class="sd">            external API with the notification of the invoice event</span>
+</span><span class="hll"><span class="sd">            (e.g. &quot;payment successful&quot;).</span>
+</span><span class="hll"><span class="sd">    &quot;&quot;&quot;</span>
+</span><span class="hll">    <span class="c1"># Send the invoice, collect the money, send the notification (the callback)</span>
+</span><span class="hll">    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;msg&quot;</span><span class="p">:</span> <span class="s2">&quot;Invoice received&quot;</span><span class="p">}</span>
+</span></code></pre></div>
+
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The <code>callback_url</code> query parameter uses a Pydantic <a href="https://pydantic-docs.helpmanual.io/usage/types/#urls" class="external-link" target="_blank">URL</a> type.</p>
+</div>
+<p>The only new thing is the <code>callbacks=messages_callback_router.routes</code> as an argument to the <em>path operation decorator</em>. We'll see what that is next.</p>
+<h2 id="documenting-the-callback">Documenting the callback<a class="headerlink" href="#documenting-the-callback" title="Permanent link">&para;</a></h2>
+<p>The actual callback code will depend heavily on your own API app.</p>
+<p>And it will probably vary a lot from one app to the next.</p>
+<p>It could be just one or two lines of code, like:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">callback_url</span> <span class="o">=</span> <span class="s2">&quot;https://example.com/api/v1/invoices/events/&quot;</span>
+<span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">callback_url</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Invoice paid&quot;</span><span class="p">,</span> <span class="s2">&quot;paid&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">})</span>
+</code></pre></div>
+
+<p>But possibly the most important part of the callback is making sure that your API user (the external developer) implements the <em>external API</em> correctly, according to the data that <em>your API</em> is going to send in the request body of the callback, etc.</p>
+<p>So, what we will do next is add the code to document how that <em>external API</em> should look like to receive the callback from <em>your API</em>.</p>
+<p>That documentation will show up in the Swagger UI at <code>/docs</code> in your API, and it will let external developers know how to build the <em>external API</em>.</p>
+<p>This example doesn't implement the callback itself (that could be just a line of code), only the documentation part.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The actual callback is just an HTTP request.</p>
+<p>When implementing the callback yourself, you could use something like <a href="https://www.encode.io/httpx/" class="external-link" target="_blank">HTTPX</a> or <a href="https://requests.readthedocs.io/" class="external-link" target="_blank">Requests</a>.</p>
+</div>
+<h2 id="write-the-callback-documentation-code">Write the callback documentation code<a class="headerlink" href="#write-the-callback-documentation-code" title="Permanent link">&para;</a></h2>
+<p>This code won't be executed in your app, we only need it to <em>document</em> how that <em>external API</em> should look like.</p>
+<p>But, you already know how to easily create automatic documentation for an API with <strong>FastAPI</strong>.</p>
+<p>So we are going to use that same knowledge to document how the <em>external API</em> should look like... by creating the <em>path operation(s)</em> that the external API should implement (the ones your API will call).</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>When writing the code to document a callback, it might be useful to imagine that you are that <em>external developer</em>. And that you are currently implementing the <em>external API</em>, not <em>your API</em>.</p>
+<p>Temporarily adopting this point of view (of the <em>external developer</em>) can help you feel like it's more obvious where to put the parameters, the Pydantic model for the body, for the response, etc. for that <em>external API</em>.</p>
+</div>
+<h3 id="create-a-callback-apirouter">Create a callback <code>APIRouter</code><a class="headerlink" href="#create-a-callback-apirouter" title="Permanent link">&para;</a></h3>
+<p>First create a new <code>APIRouter</code> that will contain one or more callbacks.</p>
+<p>This router will never be added to an actual <code>FastAPI</code> app (i.e. it will never be passed to <code>app.include_router(...)</code>).</p>
+<p>Because of that, you need to declare what will be the <code>default_response_class</code>, and set it to <code>JSONResponse</code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Technical Details</p>
+<p>The <code>response_class</code> is normally set by the <code>FastAPI</code> app during the call to <code>app.include_router(some_router)</code>.</p>
+<p>But as we are never calling <code>app.include_router(some_router)</code>, we need to set the <code>default_response_class</code> during creation of the <code>APIRouter</code>.</p>
+</div>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">APIRouter</span><span class="p">,</span> <span class="n">FastAPI</span>
+<span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">HttpUrl</span>
+<span class="hll"><span class="kn">from</span> <span class="nn">starlette.responses</span> <span class="kn">import</span> <span class="n">JSONResponse</span>
+</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+
+
+<span class="k">class</span> <span class="nc">Invoice</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">title</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">customer</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">total</span><span class="p">:</span> <span class="nb">float</span>
+
+
+<span class="k">class</span> <span class="nc">InvoiceEvent</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">description</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">paid</span><span class="p">:</span> <span class="nb">bool</span>
+
+
+<span class="k">class</span> <span class="nc">InvoiceEventReceived</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">ok</span><span class="p">:</span> <span class="nb">bool</span>
+
+
+<span class="hll"><span class="n">invoices_callback_router</span> <span class="o">=</span> <span class="n">APIRouter</span><span class="p">(</span><span class="n">default_response_class</span><span class="o">=</span><span class="n">JSONResponse</span><span class="p">)</span>
+</span>
+
+<span class="nd">@invoices_callback_router</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+    <span class="s2">&quot;{$callback_url}/invoices/{$request.body.id}&quot;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">InvoiceEventReceived</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">invoice_notification</span><span class="p">(</span><span class="n">body</span><span class="p">:</span> <span class="n">InvoiceEvent</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/invoices/&quot;</span><span class="p">,</span> <span class="n">callbacks</span><span class="o">=</span><span class="n">invoices_callback_router</span><span class="o">.</span><span class="n">routes</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">create_invoice</span><span class="p">(</span><span class="n">invoice</span><span class="p">:</span> <span class="n">Invoice</span><span class="p">,</span> <span class="n">callback_url</span><span class="p">:</span> <span class="n">HttpUrl</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create an invoice.</span>
+
+<span class="sd">    This will (let&#39;s imagine) let the API user (some external developer) create an</span>
+<span class="sd">    invoice.</span>
+
+<span class="sd">    And this path operation will:</span>
+
+<span class="sd">    * Send the invoice to the client.</span>
+<span class="sd">    * Collect the money from the client.</span>
+<span class="sd">    * Send a notification back to the API user (the external developer), as a callback.</span>
+<span class="sd">        * At this point is that the API will somehow send a POST request to the</span>
+<span class="sd">            external API with the notification of the invoice event</span>
+<span class="sd">            (e.g. &quot;payment successful&quot;).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Send the invoice, collect the money, send the notification (the callback)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;msg&quot;</span><span class="p">:</span> <span class="s2">&quot;Invoice received&quot;</span><span class="p">}</span>
+</code></pre></div>
+
+<h3 id="create-the-callback-path-operation">Create the callback <em>path operation</em><a class="headerlink" href="#create-the-callback-path-operation" title="Permanent link">&para;</a></h3>
+<p>To create the callback <em>path operation</em> use the same <code>APIRouter</code> you created above.</p>
+<p>It should look just like a normal FastAPI <em>path operation</em>:</p>
+<ul>
+<li>It should probably have a declaration of the body it should receive, e.g. <code>body: InvoiceEvent</code>.</li>
+<li>And it could also have a declaration of the response it should return, e.g. <code>response_model=InvoiceEventReceived</code>.</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">APIRouter</span><span class="p">,</span> <span class="n">FastAPI</span>
+<span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">HttpUrl</span>
+<span class="kn">from</span> <span class="nn">starlette.responses</span> <span class="kn">import</span> <span class="n">JSONResponse</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+
+
+<span class="k">class</span> <span class="nc">Invoice</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">title</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">customer</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">total</span><span class="p">:</span> <span class="nb">float</span>
+
+
+<span class="hll"><span class="k">class</span> <span class="nc">InvoiceEvent</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span class="hll">    <span class="n">description</span><span class="p">:</span> <span class="nb">str</span>
+</span><span class="hll">    <span class="n">paid</span><span class="p">:</span> <span class="nb">bool</span>
+</span>
+
+<span class="hll"><span class="k">class</span> <span class="nc">InvoiceEventReceived</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span class="hll">    <span class="n">ok</span><span class="p">:</span> <span class="nb">bool</span>
+</span>
+
+<span class="n">invoices_callback_router</span> <span class="o">=</span> <span class="n">APIRouter</span><span class="p">(</span><span class="n">default_response_class</span><span class="o">=</span><span class="n">JSONResponse</span><span class="p">)</span>
+
+
+<span class="hll"><span class="nd">@invoices_callback_router</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+</span><span class="hll">    <span class="s2">&quot;{$callback_url}/invoices/{$request.body.id}&quot;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">InvoiceEventReceived</span><span class="p">,</span>
+</span><span class="hll"><span class="p">)</span>
+</span><span class="hll"><span class="k">def</span> <span class="nf">invoice_notification</span><span class="p">(</span><span class="n">body</span><span class="p">:</span> <span class="n">InvoiceEvent</span><span class="p">):</span>
+</span><span class="hll">    <span class="k">pass</span>
+</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/invoices/&quot;</span><span class="p">,</span> <span class="n">callbacks</span><span class="o">=</span><span class="n">invoices_callback_router</span><span class="o">.</span><span class="n">routes</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">create_invoice</span><span class="p">(</span><span class="n">invoice</span><span class="p">:</span> <span class="n">Invoice</span><span class="p">,</span> <span class="n">callback_url</span><span class="p">:</span> <span class="n">HttpUrl</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create an invoice.</span>
+
+<span class="sd">    This will (let&#39;s imagine) let the API user (some external developer) create an</span>
+<span class="sd">    invoice.</span>
+
+<span class="sd">    And this path operation will:</span>
+
+<span class="sd">    * Send the invoice to the client.</span>
+<span class="sd">    * Collect the money from the client.</span>
+<span class="sd">    * Send a notification back to the API user (the external developer), as a callback.</span>
+<span class="sd">        * At this point is that the API will somehow send a POST request to the</span>
+<span class="sd">            external API with the notification of the invoice event</span>
+<span class="sd">            (e.g. &quot;payment successful&quot;).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Send the invoice, collect the money, send the notification (the callback)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;msg&quot;</span><span class="p">:</span> <span class="s2">&quot;Invoice received&quot;</span><span class="p">}</span>
+</code></pre></div>
+
+<p>There are 2 main differences from a normal <em>path operation</em>:</p>
+<ul>
+<li>It doesn't need to have any actual code, because your app will never call this code. It's only used to document the <em>external API</em>. So, the function could just have <code>pass</code>.</li>
+<li>The <em>path</em> can contain an <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#key-expression" class="external-link" target="_blank">OpenAPI 3 expression</a> (see more below) where it can use variables with parameters and parts of the original request sent to <em>your API</em>.</li>
+</ul>
+<h3 id="the-callback-path-expression">The callback path expression<a class="headerlink" href="#the-callback-path-expression" title="Permanent link">&para;</a></h3>
+<p>The callback <em>path</em> can have an <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#key-expression" class="external-link" target="_blank">OpenAPI 3 expression</a> that can contain parts of the original request sent to <em>your API</em>.</p>
+<p>In this case, it's the <code>str</code>:</p>
+<div class="codehilite"><pre><span></span><code><span class="s2">&quot;{$callback_url}/invoices/{$request.body.id}&quot;</span>
+</code></pre></div>
+
+<p>So, if your API user (the external developer) sends a request to <em>your API</em> to:</p>
+<div class="codehilite"><pre><span></span><code>https://yourapi.com/invoices/?callback_url=https://www.external.org/events
+</code></pre></div>
+
+<p>with a JSON body of:</p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;2expen51ve&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;customer&quot;</span><span class="p">:</span> <span class="s2">&quot;Mr. Richie Rich&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;total&quot;</span><span class="p">:</span> <span class="s2">&quot;9999&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Then <em>your API</em> will process the invoice, and at some point later, send a callback request to the <code>callback_url</code> (the <em>external API</em>):</p>
+<div class="codehilite"><pre><span></span><code>https://www.external.org/events/invoices/2expen51ve
+</code></pre></div>
+
+<p>with a JSON body containing something like:</p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Payment celebration&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;paid&quot;</span><span class="p">:</span> <span class="kc">true</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>and it would expect a response from that <em>external API</em> with a JSON body like:</p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;ok&quot;</span><span class="p">:</span> <span class="kc">true</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Notice how the callback URL used contains the URL received as a query parameter in <code>callback_url</code> (<code>https://www.external.org/events</code>) and also the invoice <code>id</code> from inside of the JSON body (<code>2expen51ve</code>).</p>
+</div>
+<h3 id="add-the-callback-router">Add the callback router<a class="headerlink" href="#add-the-callback-router" title="Permanent link">&para;</a></h3>
+<p>At this point you have the <em>callback path operation(s)</em> needed (the one(s) that the <em>external developer</em>  should implement in the <em>external API</em>) in the callback router you created above.</p>
+<p>Now use the parameter <code>callbacks</code> in <em>your API's path operation decorator</em> to pass the attribute <code>.routes</code> (that's actually just a <code>list</code> of routes/<em>path operations</em>) from that callback router:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">APIRouter</span><span class="p">,</span> <span class="n">FastAPI</span>
+<span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">HttpUrl</span>
+<span class="kn">from</span> <span class="nn">starlette.responses</span> <span class="kn">import</span> <span class="n">JSONResponse</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+
+
+<span class="k">class</span> <span class="nc">Invoice</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">title</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">customer</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">total</span><span class="p">:</span> <span class="nb">float</span>
+
+
+<span class="k">class</span> <span class="nc">InvoiceEvent</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">description</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">paid</span><span class="p">:</span> <span class="nb">bool</span>
+
+
+<span class="k">class</span> <span class="nc">InvoiceEventReceived</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">ok</span><span class="p">:</span> <span class="nb">bool</span>
+
+
+<span class="n">invoices_callback_router</span> <span class="o">=</span> <span class="n">APIRouter</span><span class="p">(</span><span class="n">default_response_class</span><span class="o">=</span><span class="n">JSONResponse</span><span class="p">)</span>
+
+
+<span class="nd">@invoices_callback_router</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+    <span class="s2">&quot;{$callback_url}/invoices/{$request.body.id}&quot;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">InvoiceEventReceived</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">invoice_notification</span><span class="p">(</span><span class="n">body</span><span class="p">:</span> <span class="n">InvoiceEvent</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+
+<span class="hll"><span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/invoices/&quot;</span><span class="p">,</span> <span class="n">callbacks</span><span class="o">=</span><span class="n">invoices_callback_router</span><span class="o">.</span><span class="n">routes</span><span class="p">)</span>
+</span><span class="k">def</span> <span class="nf">create_invoice</span><span class="p">(</span><span class="n">invoice</span><span class="p">:</span> <span class="n">Invoice</span><span class="p">,</span> <span class="n">callback_url</span><span class="p">:</span> <span class="n">HttpUrl</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create an invoice.</span>
+
+<span class="sd">    This will (let&#39;s imagine) let the API user (some external developer) create an</span>
+<span class="sd">    invoice.</span>
+
+<span class="sd">    And this path operation will:</span>
+
+<span class="sd">    * Send the invoice to the client.</span>
+<span class="sd">    * Collect the money from the client.</span>
+<span class="sd">    * Send a notification back to the API user (the external developer), as a callback.</span>
+<span class="sd">        * At this point is that the API will somehow send a POST request to the</span>
+<span class="sd">            external API with the notification of the invoice event</span>
+<span class="sd">            (e.g. &quot;payment successful&quot;).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Send the invoice, collect the money, send the notification (the callback)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;msg&quot;</span><span class="p">:</span> <span class="s2">&quot;Invoice received&quot;</span><span class="p">}</span>
+</code></pre></div>
+
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Notice that you are not passing the router itself (<code>invoices_callback_router</code>) to <code>callback=</code>, but the attribute <code>.routes</code>, as in <code>invoices_callback_router.routes</code>.</p>
+</div>
+<h3 id="check-the-docs">Check the docs<a class="headerlink" href="#check-the-docs" title="Permanent link">&para;</a></h3>
+<p>Now you can start your app with Uvicorn and go to <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.</p>
+<p>You will see your docs including a "Callback" section for your <em>path operation</em> that shows how the <em>external API</em> should look like:</p>
+<p><img src="/img/tutorial/openapi-callbacks/image01.png"></p>
+                
+                  
+                
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../extending-openapi/" title="Extending OpenAPI" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Extending OpenAPI
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../../async/" title="Concurrency and async / await" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Concurrency and async / await
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org" target="_blank" rel="noopener">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.c33a9706.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2034 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="FastAPI framework, high performance, easy to learn, fast to code, ready for production">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../img/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.6.3">
+    
+    
+      
+        <title>First Steps - FastAPI Docs CN</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.adb8469c.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.a8b3c06d.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#009688">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.86422ebf.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="teal" data-md-color-accent="amber">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#check-it" tabindex="0" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../.." title="FastAPI Docs CN" aria-label="FastAPI Docs CN" class="md-header-nav__button md-logo">
+          
+            <img alt="logo" src="../../img/icon-white.svg" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              FastAPI Docs CN
+            </span>
+            <span class="md-header-nav__topic">
+              
+                First Steps
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" aria-label="search" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../.." title="FastAPI Docs CN" class="md-nav__button md-logo">
+      
+        <img alt="logo" src="../../img/icon-white.svg" width="48" height="48">
+      
+    </a>
+    FastAPI Docs CN
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="FastAPI" class="md-nav__link">
+      FastAPI
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../features/" title="Features" class="md-nav__link">
+      Features
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../python-types/" title="Python types intro" class="md-nav__link">
+      Python types intro
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      Tutorial - User Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Tutorial - User Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../" title="Tutorial - User Guide - Intro" class="md-nav__link">
+      Tutorial - User Guide - Intro
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        First Steps
+      </label>
+    
+    <a href="./" title="First Steps" class="md-nav__link md-nav__link--active">
+      First Steps
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#check-it" class="md-nav__link">
+    Check it
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-api-docs" class="md-nav__link">
+    Interactive API docs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alternative-api-docs" class="md-nav__link">
+    Alternative API docs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#openapi" class="md-nav__link">
+    OpenAPI
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#schema" class="md-nav__link">
+    "Schema"
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-schema" class="md-nav__link">
+    API "schema"
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-schema" class="md-nav__link">
+    Data "schema"
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#openapi-and-json-schema" class="md-nav__link">
+    OpenAPI and JSON Schema
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-the-openapijson" class="md-nav__link">
+    Check the openapi.json
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-openapi-for" class="md-nav__link">
+    What is OpenAPI for
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recap-step-by-step" class="md-nav__link">
+    Recap, step by step
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-import-fastapi" class="md-nav__link">
+    Step 1: import FastAPI
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-create-a-fastapi-instance" class="md-nav__link">
+    Step 2: create a FastAPI "instance"
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-create-a-path-operation" class="md-nav__link">
+    Step 3: create a path operation
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#path" class="md-nav__link">
+    Path
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operation" class="md-nav__link">
+    Operation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-a-path-operation-function" class="md-nav__link">
+    Define a path operation function
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-define-the-path-operation-function" class="md-nav__link">
+    Step 4: define the path operation function
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-return-the-content" class="md-nav__link">
+    Step 5: return the content
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recap" class="md-nav__link">
+    Recap
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../path-params/" title="Path Parameters" class="md-nav__link">
+      Path Parameters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../query-params/" title="Query Parameters" class="md-nav__link">
+      Query Parameters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../body/" title="Request Body" class="md-nav__link">
+      Request Body
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../query-params-str-validations/" title="Query Parameters and String Validations" class="md-nav__link">
+      Query Parameters and String Validations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../path-params-numeric-validations/" title="Path Parameters and Numeric Validations" class="md-nav__link">
+      Path Parameters and Numeric Validations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../body-multiple-params/" title="Body - Multiple Parameters" class="md-nav__link">
+      Body - Multiple Parameters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../body-fields/" title="Body - Fields" class="md-nav__link">
+      Body - Fields
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../body-nested-models/" title="Body - Nested Models" class="md-nav__link">
+      Body - Nested Models
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../extra-data-types/" title="Extra data types" class="md-nav__link">
+      Extra data types
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../cookie-params/" title="Cookie Parameters" class="md-nav__link">
+      Cookie Parameters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../header-params/" title="Header Parameters" class="md-nav__link">
+      Header Parameters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../response-model/" title="Response Model" class="md-nav__link">
+      Response Model
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../extra-models/" title="Extra Models" class="md-nav__link">
+      Extra Models
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../response-status-code/" title="Response Status Code" class="md-nav__link">
+      Response Status Code
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../request-forms/" title="Form Data" class="md-nav__link">
+      Form Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../request-files/" title="Request Files" class="md-nav__link">
+      Request Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../request-forms-and-files/" title="Request Forms and Files" class="md-nav__link">
+      Request Forms and Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../handling-errors/" title="Handling Errors" class="md-nav__link">
+      Handling Errors
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../path-operation-configuration/" title="Path Operation Configuration" class="md-nav__link">
+      Path Operation Configuration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../encoder/" title="JSON Compatible Encoder" class="md-nav__link">
+      JSON Compatible Encoder
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../body-updates/" title="Body - updates" class="md-nav__link">
+      Body - updates
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-24" type="checkbox" id="nav-4-24">
+    
+    <label class="md-nav__link" for="nav-4-24">
+      Dependencies
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-24">
+        Dependencies
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../dependencies/" title="First Steps" class="md-nav__link">
+      First Steps
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../dependencies/classes-as-dependencies/" title="Classes as Dependencies" class="md-nav__link">
+      Classes as Dependencies
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../dependencies/sub-dependencies/" title="Sub-dependencies" class="md-nav__link">
+      Sub-dependencies
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../dependencies/dependencies-in-path-operation-decorators/" title="Dependencies in path operation decorators" class="md-nav__link">
+      Dependencies in path operation decorators
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../dependencies/dependencies-with-yield/" title="Dependencies with yield" class="md-nav__link">
+      Dependencies with yield
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-25" type="checkbox" id="nav-4-25">
+    
+    <label class="md-nav__link" for="nav-4-25">
+      Security
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-25">
+        Security
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../security/" title="Security Intro" class="md-nav__link">
+      Security Intro
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../security/first-steps/" title="First Steps" class="md-nav__link">
+      First Steps
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../security/get-current-user/" title="Get Current User" class="md-nav__link">
+      Get Current User
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../security/simple-oauth2/" title="Simple OAuth2 with Password and Bearer" class="md-nav__link">
+      Simple OAuth2 with Password and Bearer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../security/oauth2-jwt/" title="OAuth2 with Password (and hashing), Bearer with JWT tokens" class="md-nav__link">
+      OAuth2 with Password (and hashing), Bearer with JWT tokens
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../middleware/" title="Middleware" class="md-nav__link">
+      Middleware
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../cors/" title="CORS (Cross-Origin Resource Sharing)" class="md-nav__link">
+      CORS (Cross-Origin Resource Sharing)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../sql-databases/" title="SQL (Relational) Databases" class="md-nav__link">
+      SQL (Relational) Databases
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../bigger-applications/" title="Bigger Applications - Multiple Files" class="md-nav__link">
+      Bigger Applications - Multiple Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../background-tasks/" title="Background Tasks" class="md-nav__link">
+      Background Tasks
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../application-configuration/" title="Application Configuration" class="md-nav__link">
+      Application Configuration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../static-files/" title="Static Files" class="md-nav__link">
+      Static Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../testing/" title="Testing" class="md-nav__link">
+      Testing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../debugging/" title="Debugging" class="md-nav__link">
+      Debugging
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Advanced User Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Advanced User Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/" title="Advanced User Guide - Intro" class="md-nav__link">
+      Advanced User Guide - Intro
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/path-operation-advanced-configuration/" title="Path Operation Advanced Configuration" class="md-nav__link">
+      Path Operation Advanced Configuration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/additional-status-codes/" title="Additional Status Codes" class="md-nav__link">
+      Additional Status Codes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/response-directly/" title="Return a Response Directly" class="md-nav__link">
+      Return a Response Directly
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/custom-response/" title="Custom Response Class" class="md-nav__link">
+      Custom Response Class
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/additional-responses/" title="Additional Responses in OpenAPI" class="md-nav__link">
+      Additional Responses in OpenAPI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/response-cookies/" title="Response Cookies" class="md-nav__link">
+      Response Cookies
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/response-headers/" title="Response Headers" class="md-nav__link">
+      Response Headers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/response-change-status-code/" title="Response - Change Status Code" class="md-nav__link">
+      Response - Change Status Code
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/advanced-dependencies/" title="Advanced Dependencies" class="md-nav__link">
+      Advanced Dependencies
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-11" type="checkbox" id="nav-5-11">
+    
+    <label class="md-nav__link" for="nav-5-11">
+      Advanced Security
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-11">
+        Advanced Security
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/security/" title="Advanced Security - Intro" class="md-nav__link">
+      Advanced Security - Intro
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/security/oauth2-scopes/" title="OAuth2 scopes" class="md-nav__link">
+      OAuth2 scopes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/security/http-basic-auth/" title="HTTP Basic Auth" class="md-nav__link">
+      HTTP Basic Auth
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/using-request-directly/" title="Using the Request Directly" class="md-nav__link">
+      Using the Request Directly
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/sql-databases-peewee/" title="SQL (Relational) Databases with Peewee" class="md-nav__link">
+      SQL (Relational) Databases with Peewee
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/async-sql-databases/" title="Async SQL (Relational) Databases" class="md-nav__link">
+      Async SQL (Relational) Databases
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/nosql-databases/" title="NoSQL (Distributed / Big Data) Databases" class="md-nav__link">
+      NoSQL (Distributed / Big Data) Databases
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/sub-applications-proxy/" title="Sub Applications - Behind a Proxy" class="md-nav__link">
+      Sub Applications - Behind a Proxy
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/templates/" title="Templates" class="md-nav__link">
+      Templates
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/graphql/" title="GraphQL" class="md-nav__link">
+      GraphQL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/websockets/" title="WebSockets" class="md-nav__link">
+      WebSockets
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/events/" title="Events: startup - shutdown" class="md-nav__link">
+      Events: startup - shutdown
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/custom-request-and-route/" title="Custom Request and APIRoute class" class="md-nav__link">
+      Custom Request and APIRoute class
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/testing-websockets/" title="Testing WebSockets" class="md-nav__link">
+      Testing WebSockets
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/testing-events/" title="Testing Events: startup - shutdown" class="md-nav__link">
+      Testing Events: startup - shutdown
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/testing-dependencies/" title="Testing Dependencies with Overrides" class="md-nav__link">
+      Testing Dependencies with Overrides
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/extending-openapi/" title="Extending OpenAPI" class="md-nav__link">
+      Extending OpenAPI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/openapi-callbacks/" title="OpenAPI Callbacks" class="md-nav__link">
+      OpenAPI Callbacks
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../async/" title="Concurrency and async / await" class="md-nav__link">
+      Concurrency and async / await
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../deployment/" title="Deployment" class="md-nav__link">
+      Deployment
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../project-generation/" title="Project Generation - Template" class="md-nav__link">
+      Project Generation - Template
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../alternatives/" title="Alternatives, Inspiration and Comparisons" class="md-nav__link">
+      Alternatives, Inspiration and Comparisons
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../history-design-future/" title="History, Design and Future" class="md-nav__link">
+      History, Design and Future
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../external-links/" title="External Links and Articles" class="md-nav__link">
+      External Links and Articles
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../benchmarks/" title="Benchmarks" class="md-nav__link">
+      Benchmarks
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../help-fastapi/" title="Help FastAPI - Get Help" class="md-nav__link">
+      Help FastAPI - Get Help
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../contributing/" title="Development - Contributing" class="md-nav__link">
+      Development - Contributing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../release-notes/" title="Release Notes" class="md-nav__link">
+      Release Notes
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#check-it" class="md-nav__link">
+    Check it
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-api-docs" class="md-nav__link">
+    Interactive API docs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alternative-api-docs" class="md-nav__link">
+    Alternative API docs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#openapi" class="md-nav__link">
+    OpenAPI
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#schema" class="md-nav__link">
+    "Schema"
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-schema" class="md-nav__link">
+    API "schema"
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-schema" class="md-nav__link">
+    Data "schema"
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#openapi-and-json-schema" class="md-nav__link">
+    OpenAPI and JSON Schema
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-the-openapijson" class="md-nav__link">
+    Check the openapi.json
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-openapi-for" class="md-nav__link">
+    What is OpenAPI for
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recap-step-by-step" class="md-nav__link">
+    Recap, step by step
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-import-fastapi" class="md-nav__link">
+    Step 1: import FastAPI
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-create-a-fastapi-instance" class="md-nav__link">
+    Step 2: create a FastAPI "instance"
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-create-a-path-operation" class="md-nav__link">
+    Step 3: create a path operation
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#path" class="md-nav__link">
+    Path
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operation" class="md-nav__link">
+    Operation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#define-a-path-operation-function" class="md-nav__link">
+    Define a path operation function
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-define-the-path-operation-function" class="md-nav__link">
+    Step 4: define the path operation function
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-return-the-content" class="md-nav__link">
+    Step 5: return the content
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recap" class="md-nav__link">
+    Recap
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>First Steps</h1>
+                
+                <p>The simplest FastAPI file could look like this:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">root</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Hello World&quot;</span><span class="p">}</span>
+</code></pre></div>
+
+<p>Copy that to a file <code>main.py</code>.</p>
+<p>Run the live server:</p>
+<div class="codehilite"><pre><span></span><code>uvicorn main:app --reload
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The command <code>uvicorn main:app</code> refers to:</p>
+<ul>
+<li><code>main</code>: the file <code>main.py</code> (the Python "module").</li>
+<li><code>app</code>: the object created inside of <code>main.py</code> with the line <code>app = FastAPI()</code>.</li>
+<li><code>--reload</code>: make the server restart after code changes. Only use for development.</li>
+</ul>
+</div>
+<p>You will see an output like:</p>
+<div class="codehilite"><pre><span></span><code>INFO: Started reloader process [17961]
+INFO: Started server process [17962]
+INFO: Waiting for application startup.
+<span class="hll">INFO: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+</span></code></pre></div>
+
+<p>That last line shows the URL where your app is being served, in your local machine.</p>
+<h3 id="check-it">Check it<a class="headerlink" href="#check-it" title="Permanent link">&para;</a></h3>
+<p>Open your browser at <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>.</p>
+<p>You will see the JSON response as:</p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Hello World&quot;</span><span class="p">}</span>
+</code></pre></div>
+
+<h3 id="interactive-api-docs">Interactive API docs<a class="headerlink" href="#interactive-api-docs" title="Permanent link">&para;</a></h3>
+<p>Now go to <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.</p>
+<p>You will see the automatic interactive API documentation (provided by <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>):</p>
+<p><img alt="Swagger UI" src="https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png" /></p>
+<h3 id="alternative-api-docs">Alternative API docs<a class="headerlink" href="#alternative-api-docs" title="Permanent link">&para;</a></h3>
+<p>And now, go to <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.</p>
+<p>You will see the alternative automatic documentation (provided by <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>):</p>
+<p><img alt="ReDoc" src="https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png" /></p>
+<h3 id="openapi">OpenAPI<a class="headerlink" href="#openapi" title="Permanent link">&para;</a></h3>
+<p><strong>FastAPI</strong> generates a "schema" with all your API using the <strong>OpenAPI</strong> standard for defining APIs.</p>
+<h4 id="schema">"Schema"<a class="headerlink" href="#schema" title="Permanent link">&para;</a></h4>
+<p>A "schema" is a definition or description of something. Not the code that implements it, but just the abstract description.</p>
+<h4 id="api-schema">API "schema"<a class="headerlink" href="#api-schema" title="Permanent link">&para;</a></h4>
+<p>In this case, OpenAPI is a specification that dictates how to define a schema of your API.</p>
+<p>This OpenAPI schema would include your API paths, the possible parameters they take, etc.</p>
+<h4 id="data-schema">Data "schema"<a class="headerlink" href="#data-schema" title="Permanent link">&para;</a></h4>
+<p>The term "schema" might also refer to the shape of some data, like a JSON content.</p>
+<p>In that case, it would mean the JSON attributes, and data types they have, etc.</p>
+<h4 id="openapi-and-json-schema">OpenAPI and JSON Schema<a class="headerlink" href="#openapi-and-json-schema" title="Permanent link">&para;</a></h4>
+<p>OpenAPI defines an API schema for your API. And that schema includes definitions (or "schemas") of the data sent and received by your API using <strong>JSON Schema</strong>, the standard for JSON data schemas.</p>
+<h4 id="check-the-openapijson">Check the <code>openapi.json</code><a class="headerlink" href="#check-the-openapijson" title="Permanent link">&para;</a></h4>
+<p>If you are curious about how the raw OpenAPI schema looks like, it is just an automatically generated JSON with the descriptions of all your API.</p>
+<p>You can see it directly at: <a href="http://127.0.0.1:8000/openapi.json" class="external-link" target="_blank">http://127.0.0.1:8000/openapi.json</a>.</p>
+<p>It will show a JSON starting with something like:</p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;openapi&quot;</span><span class="p">:</span> <span class="s2">&quot;3.0.2&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;FastAPI&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;0.1.0&quot;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;paths&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;/items/&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;get&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;responses&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="nt">&quot;200&quot;</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Successful Response&quot;</span><span class="p">,</span>
+                        <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="p">{</span>
+                            <span class="nt">&quot;application/json&quot;</span><span class="p">:</span> <span class="p">{</span>
+
+
+
+<span class="err">...</span>
+</code></pre></div>
+
+<h4 id="what-is-openapi-for">What is OpenAPI for<a class="headerlink" href="#what-is-openapi-for" title="Permanent link">&para;</a></h4>
+<p>This OpenAPI schema is what powers the 2 interactive documentation systems included.</p>
+<p>And there are dozens of alternatives, all based on OpenAPI. You could easily add any of those alternatives to your application built with <strong>FastAPI</strong>.</p>
+<p>You could also use it to generate code automatically, for clients that communicate with your API. For example, frontend, mobile or IoT applications.</p>
+<h2 id="recap-step-by-step">Recap, step by step<a class="headerlink" href="#recap-step-by-step" title="Permanent link">&para;</a></h2>
+<h3 id="step-1-import-fastapi">Step 1: import <code>FastAPI</code><a class="headerlink" href="#step-1-import-fastapi" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="hll"><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span>
+</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">root</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Hello World&quot;</span><span class="p">}</span>
+</code></pre></div>
+
+<p><code>FastAPI</code> is a Python class that provides all the functionality for your API.</p>
+<div class="admonition note">
+<p class="admonition-title">Technical Details</p>
+<p><code>FastAPI</code> is a class that inherits directly from <code>Starlette</code>.</p>
+<p>You can use all the Starlette functionality with <code>FastAPI</code> too.</p>
+</div>
+<h3 id="step-2-create-a-fastapi-instance">Step 2: create a <code>FastAPI</code> "instance"<a class="headerlink" href="#step-2-create-a-fastapi-instance" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span>
+
+<span class="hll"><span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">root</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Hello World&quot;</span><span class="p">}</span>
+</code></pre></div>
+
+<p>Here the <code>app</code> variable will be an "instance" of the class <code>FastAPI</code>.</p>
+<p>This will be the main point of interaction to create all your API.</p>
+<p>This <code>app</code> is the same one referred by <code>uvicorn</code> in the command:</p>
+<div class="codehilite"><pre><span></span><code>uvicorn main:app --reload
+</code></pre></div>
+
+<p>If you create your app like:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span>
+
+<span class="hll"><span class="n">my_awesome_api</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+</span>
+
+<span class="nd">@my_awesome_api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">root</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Hello World&quot;</span><span class="p">}</span>
+</code></pre></div>
+
+<p>And put it in a file <code>main.py</code>, then you would call <code>uvicorn</code> like:</p>
+<div class="codehilite"><pre><span></span><code>uvicorn main:my_awesome_api --reload
+</code></pre></div>
+
+<h3 id="step-3-create-a-path-operation">Step 3: create a <em>path operation</em><a class="headerlink" href="#step-3-create-a-path-operation" title="Permanent link">&para;</a></h3>
+<h4 id="path">Path<a class="headerlink" href="#path" title="Permanent link">&para;</a></h4>
+<p>"Path" here refers to the last part of the URL starting from the first <code>/</code>.</p>
+<p>So, in a URL like:</p>
+<div class="codehilite"><pre><span></span><code>https://example.com/items/foo
+</code></pre></div>
+
+<p>...the path would be:</p>
+<div class="codehilite"><pre><span></span><code>/items/foo
+</code></pre></div>
+
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>A "path" is also commonly called an "endpoint" or a "route".</p>
+</div>
+<p>Building an API, the "path" is the main way to separate "concerns" and "resources".</p>
+<h4 id="operation">Operation<a class="headerlink" href="#operation" title="Permanent link">&para;</a></h4>
+<p>"Operation" here refers to one of the HTTP "methods".</p>
+<p>One of:</p>
+<ul>
+<li><code>POST</code></li>
+<li><code>GET</code></li>
+<li><code>PUT</code></li>
+<li><code>DELETE</code></li>
+</ul>
+<p>...and the more exotic ones:</p>
+<ul>
+<li><code>OPTIONS</code></li>
+<li><code>HEAD</code></li>
+<li><code>PATCH</code></li>
+<li><code>TRACE</code></li>
+</ul>
+<p>In the HTTP protocol, you can communicate to each path using one (or more) of these "methods".</p>
+<hr />
+<p>When building APIs, you normally use these specific HTTP methods to perform a specific action.</p>
+<p>Normally you use:</p>
+<ul>
+<li><code>POST</code>: to create data.</li>
+<li><code>GET</code>: to read data.</li>
+<li><code>PUT</code>: to update data.</li>
+<li><code>DELETE</code>: to delete data.</li>
+</ul>
+<p>So, in OpenAPI, each of the HTTP methods is called an "operation".</p>
+<p>We are going to call them "<strong>operations</strong>" too.</p>
+<h4 id="define-a-path-operation-function">Define a <em>path operation function</em><a class="headerlink" href="#define-a-path-operation-function" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+
+
+<span class="hll"><span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+</span><span class="k">async</span> <span class="k">def</span> <span class="nf">root</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Hello World&quot;</span><span class="p">}</span>
+</code></pre></div>
+
+<p>The <code>@app.get("/")</code> tells <strong>FastAPI</strong> that the function right below is in charge of handling requests that go to:</p>
+<ul>
+<li>the path <code>/</code></li>
+<li>using a <abbr title="an HTTP GET method"><code>get</code> operation</abbr></li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title"><code>@decorator</code> Info</p>
+<p>That <code>@something</code> syntax in Python is called a "decorator".</p>
+<p>You put it on top of a function. Like a pretty decorative hat (I guess that's where the term came from).</p>
+<p>A "decorator" takes the function below and does something with it.</p>
+<p>In our case, this decorator tells <strong>FastAPI</strong> that the function below corresponds to the <strong>path</strong> <code>/</code> with an <strong>operation</strong> <code>get</code>.</p>
+<p>It is the "<strong>path operation decorator</strong>".</p>
+</div>
+<p>You can also use the other operations:</p>
+<ul>
+<li><code>@app.post()</code></li>
+<li><code>@app.put()</code></li>
+<li><code>@app.delete()</code></li>
+</ul>
+<p>And the more exotic ones:</p>
+<ul>
+<li><code>@app.options()</code></li>
+<li><code>@app.head()</code></li>
+<li><code>@app.patch()</code></li>
+<li><code>@app.trace()</code></li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You are free to use each operation (HTTP method) as you wish.</p>
+<p><strong>FastAPI</strong> doesn't enforce any specific meaning.</p>
+<p>The information here is presented as a guideline, not a requirement.</p>
+<p>For example, when using GraphQL you normally perform all the actions using only <code>post</code>.</p>
+</div>
+<h3 id="step-4-define-the-path-operation-function">Step 4: define the <strong>path operation function</strong><a class="headerlink" href="#step-4-define-the-path-operation-function" title="Permanent link">&para;</a></h3>
+<p>This is our "<strong>path operation function</strong>":</p>
+<ul>
+<li><strong>path</strong>: is <code>/</code>.</li>
+<li><strong>operation</strong>: is <code>get</code>.</li>
+<li><strong>function</strong>: is the function below the "decorator" (below <code>@app.get("/")</code>).</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+<span class="hll"><span class="k">async</span> <span class="k">def</span> <span class="nf">root</span><span class="p">():</span>
+</span>    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Hello World&quot;</span><span class="p">}</span>
+</code></pre></div>
+
+<p>This is a Python function.</p>
+<p>It will be called by <strong>FastAPI</strong> whenever it receives a request to the URL "<code>/</code>" using <code>GET</code>.</p>
+<p>In this case, it is an <code>async</code> function.</p>
+<hr />
+<p>You could also define it as a normal function instead of <code>async def</code>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+<span class="hll"><span class="k">def</span> <span class="nf">root</span><span class="p">():</span>
+</span>    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Hello World&quot;</span><span class="p">}</span>
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you don't know the difference, check the <a class="internal-link" href="../../async/#in-a-hurry" target="_blank">Async: <em>"In a hurry?"</em></a>.</p>
+</div>
+<h3 id="step-5-return-the-content">Step 5: return the content<a class="headerlink" href="#step-5-return-the-content" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">root</span><span class="p">():</span>
+<span class="hll">    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Hello World&quot;</span><span class="p">}</span>
+</span></code></pre></div>
+
+<p>You can return a <code>dict</code>, <code>list</code>, singular values as <code>str</code>, <code>int</code>, etc.</p>
+<p>You can also return Pydantic models (you'll see more about that later).</p>
+<p>There are many other objects and models that will be automatically converted to JSON (including ORMs, etc). Try using your favorite ones, it's highly probable that they are already supported.</p>
+<h2 id="recap">Recap<a class="headerlink" href="#recap" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Import <code>FastAPI</code>.</li>
+<li>Create an <code>app</code> instance.</li>
+<li>Write a <strong>path operation decorator</strong> (like <code>@app.get("/")</code>).</li>
+<li>Write a <strong>path operation function</strong> (like <code>def root(): ...</code> above).</li>
+<li>Run the development server (like <code>uvicorn main:app --reload</code>).</li>
+</ul>
+                
+                  
+                
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../" title="Tutorial - User Guide - Intro" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Tutorial - User Guide - Intro
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../path-params/" title="Path Parameters" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Path Parameters
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org" target="_blank" rel="noopener">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.c33a9706.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+    
+  </body>
+</html>

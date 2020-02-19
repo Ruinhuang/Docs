@@ -1,0 +1,1967 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="FastAPI framework, high performance, easy to learn, fast to code, ready for production">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../img/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.6.3">
+    
+    
+      
+        <title>Concurrency and async / await - FastAPI Docs CN</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.adb8469c.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/application-palette.a8b3c06d.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#009688">
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.86422ebf.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="teal" data-md-color-accent="amber">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#in-a-hurry" tabindex="0" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href=".." title="FastAPI Docs CN" aria-label="FastAPI Docs CN" class="md-header-nav__button md-logo">
+          
+            <img alt="logo" src="../img/icon-white.svg" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              FastAPI Docs CN
+            </span>
+            <span class="md-header-nav__topic">
+              
+                Concurrency and async / await
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" aria-label="search" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href=".." title="FastAPI Docs CN" class="md-nav__button md-logo">
+      
+        <img alt="logo" src="../img/icon-white.svg" width="48" height="48">
+      
+    </a>
+    FastAPI Docs CN
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="FastAPI" class="md-nav__link">
+      FastAPI
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../features/" title="Features" class="md-nav__link">
+      Features
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../python-types/" title="Python types intro" class="md-nav__link">
+      Python types intro
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Tutorial - User Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Tutorial - User Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial/" title="Tutorial - User Guide - Intro" class="md-nav__link">
+      Tutorial - User Guide - Intro
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial/first-steps/" title="First Steps" class="md-nav__link">
+      First Steps
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial/path-params/" title="Path Parameters" class="md-nav__link">
+      Path Parameters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial/query-params/" title="Query Parameters" class="md-nav__link">
+      Query Parameters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial/body/" title="Request Body" class="md-nav__link">
+      Request Body
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial/query-params-str-validations/" title="Query Parameters and String Validations" class="md-nav__link">
+      Query Parameters and String Validations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial/path-params-numeric-validations/" title="Path Parameters and Numeric Validations" class="md-nav__link">
+      Path Parameters and Numeric Validations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial/body-multiple-params/" title="Body - Multiple Parameters" class="md-nav__link">
+      Body - Multiple Parameters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial/body-fields/" title="Body - Fields" class="md-nav__link">
+      Body - Fields
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial/body-nested-models/" title="Body - Nested Models" class="md-nav__link">
+      Body - Nested Models
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial/extra-data-types/" title="Extra data types" class="md-nav__link">
+      Extra data types
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial/cookie-params/" title="Cookie Parameters" class="md-nav__link">
+      Cookie Parameters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial/header-params/" title="Header Parameters" class="md-nav__link">
+      Header Parameters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial/response-model/" title="Response Model" class="md-nav__link">
+      Response Model
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial/extra-models/" title="Extra Models" class="md-nav__link">
+      Extra Models
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial/response-status-code/" title="Response Status Code" class="md-nav__link">
+      Response Status Code
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial/request-forms/" title="Form Data" class="md-nav__link">
+      Form Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial/request-files/" title="Request Files" class="md-nav__link">
+      Request Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial/request-forms-and-files/" title="Request Forms and Files" class="md-nav__link">
+      Request Forms and Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial/handling-errors/" title="Handling Errors" class="md-nav__link">
+      Handling Errors
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial/path-operation-configuration/" title="Path Operation Configuration" class="md-nav__link">
+      Path Operation Configuration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial/encoder/" title="JSON Compatible Encoder" class="md-nav__link">
+      JSON Compatible Encoder
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial/body-updates/" title="Body - updates" class="md-nav__link">
+      Body - updates
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-24" type="checkbox" id="nav-4-24">
+    
+    <label class="md-nav__link" for="nav-4-24">
+      Dependencies
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-24">
+        Dependencies
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial/dependencies/" title="First Steps" class="md-nav__link">
+      First Steps
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial/dependencies/classes-as-dependencies/" title="Classes as Dependencies" class="md-nav__link">
+      Classes as Dependencies
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial/dependencies/sub-dependencies/" title="Sub-dependencies" class="md-nav__link">
+      Sub-dependencies
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial/dependencies/dependencies-in-path-operation-decorators/" title="Dependencies in path operation decorators" class="md-nav__link">
+      Dependencies in path operation decorators
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial/dependencies/dependencies-with-yield/" title="Dependencies with yield" class="md-nav__link">
+      Dependencies with yield
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-25" type="checkbox" id="nav-4-25">
+    
+    <label class="md-nav__link" for="nav-4-25">
+      Security
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-25">
+        Security
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial/security/" title="Security Intro" class="md-nav__link">
+      Security Intro
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial/security/first-steps/" title="First Steps" class="md-nav__link">
+      First Steps
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial/security/get-current-user/" title="Get Current User" class="md-nav__link">
+      Get Current User
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial/security/simple-oauth2/" title="Simple OAuth2 with Password and Bearer" class="md-nav__link">
+      Simple OAuth2 with Password and Bearer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial/security/oauth2-jwt/" title="OAuth2 with Password (and hashing), Bearer with JWT tokens" class="md-nav__link">
+      OAuth2 with Password (and hashing), Bearer with JWT tokens
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial/middleware/" title="Middleware" class="md-nav__link">
+      Middleware
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial/cors/" title="CORS (Cross-Origin Resource Sharing)" class="md-nav__link">
+      CORS (Cross-Origin Resource Sharing)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial/sql-databases/" title="SQL (Relational) Databases" class="md-nav__link">
+      SQL (Relational) Databases
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial/bigger-applications/" title="Bigger Applications - Multiple Files" class="md-nav__link">
+      Bigger Applications - Multiple Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial/background-tasks/" title="Background Tasks" class="md-nav__link">
+      Background Tasks
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial/application-configuration/" title="Application Configuration" class="md-nav__link">
+      Application Configuration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial/static-files/" title="Static Files" class="md-nav__link">
+      Static Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial/testing/" title="Testing" class="md-nav__link">
+      Testing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial/debugging/" title="Debugging" class="md-nav__link">
+      Debugging
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Advanced User Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Advanced User Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../advanced/" title="Advanced User Guide - Intro" class="md-nav__link">
+      Advanced User Guide - Intro
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../advanced/path-operation-advanced-configuration/" title="Path Operation Advanced Configuration" class="md-nav__link">
+      Path Operation Advanced Configuration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../advanced/additional-status-codes/" title="Additional Status Codes" class="md-nav__link">
+      Additional Status Codes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../advanced/response-directly/" title="Return a Response Directly" class="md-nav__link">
+      Return a Response Directly
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../advanced/custom-response/" title="Custom Response Class" class="md-nav__link">
+      Custom Response Class
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../advanced/additional-responses/" title="Additional Responses in OpenAPI" class="md-nav__link">
+      Additional Responses in OpenAPI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../advanced/response-cookies/" title="Response Cookies" class="md-nav__link">
+      Response Cookies
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../advanced/response-headers/" title="Response Headers" class="md-nav__link">
+      Response Headers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../advanced/response-change-status-code/" title="Response - Change Status Code" class="md-nav__link">
+      Response - Change Status Code
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../advanced/advanced-dependencies/" title="Advanced Dependencies" class="md-nav__link">
+      Advanced Dependencies
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-11" type="checkbox" id="nav-5-11">
+    
+    <label class="md-nav__link" for="nav-5-11">
+      Advanced Security
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-11">
+        Advanced Security
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../advanced/security/" title="Advanced Security - Intro" class="md-nav__link">
+      Advanced Security - Intro
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../advanced/security/oauth2-scopes/" title="OAuth2 scopes" class="md-nav__link">
+      OAuth2 scopes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../advanced/security/http-basic-auth/" title="HTTP Basic Auth" class="md-nav__link">
+      HTTP Basic Auth
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../advanced/using-request-directly/" title="Using the Request Directly" class="md-nav__link">
+      Using the Request Directly
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../advanced/sql-databases-peewee/" title="SQL (Relational) Databases with Peewee" class="md-nav__link">
+      SQL (Relational) Databases with Peewee
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../advanced/async-sql-databases/" title="Async SQL (Relational) Databases" class="md-nav__link">
+      Async SQL (Relational) Databases
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../advanced/nosql-databases/" title="NoSQL (Distributed / Big Data) Databases" class="md-nav__link">
+      NoSQL (Distributed / Big Data) Databases
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../advanced/sub-applications-proxy/" title="Sub Applications - Behind a Proxy" class="md-nav__link">
+      Sub Applications - Behind a Proxy
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../advanced/templates/" title="Templates" class="md-nav__link">
+      Templates
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../advanced/graphql/" title="GraphQL" class="md-nav__link">
+      GraphQL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../advanced/websockets/" title="WebSockets" class="md-nav__link">
+      WebSockets
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../advanced/events/" title="Events: startup - shutdown" class="md-nav__link">
+      Events: startup - shutdown
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../advanced/custom-request-and-route/" title="Custom Request and APIRoute class" class="md-nav__link">
+      Custom Request and APIRoute class
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../advanced/testing-websockets/" title="Testing WebSockets" class="md-nav__link">
+      Testing WebSockets
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../advanced/testing-events/" title="Testing Events: startup - shutdown" class="md-nav__link">
+      Testing Events: startup - shutdown
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../advanced/testing-dependencies/" title="Testing Dependencies with Overrides" class="md-nav__link">
+      Testing Dependencies with Overrides
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../advanced/extending-openapi/" title="Extending OpenAPI" class="md-nav__link">
+      Extending OpenAPI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../advanced/openapi-callbacks/" title="OpenAPI Callbacks" class="md-nav__link">
+      OpenAPI Callbacks
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Concurrency and async / await
+      </label>
+    
+    <a href="./" title="Concurrency and async / await" class="md-nav__link md-nav__link--active">
+      Concurrency and async / await
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#in-a-hurry" class="md-nav__link">
+    In a hurry?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#technical-details" class="md-nav__link">
+    Technical Details
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#asynchronous-code" class="md-nav__link">
+    Asynchronous Code
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#concurrency-and-burgers" class="md-nav__link">
+    Concurrency and Burgers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#concurrent-burgers" class="md-nav__link">
+    Concurrent Burgers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parallel-burgers" class="md-nav__link">
+    Parallel Burgers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#burger-conclusion" class="md-nav__link">
+    Burger Conclusion
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#is-concurrency-better-than-parallelism" class="md-nav__link">
+    Is concurrency better than parallelism?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#concurrency-parallelism-web-machine-learning" class="md-nav__link">
+    Concurrency + Parallelism: Web + Machine Learning
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#async-and-await" class="md-nav__link">
+    async and await
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#more-technical-details" class="md-nav__link">
+    More technical details
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-forms-of-asynchronous-code" class="md-nav__link">
+    Other forms of asynchronous code
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coroutines" class="md-nav__link">
+    Coroutines
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    Conclusion
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#very-technical-details" class="md-nav__link">
+    Very Technical Details
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#path-operation-functions" class="md-nav__link">
+    Path operation functions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dependencies" class="md-nav__link">
+    Dependencies
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sub-dependencies" class="md-nav__link">
+    Sub-dependencies
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-utility-functions" class="md-nav__link">
+    Other utility functions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../deployment/" title="Deployment" class="md-nav__link">
+      Deployment
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../project-generation/" title="Project Generation - Template" class="md-nav__link">
+      Project Generation - Template
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../alternatives/" title="Alternatives, Inspiration and Comparisons" class="md-nav__link">
+      Alternatives, Inspiration and Comparisons
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../history-design-future/" title="History, Design and Future" class="md-nav__link">
+      History, Design and Future
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../external-links/" title="External Links and Articles" class="md-nav__link">
+      External Links and Articles
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../benchmarks/" title="Benchmarks" class="md-nav__link">
+      Benchmarks
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../help-fastapi/" title="Help FastAPI - Get Help" class="md-nav__link">
+      Help FastAPI - Get Help
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../contributing/" title="Development - Contributing" class="md-nav__link">
+      Development - Contributing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../release-notes/" title="Release Notes" class="md-nav__link">
+      Release Notes
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#in-a-hurry" class="md-nav__link">
+    In a hurry?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#technical-details" class="md-nav__link">
+    Technical Details
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#asynchronous-code" class="md-nav__link">
+    Asynchronous Code
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#concurrency-and-burgers" class="md-nav__link">
+    Concurrency and Burgers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#concurrent-burgers" class="md-nav__link">
+    Concurrent Burgers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parallel-burgers" class="md-nav__link">
+    Parallel Burgers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#burger-conclusion" class="md-nav__link">
+    Burger Conclusion
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#is-concurrency-better-than-parallelism" class="md-nav__link">
+    Is concurrency better than parallelism?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#concurrency-parallelism-web-machine-learning" class="md-nav__link">
+    Concurrency + Parallelism: Web + Machine Learning
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#async-and-await" class="md-nav__link">
+    async and await
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#more-technical-details" class="md-nav__link">
+    More technical details
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-forms-of-asynchronous-code" class="md-nav__link">
+    Other forms of asynchronous code
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coroutines" class="md-nav__link">
+    Coroutines
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    Conclusion
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#very-technical-details" class="md-nav__link">
+    Very Technical Details
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#path-operation-functions" class="md-nav__link">
+    Path operation functions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dependencies" class="md-nav__link">
+    Dependencies
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sub-dependencies" class="md-nav__link">
+    Sub-dependencies
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-utility-functions" class="md-nav__link">
+    Other utility functions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>Concurrency and async / await</h1>
+                
+                <p>Details about the <code>async def</code> syntax for <em>path operation functions</em> and some background about asynchronous code, concurrency, and parallelism.</p>
+<h2 id="in-a-hurry">In a hurry?<a class="headerlink" href="#in-a-hurry" title="Permanent link">&para;</a></h2>
+<p><abbr title="too long; didn't read"><strong>TL;DR:</strong></abbr></p>
+<p>If you are using third party libraries that tell you to call them with <code>await</code>, like:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">results</span> <span class="o">=</span> <span class="k">await</span> <span class="n">some_library</span><span class="p">()</span>
+</code></pre></div>
+
+<p>Then, declare your <em>path operation functions</em> with <code>async def</code> like:</p>
+<div class="codehilite"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="hll"><span class="k">async</span> <span class="k">def</span> <span class="nf">read_results</span><span class="p">():</span>
+</span>    <span class="n">results</span> <span class="o">=</span> <span class="k">await</span> <span class="n">some_library</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">results</span>
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can only use <code>await</code> inside of functions created with <code>async def</code>.</p>
+</div>
+<hr />
+<p>If you are using a third party library that communicates with something (a database, an API, the file system, etc) and doesn't have support for using <code>await</code>, (this is currently the case for most database libraries), then declare your <em>path operation functions</em> as normally, with just <code>def</code>, like:</p>
+<div class="codehilite"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="hll"><span class="k">def</span> <span class="nf">results</span><span class="p">():</span>
+</span>    <span class="n">results</span> <span class="o">=</span> <span class="n">some_library</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">results</span>
+</code></pre></div>
+
+<hr />
+<p>If your application (somehow) doesn't have to communicate with anything else and wait for it to respond, use <code>async def</code>.</p>
+<hr />
+<p>If you just don't know, use normal <code>def</code>.</p>
+<hr />
+<p><strong>Note</strong>: you can mix <code>def</code> and <code>async def</code> in your <em>path operation functions</em> as much as you need and define each one using the best option for you. FastAPI will do the right thing with them.</p>
+<p>Anyway, in any of the cases above, FastAPI will still work asynchronously and be extremely fast.</p>
+<p>But by following the steps above, it will be able to do some performance optimizations.</p>
+<h2 id="technical-details">Technical Details<a class="headerlink" href="#technical-details" title="Permanent link">&para;</a></h2>
+<p>Modern versions of Python have support for <strong>"asynchronous code"</strong> using something called <strong>"coroutines"</strong>, with <strong><code>async</code> and <code>await</code></strong> syntax.</p>
+<p>Let's see that phrase by parts in the sections below, below:</p>
+<ul>
+<li><strong>Asynchronous Code</strong></li>
+<li><strong><code>async</code> and <code>await</code></strong></li>
+<li><strong>Coroutines</strong></li>
+</ul>
+<h2 id="asynchronous-code">Asynchronous Code<a class="headerlink" href="#asynchronous-code" title="Permanent link">&para;</a></h2>
+<p>Asynchronous code just means that the language has a way to tell the computer / program that at some point in the code, he will have to wait for <em>something else</em> to finish somewhere else. Let's say that <em>something else</em> is called "slow-file". </p>
+<p>So, during that time, the computer can go and do some other work, while "slow-file" finishes. </p>
+<p>Then the computer / program will come back every time it has a chance because it's waiting again, or whenever he finished all the work he had at that point. And it will see if any of the tasks he was waiting for has already finished doing whatever it had to do.</p>
+<p>And then it takes the first task to finish (let's say, our "slow-file") and continues whatever it had to do with it.</p>
+<p>That "wait for something else" normally refers to <abbr title="Input and Output">I/O</abbr> operations that are relatively "slow" (compared to the speed of the processor and the RAM memory), like waiting for:</p>
+<ul>
+<li>the data from the client to be sent through the network</li>
+<li>the data sent by your program to be received by the client through the network</li>
+<li>the contents of a file in the disk to be read by the system and given to your program</li>
+<li>the contents your program gave to the system to be written to disk</li>
+<li>a remote API operation</li>
+<li>a database operation to finish</li>
+<li>a database query to return the results</li>
+<li>etc.</li>
+</ul>
+<p>As the execution time is consumed mostly by waiting for <abbr title="Input and Output">I/O</abbr> operations, so they call them "I/O bound".</p>
+<p>It's called "asynchronous" because the computer / program doesn't have to be "synchronized" with the slow task, waiting for the exact moment that the task finishes, while doing nothing, to be able to take the task result and continue the work.</p>
+<p>Instead of that, by being an "asynchronous" system, once finished, the task can wait in line a little bit (some microseconds) for the computer / program to finish whatever it went to do, and then come back to take the results and continue working with them.</p>
+<p>For "synchronous" (contrary to "asynchronous") they commonly also use the term "sequential", because the computer / program follows all the steps in sequence before switching to a different task, even if those steps involve waiting.</p>
+<h3 id="concurrency-and-burgers">Concurrency and Burgers<a class="headerlink" href="#concurrency-and-burgers" title="Permanent link">&para;</a></h3>
+<p>This idea of <strong>asynchronous</strong> code described above is also sometimes called <strong>"concurrency"</strong>. It is different from <strong>"parallelism"</strong>.</p>
+<p><strong>Concurrency</strong> and <strong>parallelism</strong> both relate to "different things happening more or less at the same time". </p>
+<p>But the details between <em>concurrency</em> and <em>parallelism</em> are quite different.</p>
+<p>To see the difference, imagine the following story about burgers:</p>
+<h3 id="concurrent-burgers">Concurrent Burgers<a class="headerlink" href="#concurrent-burgers" title="Permanent link">&para;</a></h3>
+<p>You go with your crush to get fast food, you stand in line while the cashier takes the orders from the people in front of you.</p>
+<p>Then it's your turn, you place your order of 2 very fancy burgers for your crush and you.</p>
+<p>You pay.</p>
+<p>The cashier says something to the guy in the kitchen so he knows he has to prepare your burgers (even though he is currently preparing the ones for the previous clients).</p>
+<p>The cashier gives you the number of your turn.</p>
+<p>While you are waiting, you go with your crush and pick a table, you sit and talk with your crush for a long time (as your burgers are very fancy and take some time to prepare).</p>
+<p>As you are seating on the table with your crush, while you wait for the burgers, you can spend that time admiring how awesome, cute and smart your crush is.</p>
+<p>While waiting and talking to your crush, from time to time, you check the number displayed on the counter to see if it's your turn already.</p>
+<p>Then at some point, it finally is your turn. You go to the counter, get your burgers and come back to the table.</p>
+<p>You and your crush eat the burgers and have a nice time.</p>
+<hr />
+<p>Imagine you are the computer / program in that story.</p>
+<p>While you are at the line, you are just idle, waiting for your turn, not doing anything very "productive". But the line is fast because the cashier is only taking the orders, so that's fine.</p>
+<p>Then, when it's your turn, you do actual "productive" work, you process the menu, decide what you want, get your crush's choice, pay, check that you give the correct bill or card, check that you are charged correctly, check that the order has the correct items, etc.</p>
+<p>But then, even though you still don't have your burgers, your work with the cashier is "on pause", because you have to wait for your burgers to be ready.</p>
+<p>But as you go away from the counter and seat on the table with a number for your turn, you can switch your attention to your crush, and "work" on that. Then you are again doing something very "productive", as is flirting with your crush.</p>
+<p>Then the cashier says "I'm finished with doing the burgers" by putting your number on the counter display, but you don't jump like crazy immediately when the displayed number changes to your turn number. You know no one will steal your burgers because you have the number of your turn, and they have theirs. </p>
+<p>So you wait for your crush to finish the story (finish the current work / task being processed), smile gently and say that you are going for the burgers.</p>
+<p>Then you go to the counter, to the initial task that is now finished, pick the burgers, say thanks and take them to the table. That finishes that step / task of interaction with the counter. That in turn, creates a new task, of "eating burgers", but the previous one of "getting burgers" is finished.</p>
+<h3 id="parallel-burgers">Parallel Burgers<a class="headerlink" href="#parallel-burgers" title="Permanent link">&para;</a></h3>
+<p>You go with your crush to get parallel fast food.</p>
+<p>You stand in line while several (let's say 8) cashiers take the orders from the people in front of you.</p>
+<p>Everyone before you is waiting for their burgers to be ready before leaving the counter because each of the 8 cashiers goes himself and prepares the burger right away before getting the next order.</p>
+<p>Then it's finally your turn, you place your order of 2 very fancy burgers for your crush and you.</p>
+<p>You pay.</p>
+<p>The cashier goes to the kitchen.</p>
+<p>You wait, standing in front of the counter, so that no one else takes your burgers before you, as there are no numbers for turns.</p>
+<p>As you and your crush are busy not letting anyone get in front of you and take your burgers whenever they arrive, you cannot pay attention to your crush.</p>
+<p>This is "synchronous" work, you are "synchronized" with the cashier/cook. You have to wait and be there at the exact moment that the cashier/cook finishes the burgers and gives them to you, or otherwise, someone else might take them.</p>
+<p>Then your cashier/cook finally comes back with your burgers, after a long time waiting there in front of the counter.</p>
+<p>You take your burgers and go to the table with your crush.</p>
+<p>You just eat them, and you are done.</p>
+<p>There was not much talk or flirting as most of the time was spent waiting in front of the counter.</p>
+<hr />
+<p>In this scenario of the parallel burgers, you are a computer / program with two processors (you and your crush), both waiting and dedicating their attention to be "waiting on the counter" for a long time.</p>
+<p>The fast food store has 8 processors (cashiers/cooks). While the concurrent burgers store might have had only 2 (one cashier and one cook).</p>
+<p>But still, the final experience is not the best.</p>
+<hr />
+<p>This would be the parallel equivalent story for burgers.</p>
+<p>For a more "real life" example of this, imagine a bank.</p>
+<p>Up to recently, most of the banks had multiple cashiers and a big line.</p>
+<p>All of the cashiers doing all the work with one client after the other.</p>
+<p>And you have to wait in the line for a long time or you lose your turn.</p>
+<p>You probably wouldn't want to take your crush with you to do errands at the bank.</p>
+<h3 id="burger-conclusion">Burger Conclusion<a class="headerlink" href="#burger-conclusion" title="Permanent link">&para;</a></h3>
+<p>In this scenario of "fast food burgers with your crush", as there is a lot of waiting, it makes a lot more sense to have a concurrent system.</p>
+<p>This is the case for most of the web applications.</p>
+<p>Many, many users, but your server is waiting for their not-so-good connection to send their requests.</p>
+<p>And then waiting again for the responses to come back.</p>
+<p>This "waiting" is measured in microseconds, but still, summing it all, it's a lot of waiting in the end.</p>
+<p>That's why it makes a lot of sense to use asynchronous code for web APIs.</p>
+<p>Most of the existing popular Python frameworks (including Flask and Django) were created before the new asynchronous features in Python existed. So, the ways they can be deployed support parallel execution and an older form of asynchronous execution that is not as powerful as the new capabilities.</p>
+<p>Even though the main specification for asynchronous web Python (ASGI) was developed at Django, to add support for WebSockets.</p>
+<p>That kind of asynchronicity is what made NodeJS popular (even though NodeJS is not parallel) and that's the strength of Go as a programing language.</p>
+<p>And that's the same level of performance</a> you get with <strong>FastAPI</strong>.</p>
+<p>And as you can have parallelism and asynchronicity at the same time, you get higher performance than most of the tested NodeJS frameworks and on par with Go, which is a compiled language closer to C <a href="https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=query&l=zijmkf-1" class="external-link" target="_blank">(all thanks to Starlette)</a>.</p>
+<h3 id="is-concurrency-better-than-parallelism">Is concurrency better than parallelism?<a class="headerlink" href="#is-concurrency-better-than-parallelism" title="Permanent link">&para;</a></h3>
+<p>Nope! That's not the moral of the story.</p>
+<p>Concurrency is different than parallelism. And it is better on <strong>specific</strong> scenarios that involve a lot of waiting. Because of that, it generally is a lot better than parallelism for web application development. But not for everything.</p>
+<p>So, to balance that out, imagine the following short story:</p>
+<blockquote>
+<p>You have to clean a big, dirty house.</p>
+</blockquote>
+<p><em>Yep, that's the whole story</em>.</p>
+<hr />
+<p>There's no waiting anywhere, just a lot of work to be done, on multiple places of the house.</p>
+<p>You could have turns as in the burgers example, first the living room, then the kitchen, but as you are not waiting for anything, just cleaning and cleaning, the turns wouldn't affect anything.</p>
+<p>It would take the same amount of time to finish with or without turns (concurrency) and you would have done the same amount of work.</p>
+<p>But in this case, if you could bring the 8 ex-cashier/cooks/now-cleaners, and each one of them (plus you) could take a zone of the house to clean it, you could do all the work in <strong>parallel</strong>, with the extra help, and finish much sooner.</p>
+<p>In this scenario, each one of the cleaners (including you) would be a processor, doing their part of the job. </p>
+<p>And as most of the execution time is taken by actual work (instead of waiting), and the work in a computer is done by a <abbr title="Central Processing Unit">CPU</abbr>, they call these problems "CPU bound".</p>
+<hr />
+<p>Common examples of CPU bound operations are things that require complex math processing.</p>
+<p>For example:</p>
+<ul>
+<li><strong>Audio</strong> or <strong>image processing</strong></li>
+<li><strong>Computer vision</strong>: an image is composed of millions of pixels, each pixel has 3 values / colors, processing that normally requires computing something on those pixels, all at the same time)</li>
+<li><strong>Machine Learning</strong>: it normally requires lots of "matrix" and "vector" multiplications. Think of a huge spreadsheet with numbers and multiplying all of them together at the same time.</li>
+<li><strong>Deep Learning</strong>: this is a sub-field of Machine Learning, so, the same applies. It's just that there is not a single spreadsheet of numbers to multiply, but a huge set of them, and in many cases, you use a special processor to build and / or use those models.</li>
+</ul>
+<h3 id="concurrency-parallelism-web-machine-learning">Concurrency + Parallelism: Web + Machine Learning<a class="headerlink" href="#concurrency-parallelism-web-machine-learning" title="Permanent link">&para;</a></h3>
+<p>With <strong>FastAPI</strong> you can take the advantage of concurrency that is very common for web development (the same main attractive of NodeJS).</p>
+<p>But you can also exploit the benefits of parallelism and multiprocessing (having multiple processes running in parallel) for <strong>CPU bound</strong> workloads like those in Machine Learning systems.</p>
+<p>That, plus the simple fact that Python is the main language for <strong>Data Science</strong>, Machine Learning and especially Deep Learning, make FastAPI a very good match for Data Science / Machine Learning web APIs and applications (among many others).</p>
+<p>To see how to achieve this parallelism in production see the section about <a class="internal-link" href="../deployment/" target="_blank">Deployment</a>.</p>
+<h2 id="async-and-await"><code>async</code> and <code>await</code><a class="headerlink" href="#async-and-await" title="Permanent link">&para;</a></h2>
+<p>Modern versions of python have a very intuitive way to define asynchronous code. This makes it look just like normal "sequential" code and do the "awaiting" for you at the right moments.</p>
+<p>When there is an operation that will require waiting before giving the results and has support for these new Python features, you can code it like:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">burgers</span> <span class="o">=</span> <span class="k">await</span> <span class="n">get_burgers</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div>
+
+<p>The key here is the <code>await</code>. It tells Python that it has to wait for <code>get_burgers(2)</code> to finish doing its thing before storing the results in <code>burgers</code>. With that, Python will know that it can go and do something else in the meanwhile (like receiving another request).</p>
+<p>For <code>await</code> to work, it has to be inside a function that supports this asynchronicity. To do that, you just declare it with <code>async def</code>:</p>
+<div class="codehilite"><pre><span></span><code><span class="hll"><span class="k">async</span> <span class="k">def</span> <span class="nf">get_burgers</span><span class="p">(</span><span class="n">number</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+</span>    <span class="c1"># Do some asynchronous stuff to create the burgers</span>
+    <span class="k">return</span> <span class="n">burgers</span>
+</code></pre></div>
+
+<p>...instead of <code>def</code>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># This is not asynchronous</span>
+<span class="hll"><span class="k">def</span> <span class="nf">get_sequential_burgers</span><span class="p">(</span><span class="n">number</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+</span>    <span class="c1"># Do some sequential stuff to create the burgers</span>
+    <span class="k">return</span> <span class="n">burgers</span>
+</code></pre></div>
+
+<p>With <code>async def</code>, Python knows that, inside that function, it has to be aware of <code>await</code> expressions, and that it can "pause" the execution of that function and go do something else before coming back.</p>
+<p>When you want to call an <code>async def</code> function, you have to "await" it. So, this won't work:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># This won&#39;t work, because get_burgers was defined with: async def</span>
+<span class="n">burgers</span> <span class="o">=</span> <span class="n">get_burgers</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div>
+
+<hr />
+<p>So, if you are using a library that tells you that you can call it with <code>await</code>, you need to create the <em>path operation functions</em> that uses it with <code>async def</code>, like in:</p>
+<div class="codehilite"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/burgers&#39;</span><span class="p">)</span>
+<span class="hll"><span class="k">async</span> <span class="k">def</span> <span class="nf">read_burgers</span><span class="p">():</span>
+</span><span class="hll">    <span class="n">burgers</span> <span class="o">=</span> <span class="k">await</span> <span class="n">get_burgers</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</span>    <span class="k">return</span> <span class="n">burgers</span>
+</code></pre></div>
+
+<h3 id="more-technical-details">More technical details<a class="headerlink" href="#more-technical-details" title="Permanent link">&para;</a></h3>
+<p>You might have noticed that <code>await</code> can only be used inside of functions defined with <code>async def</code>.</p>
+<p>But at the same time, functions defined with <code>async def</code> have to be "awaited". So, functions with <code>async def</code> can only be called inside of functions defined with <code>async def</code> too.</p>
+<p>So, about the egg and the chicken, how do you call the first <code>async</code> function?</p>
+<p>If you are working with <strong>FastAPI</strong> you don't have to worry about that, because that "first" function will be your <em>path operation function</em>, and FastAPI will know how to do the right thing.</p>
+<p>But if you want to use <code>async</code> / <code>await</code> without FastAPI, <a href="https://docs.python.org/3/library/asyncio-task.html#coroutine" class="external-link" target="_blank">check the official Python docs</a>.</p>
+<h3 id="other-forms-of-asynchronous-code">Other forms of asynchronous code<a class="headerlink" href="#other-forms-of-asynchronous-code" title="Permanent link">&para;</a></h3>
+<p>This style of using <code>async</code> and <code>await</code> is relatively new in the language.</p>
+<p>But it makes working with asynchronous code a lot easier.</p>
+<p>This same syntax (or almost identical) was also included recently in modern versions of JavaScript (in Browser and NodeJS).</p>
+<p>But before that, handling asynchronous code was quite more complex and difficult.</p>
+<p>In previous versions of Python, you could have used threads or <a href="http://www.gevent.org/" class="external-link" target="_blank">Gevent</a>. But the code is way more complex to understand, debug, and think about.</p>
+<p>In previous versions of NodeJS / Browser JavaScript, you would have used "callbacks". Which lead to <a href="http://callbackhell.com/" class="external-link" target="_blank">callback hell</a>.</p>
+<h2 id="coroutines">Coroutines<a class="headerlink" href="#coroutines" title="Permanent link">&para;</a></h2>
+<p><strong>Coroutine</strong> is just the very fancy term for the thing returned by an <code>async def</code> function. Python knows that it is something like a function that it can start and that it will end at some point, but that it might be paused internally too, whenever there is an <code>await</code> inside of it.</p>
+<p>But all this functionality of using asynchronous code with <code>async</code> and <code>await</code> is many times summarized as using "coroutines". It is comparable to the main key feature of Go, the "Goroutines".</p>
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
+<p>Let's see the same phrase from above:</p>
+<blockquote>
+<p>Modern versions of Python have support for <strong>"asynchronous code"</strong> using something called <strong>"coroutines"</strong>, with <strong><code>async</code> and <code>await</code></strong> syntax.</p>
+</blockquote>
+<p>That should make more sense now.</p>
+<p>All that is what powers FastAPI (through Starlette) and what makes it have such an impressive performance.</p>
+<h2 id="very-technical-details">Very Technical Details<a class="headerlink" href="#very-technical-details" title="Permanent link">&para;</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>You can probably skip this.</p>
+<p>These are very technical details of how <strong>FastAPI</strong> works underneath.</p>
+<p>If you have quite some technical knowledge (co-routines, threads, blocking, etc) and are curious about how FastAPI handles <code>async def</code> vs normal <code>def</code>, go ahead.</p>
+</div>
+<h3 id="path-operation-functions">Path operation functions<a class="headerlink" href="#path-operation-functions" title="Permanent link">&para;</a></h3>
+<p>When you declare a <em>path operation function</em> with normal <code>def</code> instead of <code>async def</code>, it is run in an external threadpool that is then awaited, instead of being called directly (as it would block the server).</p>
+<p>If you are coming from another async framework that does not work in the way described above and you are used to define trivial compute-only <em>path operation functions</em> with plain <code>def</code> for a tiny performance gain (about 100 nanoseconds), please note that in <strong>FastAPI</strong> the effect would be quite opposite. In these cases, it's better to use <code>async def</code> unless your <em>path operation functions</em> use code that performs blocking <abbr title="Input/Output: disk reading or writing, network communications.">IO</abbr>.</p>
+<p>Still, in both situations, chances are that <strong>FastAPI</strong> will <a class="internal-link" href="/#performance" target="_blank">still be faster</a> than (or at least comparable to) your previous framework.</p>
+<h3 id="dependencies">Dependencies<a class="headerlink" href="#dependencies" title="Permanent link">&para;</a></h3>
+<p>The same applies for dependencies. If a dependency is a standard <code>def</code> function instead of <code>async def</code>, it is run in the external threadpool.</p>
+<h3 id="sub-dependencies">Sub-dependencies<a class="headerlink" href="#sub-dependencies" title="Permanent link">&para;</a></h3>
+<p>You can have multiple dependencies and sub-dependencies requiring each other (as parameters of the function definitions), some of them might be created with <code>async def</code> and some with normal <code>def</code>. It would still work, and the ones created with normal <code>def</code> would be called on an external thread instead of being "awaited".</p>
+<h3 id="other-utility-functions">Other utility functions<a class="headerlink" href="#other-utility-functions" title="Permanent link">&para;</a></h3>
+<p>Any other utility function that you call directly can be created with normal <code>def</code> or <code>async def</code> and FastAPI won't affect the way you call it.</p>
+<p>This is in contrast to the functions that FastAPI calls for you: <em>path operation functions</em> and dependencies.</p>
+<p>If your utility function is a normal function with <code>def</code>, it will be called directly (as you write it in your code), not in a threadpool, if the function is created with <code>async def</code> then you should await for that function when you call it in your code.</p>
+<hr />
+<p>Again, these are very technical details that would probably be useful if you came searching for them.</p>
+<p>Otherwise, you should be good with the guidelines from the section above: <a href="#in-a-hurry">In a hurry?</a>.</p>
+                
+                  
+                
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../advanced/openapi-callbacks/" title="OpenAPI Callbacks" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                OpenAPI Callbacks
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../deployment/" title="Deployment" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Deployment
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org" target="_blank" rel="noopener">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.c33a9706.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+    
+  </body>
+</html>

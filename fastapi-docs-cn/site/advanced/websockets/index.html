@@ -1,0 +1,1847 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="FastAPI framework, high performance, easy to learn, fast to code, ready for production">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../img/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.6.3">
+    
+    
+      
+        <title>WebSockets - FastAPI Docs CN</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.adb8469c.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.a8b3c06d.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#009688">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.86422ebf.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="teal" data-md-color-accent="amber">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#websockets-client" tabindex="0" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../.." title="FastAPI Docs CN" aria-label="FastAPI Docs CN" class="md-header-nav__button md-logo">
+          
+            <img alt="logo" src="../../img/icon-white.svg" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              FastAPI Docs CN
+            </span>
+            <span class="md-header-nav__topic">
+              
+                WebSockets
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" aria-label="search" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../.." title="FastAPI Docs CN" class="md-nav__button md-logo">
+      
+        <img alt="logo" src="../../img/icon-white.svg" width="48" height="48">
+      
+    </a>
+    FastAPI Docs CN
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="FastAPI" class="md-nav__link">
+      FastAPI
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../features/" title="Features" class="md-nav__link">
+      Features
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../python-types/" title="Python types intro" class="md-nav__link">
+      Python types intro
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Tutorial - User Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Tutorial - User Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/" title="Tutorial - User Guide - Intro" class="md-nav__link">
+      Tutorial - User Guide - Intro
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/first-steps/" title="First Steps" class="md-nav__link">
+      First Steps
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/path-params/" title="Path Parameters" class="md-nav__link">
+      Path Parameters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/query-params/" title="Query Parameters" class="md-nav__link">
+      Query Parameters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/body/" title="Request Body" class="md-nav__link">
+      Request Body
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/query-params-str-validations/" title="Query Parameters and String Validations" class="md-nav__link">
+      Query Parameters and String Validations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/path-params-numeric-validations/" title="Path Parameters and Numeric Validations" class="md-nav__link">
+      Path Parameters and Numeric Validations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/body-multiple-params/" title="Body - Multiple Parameters" class="md-nav__link">
+      Body - Multiple Parameters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/body-fields/" title="Body - Fields" class="md-nav__link">
+      Body - Fields
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/body-nested-models/" title="Body - Nested Models" class="md-nav__link">
+      Body - Nested Models
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/extra-data-types/" title="Extra data types" class="md-nav__link">
+      Extra data types
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/cookie-params/" title="Cookie Parameters" class="md-nav__link">
+      Cookie Parameters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/header-params/" title="Header Parameters" class="md-nav__link">
+      Header Parameters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/response-model/" title="Response Model" class="md-nav__link">
+      Response Model
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/extra-models/" title="Extra Models" class="md-nav__link">
+      Extra Models
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/response-status-code/" title="Response Status Code" class="md-nav__link">
+      Response Status Code
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/request-forms/" title="Form Data" class="md-nav__link">
+      Form Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/request-files/" title="Request Files" class="md-nav__link">
+      Request Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/request-forms-and-files/" title="Request Forms and Files" class="md-nav__link">
+      Request Forms and Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/handling-errors/" title="Handling Errors" class="md-nav__link">
+      Handling Errors
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/path-operation-configuration/" title="Path Operation Configuration" class="md-nav__link">
+      Path Operation Configuration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/encoder/" title="JSON Compatible Encoder" class="md-nav__link">
+      JSON Compatible Encoder
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/body-updates/" title="Body - updates" class="md-nav__link">
+      Body - updates
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-24" type="checkbox" id="nav-4-24">
+    
+    <label class="md-nav__link" for="nav-4-24">
+      Dependencies
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-24">
+        Dependencies
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/dependencies/" title="First Steps" class="md-nav__link">
+      First Steps
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/dependencies/classes-as-dependencies/" title="Classes as Dependencies" class="md-nav__link">
+      Classes as Dependencies
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/dependencies/sub-dependencies/" title="Sub-dependencies" class="md-nav__link">
+      Sub-dependencies
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/dependencies/dependencies-in-path-operation-decorators/" title="Dependencies in path operation decorators" class="md-nav__link">
+      Dependencies in path operation decorators
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/dependencies/dependencies-with-yield/" title="Dependencies with yield" class="md-nav__link">
+      Dependencies with yield
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-25" type="checkbox" id="nav-4-25">
+    
+    <label class="md-nav__link" for="nav-4-25">
+      Security
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-25">
+        Security
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/security/" title="Security Intro" class="md-nav__link">
+      Security Intro
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/security/first-steps/" title="First Steps" class="md-nav__link">
+      First Steps
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/security/get-current-user/" title="Get Current User" class="md-nav__link">
+      Get Current User
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/security/simple-oauth2/" title="Simple OAuth2 with Password and Bearer" class="md-nav__link">
+      Simple OAuth2 with Password and Bearer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/security/oauth2-jwt/" title="OAuth2 with Password (and hashing), Bearer with JWT tokens" class="md-nav__link">
+      OAuth2 with Password (and hashing), Bearer with JWT tokens
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/middleware/" title="Middleware" class="md-nav__link">
+      Middleware
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/cors/" title="CORS (Cross-Origin Resource Sharing)" class="md-nav__link">
+      CORS (Cross-Origin Resource Sharing)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/sql-databases/" title="SQL (Relational) Databases" class="md-nav__link">
+      SQL (Relational) Databases
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/bigger-applications/" title="Bigger Applications - Multiple Files" class="md-nav__link">
+      Bigger Applications - Multiple Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/background-tasks/" title="Background Tasks" class="md-nav__link">
+      Background Tasks
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/application-configuration/" title="Application Configuration" class="md-nav__link">
+      Application Configuration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/static-files/" title="Static Files" class="md-nav__link">
+      Static Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/testing/" title="Testing" class="md-nav__link">
+      Testing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/debugging/" title="Debugging" class="md-nav__link">
+      Debugging
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+    
+    <label class="md-nav__link" for="nav-5">
+      Advanced User Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Advanced User Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../" title="Advanced User Guide - Intro" class="md-nav__link">
+      Advanced User Guide - Intro
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../path-operation-advanced-configuration/" title="Path Operation Advanced Configuration" class="md-nav__link">
+      Path Operation Advanced Configuration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../additional-status-codes/" title="Additional Status Codes" class="md-nav__link">
+      Additional Status Codes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../response-directly/" title="Return a Response Directly" class="md-nav__link">
+      Return a Response Directly
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../custom-response/" title="Custom Response Class" class="md-nav__link">
+      Custom Response Class
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../additional-responses/" title="Additional Responses in OpenAPI" class="md-nav__link">
+      Additional Responses in OpenAPI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../response-cookies/" title="Response Cookies" class="md-nav__link">
+      Response Cookies
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../response-headers/" title="Response Headers" class="md-nav__link">
+      Response Headers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../response-change-status-code/" title="Response - Change Status Code" class="md-nav__link">
+      Response - Change Status Code
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../advanced-dependencies/" title="Advanced Dependencies" class="md-nav__link">
+      Advanced Dependencies
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-11" type="checkbox" id="nav-5-11">
+    
+    <label class="md-nav__link" for="nav-5-11">
+      Advanced Security
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-11">
+        Advanced Security
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../security/" title="Advanced Security - Intro" class="md-nav__link">
+      Advanced Security - Intro
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../security/oauth2-scopes/" title="OAuth2 scopes" class="md-nav__link">
+      OAuth2 scopes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../security/http-basic-auth/" title="HTTP Basic Auth" class="md-nav__link">
+      HTTP Basic Auth
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../using-request-directly/" title="Using the Request Directly" class="md-nav__link">
+      Using the Request Directly
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../sql-databases-peewee/" title="SQL (Relational) Databases with Peewee" class="md-nav__link">
+      SQL (Relational) Databases with Peewee
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../async-sql-databases/" title="Async SQL (Relational) Databases" class="md-nav__link">
+      Async SQL (Relational) Databases
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../nosql-databases/" title="NoSQL (Distributed / Big Data) Databases" class="md-nav__link">
+      NoSQL (Distributed / Big Data) Databases
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../sub-applications-proxy/" title="Sub Applications - Behind a Proxy" class="md-nav__link">
+      Sub Applications - Behind a Proxy
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../templates/" title="Templates" class="md-nav__link">
+      Templates
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../graphql/" title="GraphQL" class="md-nav__link">
+      GraphQL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        WebSockets
+      </label>
+    
+    <a href="./" title="WebSockets" class="md-nav__link md-nav__link--active">
+      WebSockets
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#websockets-client" class="md-nav__link">
+    WebSockets client
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#in-production" class="md-nav__link">
+    In production
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-a-websocket" class="md-nav__link">
+    Create a websocket
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#await-for-messages-and-send-messages" class="md-nav__link">
+    Await for messages and send messages
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-depends-and-others" class="md-nav__link">
+    Using Depends and others
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#more-info" class="md-nav__link">
+    More info
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-it" class="md-nav__link">
+    Test it
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../events/" title="Events: startup - shutdown" class="md-nav__link">
+      Events: startup - shutdown
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../custom-request-and-route/" title="Custom Request and APIRoute class" class="md-nav__link">
+      Custom Request and APIRoute class
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../testing-websockets/" title="Testing WebSockets" class="md-nav__link">
+      Testing WebSockets
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../testing-events/" title="Testing Events: startup - shutdown" class="md-nav__link">
+      Testing Events: startup - shutdown
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../testing-dependencies/" title="Testing Dependencies with Overrides" class="md-nav__link">
+      Testing Dependencies with Overrides
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../extending-openapi/" title="Extending OpenAPI" class="md-nav__link">
+      Extending OpenAPI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../openapi-callbacks/" title="OpenAPI Callbacks" class="md-nav__link">
+      OpenAPI Callbacks
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../async/" title="Concurrency and async / await" class="md-nav__link">
+      Concurrency and async / await
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../deployment/" title="Deployment" class="md-nav__link">
+      Deployment
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../project-generation/" title="Project Generation - Template" class="md-nav__link">
+      Project Generation - Template
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../alternatives/" title="Alternatives, Inspiration and Comparisons" class="md-nav__link">
+      Alternatives, Inspiration and Comparisons
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../history-design-future/" title="History, Design and Future" class="md-nav__link">
+      History, Design and Future
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../external-links/" title="External Links and Articles" class="md-nav__link">
+      External Links and Articles
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../benchmarks/" title="Benchmarks" class="md-nav__link">
+      Benchmarks
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../help-fastapi/" title="Help FastAPI - Get Help" class="md-nav__link">
+      Help FastAPI - Get Help
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../contributing/" title="Development - Contributing" class="md-nav__link">
+      Development - Contributing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../release-notes/" title="Release Notes" class="md-nav__link">
+      Release Notes
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#websockets-client" class="md-nav__link">
+    WebSockets client
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#in-production" class="md-nav__link">
+    In production
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-a-websocket" class="md-nav__link">
+    Create a websocket
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#await-for-messages-and-send-messages" class="md-nav__link">
+    Await for messages and send messages
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-depends-and-others" class="md-nav__link">
+    Using Depends and others
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#more-info" class="md-nav__link">
+    More info
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-it" class="md-nav__link">
+    Test it
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>WebSockets</h1>
+                
+                <p>You can use <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API" class="external-link" target="_blank">WebSockets</a> with <strong>FastAPI</strong>.</p>
+<h2 id="websockets-client">WebSockets client<a class="headerlink" href="#websockets-client" title="Permanent link">&para;</a></h2>
+<h3 id="in-production">In production<a class="headerlink" href="#in-production" title="Permanent link">&para;</a></h3>
+<p>In your production system, you probably have a frontend created with a modern framework like React, Vue.js or Angular.</p>
+<p>And to communicate using WebSockets with your backend you would probably use your frontend's utilities.</p>
+<p>Or you might have a native mobile application that communicates with your WebSocket backend directly, in native code.</p>
+<p>Or you might have any other way to communicate with the WebSocket endpoint.</p>
+<hr />
+<p>But for this example, we'll use a very simple HTML document with some JavaScript, all inside a long string.</p>
+<p>This, of course, is not optimal and you wouldn't use it for production.</p>
+<p>In production you would have one of the options above.</p>
+<p>But it's the simplest way to focus on the server-side of WebSockets and have a working example:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span>
+<span class="hll"><span class="kn">from</span> <span class="nn">starlette.responses</span> <span class="kn">import</span> <span class="n">HTMLResponse</span>
+</span><span class="kn">from</span> <span class="nn">starlette.websockets</span> <span class="kn">import</span> <span class="n">WebSocket</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+
+<span class="hll"><span class="n">html</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+</span><span class="hll"><span class="s2">&lt;!DOCTYPE html&gt;</span>
+</span><span class="hll"><span class="s2">&lt;html&gt;</span>
+</span><span class="hll"><span class="s2">    &lt;head&gt;</span>
+</span><span class="hll"><span class="s2">        &lt;title&gt;Chat&lt;/title&gt;</span>
+</span><span class="hll"><span class="s2">    &lt;/head&gt;</span>
+</span><span class="hll"><span class="s2">    &lt;body&gt;</span>
+</span><span class="hll"><span class="s2">        &lt;h1&gt;WebSocket Chat&lt;/h1&gt;</span>
+</span><span class="hll"><span class="s2">        &lt;form action=&quot;&quot; onsubmit=&quot;sendMessage(event)&quot;&gt;</span>
+</span><span class="hll"><span class="s2">            &lt;input type=&quot;text&quot; id=&quot;messageText&quot; autocomplete=&quot;off&quot;/&gt;</span>
+</span><span class="hll"><span class="s2">            &lt;button&gt;Send&lt;/button&gt;</span>
+</span><span class="hll"><span class="s2">        &lt;/form&gt;</span>
+</span><span class="hll"><span class="s2">        &lt;ul id=&#39;messages&#39;&gt;</span>
+</span><span class="hll"><span class="s2">        &lt;/ul&gt;</span>
+</span><span class="hll"><span class="s2">        &lt;script&gt;</span>
+</span><span class="hll"><span class="s2">            var ws = new WebSocket(&quot;ws://localhost:8000/ws&quot;);</span>
+</span><span class="hll"><span class="s2">            ws.onmessage = function(event) {</span>
+</span><span class="hll"><span class="s2">                var messages = document.getElementById(&#39;messages&#39;)</span>
+</span><span class="hll"><span class="s2">                var message = document.createElement(&#39;li&#39;)</span>
+</span><span class="hll"><span class="s2">                var content = document.createTextNode(event.data)</span>
+</span><span class="hll"><span class="s2">                message.appendChild(content)</span>
+</span><span class="hll"><span class="s2">                messages.appendChild(message)</span>
+</span><span class="hll"><span class="s2">            };</span>
+</span><span class="hll"><span class="s2">            function sendMessage(event) {</span>
+</span><span class="hll"><span class="s2">                var input = document.getElementById(&quot;messageText&quot;)</span>
+</span><span class="hll"><span class="s2">                ws.send(input.value)</span>
+</span><span class="hll"><span class="s2">                input.value = &#39;&#39;</span>
+</span><span class="hll"><span class="s2">                event.preventDefault()</span>
+</span><span class="hll"><span class="s2">            }</span>
+</span><span class="hll"><span class="s2">        &lt;/script&gt;</span>
+</span><span class="hll"><span class="s2">    &lt;/body&gt;</span>
+</span><span class="hll"><span class="s2">&lt;/html&gt;</span>
+</span><span class="hll"><span class="s2">&quot;&quot;&quot;</span>
+</span>
+
+<span class="hll"><span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+</span><span class="hll"><span class="k">async</span> <span class="k">def</span> <span class="nf">get</span><span class="p">():</span>
+</span><span class="hll">    <span class="k">return</span> <span class="n">HTMLResponse</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">websocket</span><span class="p">(</span><span class="s2">&quot;/ws&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">websocket_endpoint</span><span class="p">(</span><span class="n">websocket</span><span class="p">:</span> <span class="n">WebSocket</span><span class="p">):</span>
+    <span class="k">await</span> <span class="n">websocket</span><span class="o">.</span><span class="n">accept</span><span class="p">()</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">websocket</span><span class="o">.</span><span class="n">receive_text</span><span class="p">()</span>
+        <span class="k">await</span> <span class="n">websocket</span><span class="o">.</span><span class="n">send_text</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Message text was: </span><span class="si">{data}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<h2 id="create-a-websocket">Create a <code>websocket</code><a class="headerlink" href="#create-a-websocket" title="Permanent link">&para;</a></h2>
+<p>In your <strong>FastAPI</strong> application, create a <code>websocket</code>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span>
+<span class="kn">from</span> <span class="nn">starlette.responses</span> <span class="kn">import</span> <span class="n">HTMLResponse</span>
+<span class="hll"><span class="kn">from</span> <span class="nn">starlette.websockets</span> <span class="kn">import</span> <span class="n">WebSocket</span>
+</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+
+<span class="n">html</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">&lt;!DOCTYPE html&gt;</span>
+<span class="s2">&lt;html&gt;</span>
+<span class="s2">    &lt;head&gt;</span>
+<span class="s2">        &lt;title&gt;Chat&lt;/title&gt;</span>
+<span class="s2">    &lt;/head&gt;</span>
+<span class="s2">    &lt;body&gt;</span>
+<span class="s2">        &lt;h1&gt;WebSocket Chat&lt;/h1&gt;</span>
+<span class="s2">        &lt;form action=&quot;&quot; onsubmit=&quot;sendMessage(event)&quot;&gt;</span>
+<span class="s2">            &lt;input type=&quot;text&quot; id=&quot;messageText&quot; autocomplete=&quot;off&quot;/&gt;</span>
+<span class="s2">            &lt;button&gt;Send&lt;/button&gt;</span>
+<span class="s2">        &lt;/form&gt;</span>
+<span class="s2">        &lt;ul id=&#39;messages&#39;&gt;</span>
+<span class="s2">        &lt;/ul&gt;</span>
+<span class="s2">        &lt;script&gt;</span>
+<span class="s2">            var ws = new WebSocket(&quot;ws://localhost:8000/ws&quot;);</span>
+<span class="s2">            ws.onmessage = function(event) {</span>
+<span class="s2">                var messages = document.getElementById(&#39;messages&#39;)</span>
+<span class="s2">                var message = document.createElement(&#39;li&#39;)</span>
+<span class="s2">                var content = document.createTextNode(event.data)</span>
+<span class="s2">                message.appendChild(content)</span>
+<span class="s2">                messages.appendChild(message)</span>
+<span class="s2">            };</span>
+<span class="s2">            function sendMessage(event) {</span>
+<span class="s2">                var input = document.getElementById(&quot;messageText&quot;)</span>
+<span class="s2">                ws.send(input.value)</span>
+<span class="s2">                input.value = &#39;&#39;</span>
+<span class="s2">                event.preventDefault()</span>
+<span class="s2">            }</span>
+<span class="s2">        &lt;/script&gt;</span>
+<span class="s2">    &lt;/body&gt;</span>
+<span class="s2">&lt;/html&gt;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">get</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">HTMLResponse</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+
+
+<span class="hll"><span class="nd">@app</span><span class="o">.</span><span class="n">websocket</span><span class="p">(</span><span class="s2">&quot;/ws&quot;</span><span class="p">)</span>
+</span><span class="hll"><span class="k">async</span> <span class="k">def</span> <span class="nf">websocket_endpoint</span><span class="p">(</span><span class="n">websocket</span><span class="p">:</span> <span class="n">WebSocket</span><span class="p">):</span>
+</span>    <span class="k">await</span> <span class="n">websocket</span><span class="o">.</span><span class="n">accept</span><span class="p">()</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">websocket</span><span class="o">.</span><span class="n">receive_text</span><span class="p">()</span>
+        <span class="k">await</span> <span class="n">websocket</span><span class="o">.</span><span class="n">send_text</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Message text was: </span><span class="si">{data}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>In this example we are importing <code>WebSocket</code> from <code>starlette.websockets</code> to use it in the type declaration in the WebSocket route function.</p>
+</div>
+<h2 id="await-for-messages-and-send-messages">Await for messages and send messages<a class="headerlink" href="#await-for-messages-and-send-messages" title="Permanent link">&para;</a></h2>
+<p>In your WebSocket route you can <code>await</code> for messages and send messages.</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span>
+<span class="kn">from</span> <span class="nn">starlette.responses</span> <span class="kn">import</span> <span class="n">HTMLResponse</span>
+<span class="kn">from</span> <span class="nn">starlette.websockets</span> <span class="kn">import</span> <span class="n">WebSocket</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+
+<span class="n">html</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">&lt;!DOCTYPE html&gt;</span>
+<span class="s2">&lt;html&gt;</span>
+<span class="s2">    &lt;head&gt;</span>
+<span class="s2">        &lt;title&gt;Chat&lt;/title&gt;</span>
+<span class="s2">    &lt;/head&gt;</span>
+<span class="s2">    &lt;body&gt;</span>
+<span class="s2">        &lt;h1&gt;WebSocket Chat&lt;/h1&gt;</span>
+<span class="s2">        &lt;form action=&quot;&quot; onsubmit=&quot;sendMessage(event)&quot;&gt;</span>
+<span class="s2">            &lt;input type=&quot;text&quot; id=&quot;messageText&quot; autocomplete=&quot;off&quot;/&gt;</span>
+<span class="s2">            &lt;button&gt;Send&lt;/button&gt;</span>
+<span class="s2">        &lt;/form&gt;</span>
+<span class="s2">        &lt;ul id=&#39;messages&#39;&gt;</span>
+<span class="s2">        &lt;/ul&gt;</span>
+<span class="s2">        &lt;script&gt;</span>
+<span class="s2">            var ws = new WebSocket(&quot;ws://localhost:8000/ws&quot;);</span>
+<span class="s2">            ws.onmessage = function(event) {</span>
+<span class="s2">                var messages = document.getElementById(&#39;messages&#39;)</span>
+<span class="s2">                var message = document.createElement(&#39;li&#39;)</span>
+<span class="s2">                var content = document.createTextNode(event.data)</span>
+<span class="s2">                message.appendChild(content)</span>
+<span class="s2">                messages.appendChild(message)</span>
+<span class="s2">            };</span>
+<span class="s2">            function sendMessage(event) {</span>
+<span class="s2">                var input = document.getElementById(&quot;messageText&quot;)</span>
+<span class="s2">                ws.send(input.value)</span>
+<span class="s2">                input.value = &#39;&#39;</span>
+<span class="s2">                event.preventDefault()</span>
+<span class="s2">            }</span>
+<span class="s2">        &lt;/script&gt;</span>
+<span class="s2">    &lt;/body&gt;</span>
+<span class="s2">&lt;/html&gt;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">get</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">HTMLResponse</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">websocket</span><span class="p">(</span><span class="s2">&quot;/ws&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">websocket_endpoint</span><span class="p">(</span><span class="n">websocket</span><span class="p">:</span> <span class="n">WebSocket</span><span class="p">):</span>
+<span class="hll">    <span class="k">await</span> <span class="n">websocket</span><span class="o">.</span><span class="n">accept</span><span class="p">()</span>
+</span><span class="hll">    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+</span><span class="hll">        <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">websocket</span><span class="o">.</span><span class="n">receive_text</span><span class="p">()</span>
+</span><span class="hll">        <span class="k">await</span> <span class="n">websocket</span><span class="o">.</span><span class="n">send_text</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Message text was: </span><span class="si">{data}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+
+<p>You can receive and send binary, text, and JSON data.</p>
+<h2 id="using-depends-and-others">Using <code>Depends</code> and others<a class="headerlink" href="#using-depends-and-others" title="Permanent link">&para;</a></h2>
+<p>In WebSocket endpoints you can import from <code>fastapi</code> and use:</p>
+<ul>
+<li><code>Depends</code></li>
+<li><code>Security</code></li>
+<li><code>Cookie</code></li>
+<li><code>Header</code></li>
+<li><code>Path</code></li>
+<li><code>Query</code></li>
+</ul>
+<p>They work the same way as for other FastAPI endpoints/<em>path operations</em>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">Cookie</span><span class="p">,</span> <span class="n">Depends</span><span class="p">,</span> <span class="n">FastAPI</span><span class="p">,</span> <span class="n">Header</span>
+<span class="kn">from</span> <span class="nn">starlette.responses</span> <span class="kn">import</span> <span class="n">HTMLResponse</span>
+<span class="kn">from</span> <span class="nn">starlette.status</span> <span class="kn">import</span> <span class="n">WS_1008_POLICY_VIOLATION</span>
+<span class="kn">from</span> <span class="nn">starlette.websockets</span> <span class="kn">import</span> <span class="n">WebSocket</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+
+<span class="n">html</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">&lt;!DOCTYPE html&gt;</span>
+<span class="s2">&lt;html&gt;</span>
+<span class="s2">    &lt;head&gt;</span>
+<span class="s2">        &lt;title&gt;Chat&lt;/title&gt;</span>
+<span class="s2">    &lt;/head&gt;</span>
+<span class="s2">    &lt;body&gt;</span>
+<span class="s2">        &lt;h1&gt;WebSocket Chat&lt;/h1&gt;</span>
+<span class="s2">        &lt;form action=&quot;&quot; onsubmit=&quot;sendMessage(event)&quot;&gt;</span>
+<span class="s2">            &lt;label&gt;Item ID: &lt;input type=&quot;text&quot; id=&quot;itemId&quot; autocomplete=&quot;off&quot; value=&quot;foo&quot;/&gt;&lt;/label&gt;</span>
+<span class="s2">            &lt;button onclick=&quot;connect(event)&quot;&gt;Connect&lt;/button&gt;</span>
+<span class="s2">            &lt;br&gt;</span>
+<span class="s2">            &lt;label&gt;Message: &lt;input type=&quot;text&quot; id=&quot;messageText&quot; autocomplete=&quot;off&quot;/&gt;&lt;/label&gt;</span>
+<span class="s2">            &lt;button&gt;Send&lt;/button&gt;</span>
+<span class="s2">        &lt;/form&gt;</span>
+<span class="s2">        &lt;ul id=&#39;messages&#39;&gt;</span>
+<span class="s2">        &lt;/ul&gt;</span>
+<span class="s2">        &lt;script&gt;</span>
+<span class="s2">        var ws = null;</span>
+<span class="s2">            function connect(event) {</span>
+<span class="s2">                var input = document.getElementById(&quot;itemId&quot;)</span>
+<span class="s2">                ws = new WebSocket(&quot;ws://localhost:8000/items/&quot; + input.value + &quot;/ws&quot;);</span>
+<span class="s2">                ws.onmessage = function(event) {</span>
+<span class="s2">                    var messages = document.getElementById(&#39;messages&#39;)</span>
+<span class="s2">                    var message = document.createElement(&#39;li&#39;)</span>
+<span class="s2">                    var content = document.createTextNode(event.data)</span>
+<span class="s2">                    message.appendChild(content)</span>
+<span class="s2">                    messages.appendChild(message)</span>
+<span class="s2">                };</span>
+<span class="s2">            }</span>
+<span class="s2">            function sendMessage(event) {</span>
+<span class="s2">                var input = document.getElementById(&quot;messageText&quot;)</span>
+<span class="s2">                ws.send(input.value)</span>
+<span class="s2">                input.value = &#39;&#39;</span>
+<span class="s2">                event.preventDefault()</span>
+<span class="s2">            }</span>
+<span class="s2">        &lt;/script&gt;</span>
+<span class="s2">    &lt;/body&gt;</span>
+<span class="s2">&lt;/html&gt;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">get</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">HTMLResponse</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+
+
+<span class="hll"><span class="k">async</span> <span class="k">def</span> <span class="nf">get_cookie_or_client</span><span class="p">(</span>
+</span><span class="hll">    <span class="n">websocket</span><span class="p">:</span> <span class="n">WebSocket</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Cookie</span><span class="p">(</span><span class="kc">None</span><span class="p">),</span> <span class="n">x_client</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Header</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+</span><span class="hll"><span class="p">):</span>
+</span><span class="hll">    <span class="k">if</span> <span class="n">session</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">x_client</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span><span class="hll">        <span class="k">await</span> <span class="n">websocket</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="n">WS_1008_POLICY_VIOLATION</span><span class="p">)</span>
+</span><span class="hll">    <span class="k">return</span> <span class="n">session</span> <span class="ow">or</span> <span class="n">x_client</span>
+</span>
+
+<span class="hll"><span class="nd">@app</span><span class="o">.</span><span class="n">websocket</span><span class="p">(</span><span class="s2">&quot;/items/</span><span class="si">{item_id}</span><span class="s2">/ws&quot;</span><span class="p">)</span>
+</span><span class="hll"><span class="k">async</span> <span class="k">def</span> <span class="nf">websocket_endpoint</span><span class="p">(</span>
+</span><span class="hll">    <span class="n">websocket</span><span class="p">:</span> <span class="n">WebSocket</span><span class="p">,</span>
+</span><span class="hll">    <span class="n">item_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span class="hll">    <span class="n">q</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span class="hll">    <span class="n">cookie_or_client</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">get_cookie_or_client</span><span class="p">),</span>
+</span><span class="hll"><span class="p">):</span>
+</span><span class="hll">    <span class="k">await</span> <span class="n">websocket</span><span class="o">.</span><span class="n">accept</span><span class="p">()</span>
+</span><span class="hll">    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+</span><span class="hll">        <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">websocket</span><span class="o">.</span><span class="n">receive_text</span><span class="p">()</span>
+</span><span class="hll">        <span class="k">await</span> <span class="n">websocket</span><span class="o">.</span><span class="n">send_text</span><span class="p">(</span>
+</span><span class="hll">            <span class="sa">f</span><span class="s2">&quot;Session Cookie or X-Client Header value is: </span><span class="si">{cookie_or_client}</span><span class="s2">&quot;</span>
+</span><span class="hll">        <span class="p">)</span>
+</span><span class="hll">        <span class="k">if</span> <span class="n">q</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span><span class="hll">            <span class="k">await</span> <span class="n">websocket</span><span class="o">.</span><span class="n">send_text</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Query parameter q is: </span><span class="si">{q}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span class="hll">        <span class="k">await</span> <span class="n">websocket</span><span class="o">.</span><span class="n">send_text</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Message text was: </span><span class="si">{data}</span><span class="s2">, for item ID: </span><span class="si">{item_id}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>In a WebSocket it doesn't really make sense to raise an <code>HTTPException</code>. So it's better to close the WebSocket connection directly.</p>
+<p>You can use a closing code from the <a href="https://tools.ietf.org/html/rfc6455#section-7.4.1" class="external-link" target="_blank">valid codes defined in the specification</a>.</p>
+<p>In the future, there will be a <code>WebSocketException</code> that you will be able to <code>raise</code> from anywhere, and add exception handlers for it. It depends on the <a href="https://github.com/encode/starlette/pull/527" class="external-link" target="_blank">PR #527</a> in Starlette.</p>
+</div>
+<h2 id="more-info">More info<a class="headerlink" href="#more-info" title="Permanent link">&para;</a></h2>
+<p>To learn more about the options, check Starlette's documentation for:</p>
+<ul>
+<li><a href="https://www.starlette.io/applications/" class="external-link" target="_blank">Applications (<code>websocket_route</code>)</a>.</li>
+<li><a href="https://www.starlette.io/websockets/" class="external-link" target="_blank">The <code>WebSocket</code> class</a>.</li>
+<li><a href="https://www.starlette.io/endpoints/#websocketendpoint" class="external-link" target="_blank">Class-based WebSocket handling</a>.</li>
+</ul>
+<h2 id="test-it">Test it<a class="headerlink" href="#test-it" title="Permanent link">&para;</a></h2>
+<p>If your file is named <code>main.py</code>, run your application with:</p>
+<div class="codehilite"><pre><span></span><code>uvicorn main:app --reload
+</code></pre></div>
+
+<p>Open your browser at <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>.</p>
+<p>You will see a simple page like:</p>
+<p><img src="/img/tutorial/websockets/image01.png"></p>
+<p>You can type messages in the input box, and send them:</p>
+<p><img src="/img/tutorial/websockets/image02.png"></p>
+<p>And your <strong>FastAPI</strong> application with WebSockets will respond back:</p>
+<p><img src="/img/tutorial/websockets/image03.png"></p>
+<p>You can send (and receive) many messages:</p>
+<p><img src="/img/tutorial/websockets/image04.png"></p>
+<p>And all of them will use the same WebSocket connection.</p>
+                
+                  
+                
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../graphql/" title="GraphQL" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                GraphQL
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../events/" title="Events: startup - shutdown" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Events: startup - shutdown
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org" target="_blank" rel="noopener">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.c33a9706.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+    
+  </body>
+</html>

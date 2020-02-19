@@ -1,0 +1,2173 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="FastAPI framework, high performance, easy to learn, fast to code, ready for production">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../img/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.6.3">
+    
+    
+      
+        <title>Extending OpenAPI - FastAPI Docs CN</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.adb8469c.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.a8b3c06d.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#009688">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.86422ebf.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="teal" data-md-color-accent="amber">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#the-normal-process" tabindex="0" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../.." title="FastAPI Docs CN" aria-label="FastAPI Docs CN" class="md-header-nav__button md-logo">
+          
+            <img alt="logo" src="../../img/icon-white.svg" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              FastAPI Docs CN
+            </span>
+            <span class="md-header-nav__topic">
+              
+                Extending OpenAPI
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" aria-label="search" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../.." title="FastAPI Docs CN" class="md-nav__button md-logo">
+      
+        <img alt="logo" src="../../img/icon-white.svg" width="48" height="48">
+      
+    </a>
+    FastAPI Docs CN
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="FastAPI" class="md-nav__link">
+      FastAPI
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../features/" title="Features" class="md-nav__link">
+      Features
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../python-types/" title="Python types intro" class="md-nav__link">
+      Python types intro
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Tutorial - User Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Tutorial - User Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/" title="Tutorial - User Guide - Intro" class="md-nav__link">
+      Tutorial - User Guide - Intro
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/first-steps/" title="First Steps" class="md-nav__link">
+      First Steps
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/path-params/" title="Path Parameters" class="md-nav__link">
+      Path Parameters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/query-params/" title="Query Parameters" class="md-nav__link">
+      Query Parameters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/body/" title="Request Body" class="md-nav__link">
+      Request Body
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/query-params-str-validations/" title="Query Parameters and String Validations" class="md-nav__link">
+      Query Parameters and String Validations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/path-params-numeric-validations/" title="Path Parameters and Numeric Validations" class="md-nav__link">
+      Path Parameters and Numeric Validations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/body-multiple-params/" title="Body - Multiple Parameters" class="md-nav__link">
+      Body - Multiple Parameters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/body-fields/" title="Body - Fields" class="md-nav__link">
+      Body - Fields
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/body-nested-models/" title="Body - Nested Models" class="md-nav__link">
+      Body - Nested Models
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/extra-data-types/" title="Extra data types" class="md-nav__link">
+      Extra data types
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/cookie-params/" title="Cookie Parameters" class="md-nav__link">
+      Cookie Parameters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/header-params/" title="Header Parameters" class="md-nav__link">
+      Header Parameters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/response-model/" title="Response Model" class="md-nav__link">
+      Response Model
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/extra-models/" title="Extra Models" class="md-nav__link">
+      Extra Models
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/response-status-code/" title="Response Status Code" class="md-nav__link">
+      Response Status Code
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/request-forms/" title="Form Data" class="md-nav__link">
+      Form Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/request-files/" title="Request Files" class="md-nav__link">
+      Request Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/request-forms-and-files/" title="Request Forms and Files" class="md-nav__link">
+      Request Forms and Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/handling-errors/" title="Handling Errors" class="md-nav__link">
+      Handling Errors
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/path-operation-configuration/" title="Path Operation Configuration" class="md-nav__link">
+      Path Operation Configuration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/encoder/" title="JSON Compatible Encoder" class="md-nav__link">
+      JSON Compatible Encoder
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/body-updates/" title="Body - updates" class="md-nav__link">
+      Body - updates
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-24" type="checkbox" id="nav-4-24">
+    
+    <label class="md-nav__link" for="nav-4-24">
+      Dependencies
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-24">
+        Dependencies
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/dependencies/" title="First Steps" class="md-nav__link">
+      First Steps
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/dependencies/classes-as-dependencies/" title="Classes as Dependencies" class="md-nav__link">
+      Classes as Dependencies
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/dependencies/sub-dependencies/" title="Sub-dependencies" class="md-nav__link">
+      Sub-dependencies
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/dependencies/dependencies-in-path-operation-decorators/" title="Dependencies in path operation decorators" class="md-nav__link">
+      Dependencies in path operation decorators
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/dependencies/dependencies-with-yield/" title="Dependencies with yield" class="md-nav__link">
+      Dependencies with yield
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-25" type="checkbox" id="nav-4-25">
+    
+    <label class="md-nav__link" for="nav-4-25">
+      Security
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-25">
+        Security
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/security/" title="Security Intro" class="md-nav__link">
+      Security Intro
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/security/first-steps/" title="First Steps" class="md-nav__link">
+      First Steps
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/security/get-current-user/" title="Get Current User" class="md-nav__link">
+      Get Current User
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/security/simple-oauth2/" title="Simple OAuth2 with Password and Bearer" class="md-nav__link">
+      Simple OAuth2 with Password and Bearer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/security/oauth2-jwt/" title="OAuth2 with Password (and hashing), Bearer with JWT tokens" class="md-nav__link">
+      OAuth2 with Password (and hashing), Bearer with JWT tokens
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/middleware/" title="Middleware" class="md-nav__link">
+      Middleware
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/cors/" title="CORS (Cross-Origin Resource Sharing)" class="md-nav__link">
+      CORS (Cross-Origin Resource Sharing)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/sql-databases/" title="SQL (Relational) Databases" class="md-nav__link">
+      SQL (Relational) Databases
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/bigger-applications/" title="Bigger Applications - Multiple Files" class="md-nav__link">
+      Bigger Applications - Multiple Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/background-tasks/" title="Background Tasks" class="md-nav__link">
+      Background Tasks
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/application-configuration/" title="Application Configuration" class="md-nav__link">
+      Application Configuration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/static-files/" title="Static Files" class="md-nav__link">
+      Static Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/testing/" title="Testing" class="md-nav__link">
+      Testing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/debugging/" title="Debugging" class="md-nav__link">
+      Debugging
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+    
+    <label class="md-nav__link" for="nav-5">
+      Advanced User Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Advanced User Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../" title="Advanced User Guide - Intro" class="md-nav__link">
+      Advanced User Guide - Intro
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../path-operation-advanced-configuration/" title="Path Operation Advanced Configuration" class="md-nav__link">
+      Path Operation Advanced Configuration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../additional-status-codes/" title="Additional Status Codes" class="md-nav__link">
+      Additional Status Codes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../response-directly/" title="Return a Response Directly" class="md-nav__link">
+      Return a Response Directly
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../custom-response/" title="Custom Response Class" class="md-nav__link">
+      Custom Response Class
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../additional-responses/" title="Additional Responses in OpenAPI" class="md-nav__link">
+      Additional Responses in OpenAPI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../response-cookies/" title="Response Cookies" class="md-nav__link">
+      Response Cookies
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../response-headers/" title="Response Headers" class="md-nav__link">
+      Response Headers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../response-change-status-code/" title="Response - Change Status Code" class="md-nav__link">
+      Response - Change Status Code
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../advanced-dependencies/" title="Advanced Dependencies" class="md-nav__link">
+      Advanced Dependencies
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-11" type="checkbox" id="nav-5-11">
+    
+    <label class="md-nav__link" for="nav-5-11">
+      Advanced Security
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-11">
+        Advanced Security
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../security/" title="Advanced Security - Intro" class="md-nav__link">
+      Advanced Security - Intro
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../security/oauth2-scopes/" title="OAuth2 scopes" class="md-nav__link">
+      OAuth2 scopes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../security/http-basic-auth/" title="HTTP Basic Auth" class="md-nav__link">
+      HTTP Basic Auth
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../using-request-directly/" title="Using the Request Directly" class="md-nav__link">
+      Using the Request Directly
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../sql-databases-peewee/" title="SQL (Relational) Databases with Peewee" class="md-nav__link">
+      SQL (Relational) Databases with Peewee
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../async-sql-databases/" title="Async SQL (Relational) Databases" class="md-nav__link">
+      Async SQL (Relational) Databases
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../nosql-databases/" title="NoSQL (Distributed / Big Data) Databases" class="md-nav__link">
+      NoSQL (Distributed / Big Data) Databases
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../sub-applications-proxy/" title="Sub Applications - Behind a Proxy" class="md-nav__link">
+      Sub Applications - Behind a Proxy
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../templates/" title="Templates" class="md-nav__link">
+      Templates
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../graphql/" title="GraphQL" class="md-nav__link">
+      GraphQL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../websockets/" title="WebSockets" class="md-nav__link">
+      WebSockets
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../events/" title="Events: startup - shutdown" class="md-nav__link">
+      Events: startup - shutdown
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../custom-request-and-route/" title="Custom Request and APIRoute class" class="md-nav__link">
+      Custom Request and APIRoute class
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../testing-websockets/" title="Testing WebSockets" class="md-nav__link">
+      Testing WebSockets
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../testing-events/" title="Testing Events: startup - shutdown" class="md-nav__link">
+      Testing Events: startup - shutdown
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../testing-dependencies/" title="Testing Dependencies with Overrides" class="md-nav__link">
+      Testing Dependencies with Overrides
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Extending OpenAPI
+      </label>
+    
+    <a href="./" title="Extending OpenAPI" class="md-nav__link md-nav__link--active">
+      Extending OpenAPI
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-normal-process" class="md-nav__link">
+    The normal process
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overriding-the-defaults" class="md-nav__link">
+    Overriding the defaults
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#normal-fastapi" class="md-nav__link">
+    Normal FastAPI
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generate-the-openapi-schema" class="md-nav__link">
+    Generate the OpenAPI schema
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modify-the-openapi-schema" class="md-nav__link">
+    Modify the OpenAPI schema
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cache-the-openapi-schema" class="md-nav__link">
+    Cache the OpenAPI schema
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#override-the-method" class="md-nav__link">
+    Override the method
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-it" class="md-nav__link">
+    Check it
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#self-hosting-javascript-and-css-for-docs" class="md-nav__link">
+    Self-hosting JavaScript and CSS for docs
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#project-file-structure" class="md-nav__link">
+    Project file structure
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#download-the-files" class="md-nav__link">
+    Download the files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-aiofiles" class="md-nav__link">
+    Install aiofiles
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#serve-the-static-files" class="md-nav__link">
+    Serve the static files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-the-static-files" class="md-nav__link">
+    Test the static files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disable-the-automatic-docs" class="md-nav__link">
+    Disable the automatic docs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#include-the-custom-docs" class="md-nav__link">
+    Include the custom docs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-a-path-operation-to-test-it" class="md-nav__link">
+    Create a path operation to test it
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-it" class="md-nav__link">
+    Test it
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../openapi-callbacks/" title="OpenAPI Callbacks" class="md-nav__link">
+      OpenAPI Callbacks
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../async/" title="Concurrency and async / await" class="md-nav__link">
+      Concurrency and async / await
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../deployment/" title="Deployment" class="md-nav__link">
+      Deployment
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../project-generation/" title="Project Generation - Template" class="md-nav__link">
+      Project Generation - Template
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../alternatives/" title="Alternatives, Inspiration and Comparisons" class="md-nav__link">
+      Alternatives, Inspiration and Comparisons
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../history-design-future/" title="History, Design and Future" class="md-nav__link">
+      History, Design and Future
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../external-links/" title="External Links and Articles" class="md-nav__link">
+      External Links and Articles
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../benchmarks/" title="Benchmarks" class="md-nav__link">
+      Benchmarks
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../help-fastapi/" title="Help FastAPI - Get Help" class="md-nav__link">
+      Help FastAPI - Get Help
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../contributing/" title="Development - Contributing" class="md-nav__link">
+      Development - Contributing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../release-notes/" title="Release Notes" class="md-nav__link">
+      Release Notes
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-normal-process" class="md-nav__link">
+    The normal process
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overriding-the-defaults" class="md-nav__link">
+    Overriding the defaults
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#normal-fastapi" class="md-nav__link">
+    Normal FastAPI
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generate-the-openapi-schema" class="md-nav__link">
+    Generate the OpenAPI schema
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modify-the-openapi-schema" class="md-nav__link">
+    Modify the OpenAPI schema
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cache-the-openapi-schema" class="md-nav__link">
+    Cache the OpenAPI schema
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#override-the-method" class="md-nav__link">
+    Override the method
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-it" class="md-nav__link">
+    Check it
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#self-hosting-javascript-and-css-for-docs" class="md-nav__link">
+    Self-hosting JavaScript and CSS for docs
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#project-file-structure" class="md-nav__link">
+    Project file structure
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#download-the-files" class="md-nav__link">
+    Download the files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-aiofiles" class="md-nav__link">
+    Install aiofiles
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#serve-the-static-files" class="md-nav__link">
+    Serve the static files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-the-static-files" class="md-nav__link">
+    Test the static files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disable-the-automatic-docs" class="md-nav__link">
+    Disable the automatic docs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#include-the-custom-docs" class="md-nav__link">
+    Include the custom docs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-a-path-operation-to-test-it" class="md-nav__link">
+    Create a path operation to test it
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-it" class="md-nav__link">
+    Test it
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>Extending OpenAPI</h1>
+                
+                <div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This is a rather advanced feature. You probably can skip it.</p>
+<p>If you are just following the tutorial - user guide, you can probably skip this section.</p>
+<p>If you already know that you need to modify the generated OpenAPI schema, continue reading.</p>
+</div>
+<p>There are some cases where you might need to modify the generated OpenAPI schema.</p>
+<p>In this section you will see how.</p>
+<h2 id="the-normal-process">The normal process<a class="headerlink" href="#the-normal-process" title="Permanent link">&para;</a></h2>
+<p>The normal (default) process, is as follows.</p>
+<p>A <code>FastAPI</code> application (instance) has an <code>.openapi()</code> method that is expected to return the OpenAPI schema.</p>
+<p>As part of the application object creation, a <em>path operation</em> for <code>/openapi.json</code> (or for whatever you set your <code>openapi_url</code>) is registered.</p>
+<p>It just returns a JSON response with the result of the application's <code>.openapi()</code> method.</p>
+<p>By default, what the method <code>.openapi()</code> does is check the property <code>.openapi_schema</code> to see if it has contents and return them.</p>
+<p>If it doesn't, it generates them using the utility function at <code>fastapi.openapi.utils.get_openapi</code>.</p>
+<p>And that function <code>get_openapi()</code> receives as parameters:</p>
+<ul>
+<li><code>title</code>: The OpenAPI title, shown in the docs.</li>
+<li><code>version</code>: The version of your API, e.g. <code>2.5.0</code>.</li>
+<li><code>openapi_version</code>: The version of the OpenAPI specification used. By default, the latest: <code>3.0.2</code>.</li>
+<li><code>description</code>: The description of your API.</li>
+<li><code>routes</code>: A list of routes, these are each of the registered <em>path operations</em>. They are taken from <code>app.routes</code>.</li>
+<li><code>openapi_prefix</code>: The URL prefix to be used in your OpenAPI.</li>
+</ul>
+<h2 id="overriding-the-defaults">Overriding the defaults<a class="headerlink" href="#overriding-the-defaults" title="Permanent link">&para;</a></h2>
+<p>Using the information above, you can use the same utility function to generate the OpenAPI schema and override each part that you need.</p>
+<p>For example, let's add <a href="https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#x-logo" class="external-link" target="_blank">ReDoc's OpenAPI extension to include a custom logo</a>.</p>
+<h3 id="normal-fastapi">Normal <strong>FastAPI</strong><a class="headerlink" href="#normal-fastapi" title="Permanent link">&para;</a></h3>
+<p>First, write all your <strong>FastAPI</strong> application as normally:</p>
+<div class="codehilite"><pre><span></span><code><span class="hll"><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span>
+</span><span class="kn">from</span> <span class="nn">fastapi.openapi.utils</span> <span class="kn">import</span> <span class="n">get_openapi</span>
+
+<span class="hll"><span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+</span>
+
+<span class="hll"><span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/items/&quot;</span><span class="p">)</span>
+</span><span class="hll"><span class="k">async</span> <span class="k">def</span> <span class="nf">read_items</span><span class="p">():</span>
+</span><span class="hll">    <span class="k">return</span> <span class="p">[{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Foo&quot;</span><span class="p">}]</span>
+</span>
+
+<span class="k">def</span> <span class="nf">custom_openapi</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">app</span><span class="o">.</span><span class="n">openapi_schema</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">app</span><span class="o">.</span><span class="n">openapi_schema</span>
+    <span class="n">openapi_schema</span> <span class="o">=</span> <span class="n">get_openapi</span><span class="p">(</span>
+        <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Custom title&quot;</span><span class="p">,</span>
+        <span class="n">version</span><span class="o">=</span><span class="s2">&quot;2.5.0&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;This is a very custom OpenAPI schema&quot;</span><span class="p">,</span>
+        <span class="n">routes</span><span class="o">=</span><span class="n">app</span><span class="o">.</span><span class="n">routes</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">openapi_schema</span><span class="p">[</span><span class="s2">&quot;info&quot;</span><span class="p">][</span><span class="s2">&quot;x-logo&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png&quot;</span>
+    <span class="p">}</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">openapi_schema</span> <span class="o">=</span> <span class="n">openapi_schema</span>
+    <span class="k">return</span> <span class="n">app</span><span class="o">.</span><span class="n">openapi_schema</span>
+
+
+<span class="n">app</span><span class="o">.</span><span class="n">openapi</span> <span class="o">=</span> <span class="n">custom_openapi</span>
+</code></pre></div>
+
+<h3 id="generate-the-openapi-schema">Generate the OpenAPI schema<a class="headerlink" href="#generate-the-openapi-schema" title="Permanent link">&para;</a></h3>
+<p>Then, use the same utility function to generate the OpenAPI schema, inside a <code>custom_openapi()</code> function:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span>
+<span class="hll"><span class="kn">from</span> <span class="nn">fastapi.openapi.utils</span> <span class="kn">import</span> <span class="n">get_openapi</span>
+</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/items/&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">read_items</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">[{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Foo&quot;</span><span class="p">}]</span>
+
+
+<span class="k">def</span> <span class="nf">custom_openapi</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">app</span><span class="o">.</span><span class="n">openapi_schema</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">app</span><span class="o">.</span><span class="n">openapi_schema</span>
+<span class="hll">    <span class="n">openapi_schema</span> <span class="o">=</span> <span class="n">get_openapi</span><span class="p">(</span>
+</span><span class="hll">        <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Custom title&quot;</span><span class="p">,</span>
+</span><span class="hll">        <span class="n">version</span><span class="o">=</span><span class="s2">&quot;2.5.0&quot;</span><span class="p">,</span>
+</span><span class="hll">        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;This is a very custom OpenAPI schema&quot;</span><span class="p">,</span>
+</span><span class="hll">        <span class="n">routes</span><span class="o">=</span><span class="n">app</span><span class="o">.</span><span class="n">routes</span><span class="p">,</span>
+</span><span class="hll">    <span class="p">)</span>
+</span>    <span class="n">openapi_schema</span><span class="p">[</span><span class="s2">&quot;info&quot;</span><span class="p">][</span><span class="s2">&quot;x-logo&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png&quot;</span>
+    <span class="p">}</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">openapi_schema</span> <span class="o">=</span> <span class="n">openapi_schema</span>
+    <span class="k">return</span> <span class="n">app</span><span class="o">.</span><span class="n">openapi_schema</span>
+
+
+<span class="n">app</span><span class="o">.</span><span class="n">openapi</span> <span class="o">=</span> <span class="n">custom_openapi</span>
+</code></pre></div>
+
+<h3 id="modify-the-openapi-schema">Modify the OpenAPI schema<a class="headerlink" href="#modify-the-openapi-schema" title="Permanent link">&para;</a></h3>
+<p>Now you can add the ReDoc extension, adding a custom <code>x-logo</code> to the <code>info</code> "object" in the OpenAPI schema:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span>
+<span class="kn">from</span> <span class="nn">fastapi.openapi.utils</span> <span class="kn">import</span> <span class="n">get_openapi</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/items/&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">read_items</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">[{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Foo&quot;</span><span class="p">}]</span>
+
+
+<span class="k">def</span> <span class="nf">custom_openapi</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">app</span><span class="o">.</span><span class="n">openapi_schema</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">app</span><span class="o">.</span><span class="n">openapi_schema</span>
+    <span class="n">openapi_schema</span> <span class="o">=</span> <span class="n">get_openapi</span><span class="p">(</span>
+        <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Custom title&quot;</span><span class="p">,</span>
+        <span class="n">version</span><span class="o">=</span><span class="s2">&quot;2.5.0&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;This is a very custom OpenAPI schema&quot;</span><span class="p">,</span>
+        <span class="n">routes</span><span class="o">=</span><span class="n">app</span><span class="o">.</span><span class="n">routes</span><span class="p">,</span>
+    <span class="p">)</span>
+<span class="hll">    <span class="n">openapi_schema</span><span class="p">[</span><span class="s2">&quot;info&quot;</span><span class="p">][</span><span class="s2">&quot;x-logo&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class="hll">        <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png&quot;</span>
+</span><span class="hll">    <span class="p">}</span>
+</span>    <span class="n">app</span><span class="o">.</span><span class="n">openapi_schema</span> <span class="o">=</span> <span class="n">openapi_schema</span>
+    <span class="k">return</span> <span class="n">app</span><span class="o">.</span><span class="n">openapi_schema</span>
+
+
+<span class="n">app</span><span class="o">.</span><span class="n">openapi</span> <span class="o">=</span> <span class="n">custom_openapi</span>
+</code></pre></div>
+
+<h3 id="cache-the-openapi-schema">Cache the OpenAPI schema<a class="headerlink" href="#cache-the-openapi-schema" title="Permanent link">&para;</a></h3>
+<p>You can use the property <code>.openapi_schema</code> as a "cache", to store your generated schema.</p>
+<p>That way, your application won't have to generate the schema every time a user opens your API docs.</p>
+<p>It will be generated only once, and then the same cached schema will be used for the next requests.</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span>
+<span class="kn">from</span> <span class="nn">fastapi.openapi.utils</span> <span class="kn">import</span> <span class="n">get_openapi</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/items/&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">read_items</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">[{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Foo&quot;</span><span class="p">}]</span>
+
+
+<span class="k">def</span> <span class="nf">custom_openapi</span><span class="p">():</span>
+<span class="hll">    <span class="k">if</span> <span class="n">app</span><span class="o">.</span><span class="n">openapi_schema</span><span class="p">:</span>
+</span><span class="hll">        <span class="k">return</span> <span class="n">app</span><span class="o">.</span><span class="n">openapi_schema</span>
+</span>    <span class="n">openapi_schema</span> <span class="o">=</span> <span class="n">get_openapi</span><span class="p">(</span>
+        <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Custom title&quot;</span><span class="p">,</span>
+        <span class="n">version</span><span class="o">=</span><span class="s2">&quot;2.5.0&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;This is a very custom OpenAPI schema&quot;</span><span class="p">,</span>
+        <span class="n">routes</span><span class="o">=</span><span class="n">app</span><span class="o">.</span><span class="n">routes</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">openapi_schema</span><span class="p">[</span><span class="s2">&quot;info&quot;</span><span class="p">][</span><span class="s2">&quot;x-logo&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png&quot;</span>
+    <span class="p">}</span>
+<span class="hll">    <span class="n">app</span><span class="o">.</span><span class="n">openapi_schema</span> <span class="o">=</span> <span class="n">openapi_schema</span>
+</span><span class="hll">    <span class="k">return</span> <span class="n">app</span><span class="o">.</span><span class="n">openapi_schema</span>
+</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">openapi</span> <span class="o">=</span> <span class="n">custom_openapi</span>
+</code></pre></div>
+
+<h3 id="override-the-method">Override the method<a class="headerlink" href="#override-the-method" title="Permanent link">&para;</a></h3>
+<p>Now you can replace the <code>.openapi()</code> method with your new function.</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span>
+<span class="kn">from</span> <span class="nn">fastapi.openapi.utils</span> <span class="kn">import</span> <span class="n">get_openapi</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/items/&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">read_items</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">[{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Foo&quot;</span><span class="p">}]</span>
+
+
+<span class="k">def</span> <span class="nf">custom_openapi</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">app</span><span class="o">.</span><span class="n">openapi_schema</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">app</span><span class="o">.</span><span class="n">openapi_schema</span>
+    <span class="n">openapi_schema</span> <span class="o">=</span> <span class="n">get_openapi</span><span class="p">(</span>
+        <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Custom title&quot;</span><span class="p">,</span>
+        <span class="n">version</span><span class="o">=</span><span class="s2">&quot;2.5.0&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;This is a very custom OpenAPI schema&quot;</span><span class="p">,</span>
+        <span class="n">routes</span><span class="o">=</span><span class="n">app</span><span class="o">.</span><span class="n">routes</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">openapi_schema</span><span class="p">[</span><span class="s2">&quot;info&quot;</span><span class="p">][</span><span class="s2">&quot;x-logo&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png&quot;</span>
+    <span class="p">}</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">openapi_schema</span> <span class="o">=</span> <span class="n">openapi_schema</span>
+    <span class="k">return</span> <span class="n">app</span><span class="o">.</span><span class="n">openapi_schema</span>
+
+
+<span class="hll"><span class="n">app</span><span class="o">.</span><span class="n">openapi</span> <span class="o">=</span> <span class="n">custom_openapi</span>
+</span></code></pre></div>
+
+<h3 id="check-it">Check it<a class="headerlink" href="#check-it" title="Permanent link">&para;</a></h3>
+<p>Once you go to <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a> you will see that you are using your custom logo (in this example, <strong>FastAPI</strong>'s logo):</p>
+<p><img src="/img/tutorial/extending-openapi/image01.png"></p>
+<h2 id="self-hosting-javascript-and-css-for-docs">Self-hosting JavaScript and CSS for docs<a class="headerlink" href="#self-hosting-javascript-and-css-for-docs" title="Permanent link">&para;</a></h2>
+<p>The API docs use <strong>Swagger UI</strong> and <strong>ReDoc</strong>, and each of those need some JavaScript and CSS files.</p>
+<p>By default, those files are served from a <abbr title="Content Delivery Network: A service, normally composed of several servers, that provides static files, like JavaScript and CSS. It's commonly used to serve those files from the server closer to the client, improving performance.">CDN</abbr>.</p>
+<p>But it's possible to customize it, you can set a specific CDN, or serve the files yourself.</p>
+<p>That's useful, for example, if you need your app to keep working even while offline, without open Internet access, or in a local network.</p>
+<p>Here you'll see how to serve those files yourself, in the same FastAPI app, and configure the docs to use them.</p>
+<h3 id="project-file-structure">Project file structure<a class="headerlink" href="#project-file-structure" title="Permanent link">&para;</a></h3>
+<p>Let's say your project file structure looks like this:</p>
+<div class="codehilite"><pre><span></span><code>.
+├── app
+│   ├── __init__.py
+│   ├── main.py
+</code></pre></div>
+
+<p>Now create a directory to store those static files.</p>
+<p>Your new file structure could look like this:</p>
+<div class="codehilite"><pre><span></span><code>.
+├── app
+│   ├── __init__.py
+│   ├── main.py
+└── static/
+</code></pre></div>
+
+<h3 id="download-the-files">Download the files<a class="headerlink" href="#download-the-files" title="Permanent link">&para;</a></h3>
+<p>Download the static files needed for the docs and put them on that <code>static/</code> directory.</p>
+<p>You can probably right-click each link and select an option similar to <code>Save link as...</code>.</p>
+<p><strong>Swagger UI</strong> uses the files:</p>
+<ul>
+<li><a href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@3/swagger-ui-bundle.js" class="external-link" target="_blank"><code>swagger-ui-bundle.js</code></a></li>
+<li><a href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@3/swagger-ui.css" class="external-link" target="_blank"><code>swagger-ui.css</code></a></li>
+</ul>
+<p>And <strong>ReDoc</strong> uses the file:</p>
+<ul>
+<li><a href="https://cdn.jsdelivr.net/npm/redoc@next/bundles/redoc.standalone.js" class="external-link" target="_blank"><code>redoc.standalone.js</code></a></li>
+</ul>
+<p>After that, your file structure could look like:</p>
+<div class="codehilite"><pre><span></span><code>.
+├── app
+│   ├── __init__.py
+│   ├── main.py
+└── static
+    ├── redoc.standalone.js
+    ├── swagger-ui-bundle.js
+    └── swagger-ui.css
+</code></pre></div>
+
+<h3 id="install-aiofiles">Install <code>aiofiles</code><a class="headerlink" href="#install-aiofiles" title="Permanent link">&para;</a></h3>
+<p>Now you need to install <code>aiofiles</code>:</p>
+<div class="codehilite"><pre><span></span><code>pip install aiofiles
+</code></pre></div>
+
+<h3 id="serve-the-static-files">Serve the static files<a class="headerlink" href="#serve-the-static-files" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Import <code>StaticFiles</code> from Starlette.</li>
+<li>"Mount" a <code>StaticFiles()</code> instance in a specific path.</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span>
+<span class="kn">from</span> <span class="nn">fastapi.openapi.docs</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">get_redoc_html</span><span class="p">,</span>
+    <span class="n">get_swagger_ui_html</span><span class="p">,</span>
+    <span class="n">get_swagger_ui_oauth2_redirect_html</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="hll"><span class="kn">from</span> <span class="nn">starlette.staticfiles</span> <span class="kn">import</span> <span class="n">StaticFiles</span>
+</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">(</span><span class="n">docs_url</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">redoc_url</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+<span class="hll"><span class="n">app</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s2">&quot;/static&quot;</span><span class="p">,</span> <span class="n">StaticFiles</span><span class="p">(</span><span class="n">directory</span><span class="o">=</span><span class="s2">&quot;static&quot;</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;static&quot;</span><span class="p">)</span>
+</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/docs&quot;</span><span class="p">,</span> <span class="n">include_in_schema</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">custom_swagger_ui_html</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">get_swagger_ui_html</span><span class="p">(</span>
+        <span class="n">openapi_url</span><span class="o">=</span><span class="n">app</span><span class="o">.</span><span class="n">openapi_url</span><span class="p">,</span>
+        <span class="n">title</span><span class="o">=</span><span class="n">app</span><span class="o">.</span><span class="n">title</span> <span class="o">+</span> <span class="s2">&quot; - Swagger UI&quot;</span><span class="p">,</span>
+        <span class="n">oauth2_redirect_url</span><span class="o">=</span><span class="n">app</span><span class="o">.</span><span class="n">swagger_ui_oauth2_redirect_url</span><span class="p">,</span>
+        <span class="n">swagger_js_url</span><span class="o">=</span><span class="s2">&quot;/static/swagger-ui-bundle.js&quot;</span><span class="p">,</span>
+        <span class="n">swagger_css_url</span><span class="o">=</span><span class="s2">&quot;/static/swagger-ui.css&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">swagger_ui_oauth2_redirect_url</span><span class="p">,</span> <span class="n">include_in_schema</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">swagger_ui_redirect</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">get_swagger_ui_oauth2_redirect_html</span><span class="p">()</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/redoc&quot;</span><span class="p">,</span> <span class="n">include_in_schema</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">redoc_html</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">get_redoc_html</span><span class="p">(</span>
+        <span class="n">openapi_url</span><span class="o">=</span><span class="n">app</span><span class="o">.</span><span class="n">openapi_url</span><span class="p">,</span>
+        <span class="n">title</span><span class="o">=</span><span class="n">app</span><span class="o">.</span><span class="n">title</span> <span class="o">+</span> <span class="s2">&quot; - ReDoc&quot;</span><span class="p">,</span>
+        <span class="n">redoc_js_url</span><span class="o">=</span><span class="s2">&quot;/static/redoc.standalone.js&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/users/</span><span class="si">{username}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">read_user</span><span class="p">(</span><span class="n">username</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Hello </span><span class="si">{username}</span><span class="s2">&quot;</span><span class="p">}</span>
+</code></pre></div>
+
+<h3 id="test-the-static-files">Test the static files<a class="headerlink" href="#test-the-static-files" title="Permanent link">&para;</a></h3>
+<p>Start your application and go to <a href="http://127.0.0.1:8000/static/redoc.standalone.js" class="external-link" target="_blank">http://127.0.0.1:8000/static/redoc.standalone.js</a>.</p>
+<p>You should see a very long JavaScript file for <strong>ReDoc</strong>.</p>
+<p>It could start with something like:</p>
+<div class="codehilite"><pre><span></span><code><span class="cm">/*!</span>
+<span class="cm"> * ReDoc - OpenAPI/Swagger-generated API Reference Documentation</span>
+<span class="cm"> * -------------------------------------------------------------</span>
+<span class="cm"> *   Version: &quot;2.0.0-rc.18&quot;</span>
+<span class="cm"> *   Repo: https://github.com/Redocly/redoc</span>
+<span class="cm"> */</span>
+<span class="o">!</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span><span class="nx">t</span><span class="p">){</span><span class="s2">&quot;object&quot;</span><span class="o">==</span><span class="k">typeof</span> <span class="nx">exports</span><span class="o">&amp;&amp;</span><span class="s2">&quot;object&quot;</span><span class="o">==</span><span class="k">typeof</span> <span class="nx">m</span>
+
+<span class="p">...</span>
+</code></pre></div>
+
+<p>That confirms that you are being able to serve static files from your app, and that you placed the static files for the docs in the correct place.</p>
+<p>Now we can configure the app to use those static files for the docs.</p>
+<h3 id="disable-the-automatic-docs">Disable the automatic docs<a class="headerlink" href="#disable-the-automatic-docs" title="Permanent link">&para;</a></h3>
+<p>The first step is to disable the automatic docs, as those use the CDN by default.</p>
+<p>To disable them, set their URLs to <code>None</code> when creating your <code>FastAPI</code> app:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span>
+<span class="kn">from</span> <span class="nn">fastapi.openapi.docs</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">get_redoc_html</span><span class="p">,</span>
+    <span class="n">get_swagger_ui_html</span><span class="p">,</span>
+    <span class="n">get_swagger_ui_oauth2_redirect_html</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">starlette.staticfiles</span> <span class="kn">import</span> <span class="n">StaticFiles</span>
+
+<span class="hll"><span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">(</span><span class="n">docs_url</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">redoc_url</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</span>
+<span class="n">app</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s2">&quot;/static&quot;</span><span class="p">,</span> <span class="n">StaticFiles</span><span class="p">(</span><span class="n">directory</span><span class="o">=</span><span class="s2">&quot;static&quot;</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;static&quot;</span><span class="p">)</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/docs&quot;</span><span class="p">,</span> <span class="n">include_in_schema</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">custom_swagger_ui_html</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">get_swagger_ui_html</span><span class="p">(</span>
+        <span class="n">openapi_url</span><span class="o">=</span><span class="n">app</span><span class="o">.</span><span class="n">openapi_url</span><span class="p">,</span>
+        <span class="n">title</span><span class="o">=</span><span class="n">app</span><span class="o">.</span><span class="n">title</span> <span class="o">+</span> <span class="s2">&quot; - Swagger UI&quot;</span><span class="p">,</span>
+        <span class="n">oauth2_redirect_url</span><span class="o">=</span><span class="n">app</span><span class="o">.</span><span class="n">swagger_ui_oauth2_redirect_url</span><span class="p">,</span>
+        <span class="n">swagger_js_url</span><span class="o">=</span><span class="s2">&quot;/static/swagger-ui-bundle.js&quot;</span><span class="p">,</span>
+        <span class="n">swagger_css_url</span><span class="o">=</span><span class="s2">&quot;/static/swagger-ui.css&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">swagger_ui_oauth2_redirect_url</span><span class="p">,</span> <span class="n">include_in_schema</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">swagger_ui_redirect</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">get_swagger_ui_oauth2_redirect_html</span><span class="p">()</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/redoc&quot;</span><span class="p">,</span> <span class="n">include_in_schema</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">redoc_html</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">get_redoc_html</span><span class="p">(</span>
+        <span class="n">openapi_url</span><span class="o">=</span><span class="n">app</span><span class="o">.</span><span class="n">openapi_url</span><span class="p">,</span>
+        <span class="n">title</span><span class="o">=</span><span class="n">app</span><span class="o">.</span><span class="n">title</span> <span class="o">+</span> <span class="s2">&quot; - ReDoc&quot;</span><span class="p">,</span>
+        <span class="n">redoc_js_url</span><span class="o">=</span><span class="s2">&quot;/static/redoc.standalone.js&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/users/</span><span class="si">{username}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">read_user</span><span class="p">(</span><span class="n">username</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Hello </span><span class="si">{username}</span><span class="s2">&quot;</span><span class="p">}</span>
+</code></pre></div>
+
+<h3 id="include-the-custom-docs">Include the custom docs<a class="headerlink" href="#include-the-custom-docs" title="Permanent link">&para;</a></h3>
+<p>Now you can create the <em>path operations</em> for the custom docs.</p>
+<p>You can re-use FastAPI's internal functions to create the HTML pages for the docs, and pass them the needed arguments:</p>
+<ul>
+<li><code>openapi_url</code>: the URL where the HTML page for the docs can get the OpenAPI schema for your API. You can use here the attribute <code>app.openapi_url</code>.</li>
+<li><code>title</code>: the title of your API.</li>
+<li><code>oauth2_redirect_url</code>: you can use <code>app.swagger_ui_oauth2_redirect_url</code> here to use the default.</li>
+<li><code>swagger_js_url</code>: the URL where the HTML for your Swagger UI docs can get the <strong>JavaScript</strong> file. This is the one that your own app is now serving.</li>
+<li><code>swagger_css_url</code>: the URL where the HTML for your Swagger UI docs can get the <strong>CSS</strong> file. This is the one that your own app is now serving.</li>
+</ul>
+<p>And similarly for ReDoc...</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span>
+<span class="hll"><span class="kn">from</span> <span class="nn">fastapi.openapi.docs</span> <span class="kn">import</span> <span class="p">(</span>
+</span><span class="hll">    <span class="n">get_redoc_html</span><span class="p">,</span>
+</span><span class="hll">    <span class="n">get_swagger_ui_html</span><span class="p">,</span>
+</span><span class="hll">    <span class="n">get_swagger_ui_oauth2_redirect_html</span><span class="p">,</span>
+</span><span class="hll"><span class="p">)</span>
+</span><span class="kn">from</span> <span class="nn">starlette.staticfiles</span> <span class="kn">import</span> <span class="n">StaticFiles</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">(</span><span class="n">docs_url</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">redoc_url</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s2">&quot;/static&quot;</span><span class="p">,</span> <span class="n">StaticFiles</span><span class="p">(</span><span class="n">directory</span><span class="o">=</span><span class="s2">&quot;static&quot;</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;static&quot;</span><span class="p">)</span>
+
+
+<span class="hll"><span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/docs&quot;</span><span class="p">,</span> <span class="n">include_in_schema</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span><span class="hll"><span class="k">async</span> <span class="k">def</span> <span class="nf">custom_swagger_ui_html</span><span class="p">():</span>
+</span><span class="hll">    <span class="k">return</span> <span class="n">get_swagger_ui_html</span><span class="p">(</span>
+</span><span class="hll">        <span class="n">openapi_url</span><span class="o">=</span><span class="n">app</span><span class="o">.</span><span class="n">openapi_url</span><span class="p">,</span>
+</span><span class="hll">        <span class="n">title</span><span class="o">=</span><span class="n">app</span><span class="o">.</span><span class="n">title</span> <span class="o">+</span> <span class="s2">&quot; - Swagger UI&quot;</span><span class="p">,</span>
+</span><span class="hll">        <span class="n">oauth2_redirect_url</span><span class="o">=</span><span class="n">app</span><span class="o">.</span><span class="n">swagger_ui_oauth2_redirect_url</span><span class="p">,</span>
+</span><span class="hll">        <span class="n">swagger_js_url</span><span class="o">=</span><span class="s2">&quot;/static/swagger-ui-bundle.js&quot;</span><span class="p">,</span>
+</span><span class="hll">        <span class="n">swagger_css_url</span><span class="o">=</span><span class="s2">&quot;/static/swagger-ui.css&quot;</span><span class="p">,</span>
+</span><span class="hll">    <span class="p">)</span>
+</span>
+
+<span class="hll"><span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">swagger_ui_oauth2_redirect_url</span><span class="p">,</span> <span class="n">include_in_schema</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span><span class="hll"><span class="k">async</span> <span class="k">def</span> <span class="nf">swagger_ui_redirect</span><span class="p">():</span>
+</span><span class="hll">    <span class="k">return</span> <span class="n">get_swagger_ui_oauth2_redirect_html</span><span class="p">()</span>
+</span>
+
+<span class="hll"><span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/redoc&quot;</span><span class="p">,</span> <span class="n">include_in_schema</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span><span class="hll"><span class="k">async</span> <span class="k">def</span> <span class="nf">redoc_html</span><span class="p">():</span>
+</span><span class="hll">    <span class="k">return</span> <span class="n">get_redoc_html</span><span class="p">(</span>
+</span><span class="hll">        <span class="n">openapi_url</span><span class="o">=</span><span class="n">app</span><span class="o">.</span><span class="n">openapi_url</span><span class="p">,</span>
+</span><span class="hll">        <span class="n">title</span><span class="o">=</span><span class="n">app</span><span class="o">.</span><span class="n">title</span> <span class="o">+</span> <span class="s2">&quot; - ReDoc&quot;</span><span class="p">,</span>
+</span><span class="hll">        <span class="n">redoc_js_url</span><span class="o">=</span><span class="s2">&quot;/static/redoc.standalone.js&quot;</span><span class="p">,</span>
+</span><span class="hll">    <span class="p">)</span>
+</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/users/</span><span class="si">{username}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">read_user</span><span class="p">(</span><span class="n">username</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Hello </span><span class="si">{username}</span><span class="s2">&quot;</span><span class="p">}</span>
+</code></pre></div>
+
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The <em>path operation</em> for <code>swagger_ui_redirect</code> is a helper for when you use OAuth2.</p>
+<p>If you integrate your API with an OAuth2 provider, you will be able to authenticate and come back to the API docs with the acquired credentials. And interact with it using the real OAuth2 authentication.</p>
+<p>Swagger UI will handle it behind the scenes for you, but it needs this "redirect" helper.</p>
+</div>
+<h3 id="create-a-path-operation-to-test-it">Create a <em>path operation</em> to test it<a class="headerlink" href="#create-a-path-operation-to-test-it" title="Permanent link">&para;</a></h3>
+<p>Now, to be able to test that everything works, create a <em>path operation</em>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span>
+<span class="kn">from</span> <span class="nn">fastapi.openapi.docs</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">get_redoc_html</span><span class="p">,</span>
+    <span class="n">get_swagger_ui_html</span><span class="p">,</span>
+    <span class="n">get_swagger_ui_oauth2_redirect_html</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">starlette.staticfiles</span> <span class="kn">import</span> <span class="n">StaticFiles</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">(</span><span class="n">docs_url</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">redoc_url</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s2">&quot;/static&quot;</span><span class="p">,</span> <span class="n">StaticFiles</span><span class="p">(</span><span class="n">directory</span><span class="o">=</span><span class="s2">&quot;static&quot;</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;static&quot;</span><span class="p">)</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/docs&quot;</span><span class="p">,</span> <span class="n">include_in_schema</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">custom_swagger_ui_html</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">get_swagger_ui_html</span><span class="p">(</span>
+        <span class="n">openapi_url</span><span class="o">=</span><span class="n">app</span><span class="o">.</span><span class="n">openapi_url</span><span class="p">,</span>
+        <span class="n">title</span><span class="o">=</span><span class="n">app</span><span class="o">.</span><span class="n">title</span> <span class="o">+</span> <span class="s2">&quot; - Swagger UI&quot;</span><span class="p">,</span>
+        <span class="n">oauth2_redirect_url</span><span class="o">=</span><span class="n">app</span><span class="o">.</span><span class="n">swagger_ui_oauth2_redirect_url</span><span class="p">,</span>
+        <span class="n">swagger_js_url</span><span class="o">=</span><span class="s2">&quot;/static/swagger-ui-bundle.js&quot;</span><span class="p">,</span>
+        <span class="n">swagger_css_url</span><span class="o">=</span><span class="s2">&quot;/static/swagger-ui.css&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">swagger_ui_oauth2_redirect_url</span><span class="p">,</span> <span class="n">include_in_schema</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">swagger_ui_redirect</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">get_swagger_ui_oauth2_redirect_html</span><span class="p">()</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/redoc&quot;</span><span class="p">,</span> <span class="n">include_in_schema</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">redoc_html</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">get_redoc_html</span><span class="p">(</span>
+        <span class="n">openapi_url</span><span class="o">=</span><span class="n">app</span><span class="o">.</span><span class="n">openapi_url</span><span class="p">,</span>
+        <span class="n">title</span><span class="o">=</span><span class="n">app</span><span class="o">.</span><span class="n">title</span> <span class="o">+</span> <span class="s2">&quot; - ReDoc&quot;</span><span class="p">,</span>
+        <span class="n">redoc_js_url</span><span class="o">=</span><span class="s2">&quot;/static/redoc.standalone.js&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+
+<span class="hll"><span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/users/</span><span class="si">{username}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span class="hll"><span class="k">async</span> <span class="k">def</span> <span class="nf">read_user</span><span class="p">(</span><span class="n">username</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+</span><span class="hll">    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Hello </span><span class="si">{username}</span><span class="s2">&quot;</span><span class="p">}</span>
+</span></code></pre></div>
+
+<h3 id="test-it">Test it<a class="headerlink" href="#test-it" title="Permanent link">&para;</a></h3>
+<p>Now, you should be able to disconnect your WiFi, go to your docs at <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>, and reload the page.</p>
+<p>And even without Internet, you would be able to see the docs for your API and interact with it.</p>
+                
+                  
+                
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../testing-dependencies/" title="Testing Dependencies with Overrides" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Testing Dependencies with Overrides
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../openapi-callbacks/" title="OpenAPI Callbacks" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                OpenAPI Callbacks
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org" target="_blank" rel="noopener">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.c33a9706.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+    
+  </body>
+</html>

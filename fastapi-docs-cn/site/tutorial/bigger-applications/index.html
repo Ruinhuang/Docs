@@ -1,0 +1,2096 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="FastAPI framework, high performance, easy to learn, fast to code, ready for production">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../img/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.6.3">
+    
+    
+      
+        <title>Bigger Applications - Multiple Files - FastAPI Docs CN</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.adb8469c.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.a8b3c06d.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#009688">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.86422ebf.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="teal" data-md-color-accent="amber">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#an-example-file-structure" tabindex="0" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../.." title="FastAPI Docs CN" aria-label="FastAPI Docs CN" class="md-header-nav__button md-logo">
+          
+            <img alt="logo" src="../../img/icon-white.svg" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              FastAPI Docs CN
+            </span>
+            <span class="md-header-nav__topic">
+              
+                Bigger Applications - Multiple Files
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" aria-label="search" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../.." title="FastAPI Docs CN" class="md-nav__button md-logo">
+      
+        <img alt="logo" src="../../img/icon-white.svg" width="48" height="48">
+      
+    </a>
+    FastAPI Docs CN
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="FastAPI" class="md-nav__link">
+      FastAPI
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../features/" title="Features" class="md-nav__link">
+      Features
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../python-types/" title="Python types intro" class="md-nav__link">
+      Python types intro
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      Tutorial - User Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Tutorial - User Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../" title="Tutorial - User Guide - Intro" class="md-nav__link">
+      Tutorial - User Guide - Intro
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../first-steps/" title="First Steps" class="md-nav__link">
+      First Steps
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../path-params/" title="Path Parameters" class="md-nav__link">
+      Path Parameters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../query-params/" title="Query Parameters" class="md-nav__link">
+      Query Parameters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../body/" title="Request Body" class="md-nav__link">
+      Request Body
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../query-params-str-validations/" title="Query Parameters and String Validations" class="md-nav__link">
+      Query Parameters and String Validations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../path-params-numeric-validations/" title="Path Parameters and Numeric Validations" class="md-nav__link">
+      Path Parameters and Numeric Validations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../body-multiple-params/" title="Body - Multiple Parameters" class="md-nav__link">
+      Body - Multiple Parameters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../body-fields/" title="Body - Fields" class="md-nav__link">
+      Body - Fields
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../body-nested-models/" title="Body - Nested Models" class="md-nav__link">
+      Body - Nested Models
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../extra-data-types/" title="Extra data types" class="md-nav__link">
+      Extra data types
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../cookie-params/" title="Cookie Parameters" class="md-nav__link">
+      Cookie Parameters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../header-params/" title="Header Parameters" class="md-nav__link">
+      Header Parameters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../response-model/" title="Response Model" class="md-nav__link">
+      Response Model
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../extra-models/" title="Extra Models" class="md-nav__link">
+      Extra Models
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../response-status-code/" title="Response Status Code" class="md-nav__link">
+      Response Status Code
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../request-forms/" title="Form Data" class="md-nav__link">
+      Form Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../request-files/" title="Request Files" class="md-nav__link">
+      Request Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../request-forms-and-files/" title="Request Forms and Files" class="md-nav__link">
+      Request Forms and Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../handling-errors/" title="Handling Errors" class="md-nav__link">
+      Handling Errors
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../path-operation-configuration/" title="Path Operation Configuration" class="md-nav__link">
+      Path Operation Configuration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../encoder/" title="JSON Compatible Encoder" class="md-nav__link">
+      JSON Compatible Encoder
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../body-updates/" title="Body - updates" class="md-nav__link">
+      Body - updates
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-24" type="checkbox" id="nav-4-24">
+    
+    <label class="md-nav__link" for="nav-4-24">
+      Dependencies
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-24">
+        Dependencies
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../dependencies/" title="First Steps" class="md-nav__link">
+      First Steps
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../dependencies/classes-as-dependencies/" title="Classes as Dependencies" class="md-nav__link">
+      Classes as Dependencies
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../dependencies/sub-dependencies/" title="Sub-dependencies" class="md-nav__link">
+      Sub-dependencies
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../dependencies/dependencies-in-path-operation-decorators/" title="Dependencies in path operation decorators" class="md-nav__link">
+      Dependencies in path operation decorators
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../dependencies/dependencies-with-yield/" title="Dependencies with yield" class="md-nav__link">
+      Dependencies with yield
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-25" type="checkbox" id="nav-4-25">
+    
+    <label class="md-nav__link" for="nav-4-25">
+      Security
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-25">
+        Security
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../security/" title="Security Intro" class="md-nav__link">
+      Security Intro
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../security/first-steps/" title="First Steps" class="md-nav__link">
+      First Steps
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../security/get-current-user/" title="Get Current User" class="md-nav__link">
+      Get Current User
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../security/simple-oauth2/" title="Simple OAuth2 with Password and Bearer" class="md-nav__link">
+      Simple OAuth2 with Password and Bearer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../security/oauth2-jwt/" title="OAuth2 with Password (and hashing), Bearer with JWT tokens" class="md-nav__link">
+      OAuth2 with Password (and hashing), Bearer with JWT tokens
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../middleware/" title="Middleware" class="md-nav__link">
+      Middleware
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../cors/" title="CORS (Cross-Origin Resource Sharing)" class="md-nav__link">
+      CORS (Cross-Origin Resource Sharing)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../sql-databases/" title="SQL (Relational) Databases" class="md-nav__link">
+      SQL (Relational) Databases
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Bigger Applications - Multiple Files
+      </label>
+    
+    <a href="./" title="Bigger Applications - Multiple Files" class="md-nav__link md-nav__link--active">
+      Bigger Applications - Multiple Files
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#an-example-file-structure" class="md-nav__link">
+    An example file structure
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#apirouter" class="md-nav__link">
+    APIRouter
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#import-apirouter" class="md-nav__link">
+    Import APIRouter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#path-operations-with-apirouter" class="md-nav__link">
+    Path operations with APIRouter
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#another-module-with-apirouter" class="md-nav__link">
+    Another module with APIRouter
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add-some-custom-tags-responses-and-dependencies" class="md-nav__link">
+    Add some custom tags, responses, and dependencies
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-main-fastapi" class="md-nav__link">
+    The main FastAPI
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#import-fastapi" class="md-nav__link">
+    Import FastAPI
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#import-the-apirouter" class="md-nav__link">
+    Import the APIRouter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-the-importing-works" class="md-nav__link">
+    How the importing works
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avoid-name-collisions" class="md-nav__link">
+    Avoid name collisions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#include-an-apirouter" class="md-nav__link">
+    Include an APIRouter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#include-an-apirouter-with-a-prefix-tags-responses-and-dependencies" class="md-nav__link">
+    Include an APIRouter with a prefix, tags, responses, and dependencies
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-the-automatic-api-docs" class="md-nav__link">
+    Check the automatic API docs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#include-the-same-router-multiple-times-with-different-prefix" class="md-nav__link">
+    Include the same router multiple times with different prefix
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../background-tasks/" title="Background Tasks" class="md-nav__link">
+      Background Tasks
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../application-configuration/" title="Application Configuration" class="md-nav__link">
+      Application Configuration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../static-files/" title="Static Files" class="md-nav__link">
+      Static Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../testing/" title="Testing" class="md-nav__link">
+      Testing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../debugging/" title="Debugging" class="md-nav__link">
+      Debugging
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Advanced User Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Advanced User Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/" title="Advanced User Guide - Intro" class="md-nav__link">
+      Advanced User Guide - Intro
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/path-operation-advanced-configuration/" title="Path Operation Advanced Configuration" class="md-nav__link">
+      Path Operation Advanced Configuration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/additional-status-codes/" title="Additional Status Codes" class="md-nav__link">
+      Additional Status Codes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/response-directly/" title="Return a Response Directly" class="md-nav__link">
+      Return a Response Directly
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/custom-response/" title="Custom Response Class" class="md-nav__link">
+      Custom Response Class
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/additional-responses/" title="Additional Responses in OpenAPI" class="md-nav__link">
+      Additional Responses in OpenAPI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/response-cookies/" title="Response Cookies" class="md-nav__link">
+      Response Cookies
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/response-headers/" title="Response Headers" class="md-nav__link">
+      Response Headers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/response-change-status-code/" title="Response - Change Status Code" class="md-nav__link">
+      Response - Change Status Code
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/advanced-dependencies/" title="Advanced Dependencies" class="md-nav__link">
+      Advanced Dependencies
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-11" type="checkbox" id="nav-5-11">
+    
+    <label class="md-nav__link" for="nav-5-11">
+      Advanced Security
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-11">
+        Advanced Security
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/security/" title="Advanced Security - Intro" class="md-nav__link">
+      Advanced Security - Intro
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/security/oauth2-scopes/" title="OAuth2 scopes" class="md-nav__link">
+      OAuth2 scopes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/security/http-basic-auth/" title="HTTP Basic Auth" class="md-nav__link">
+      HTTP Basic Auth
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/using-request-directly/" title="Using the Request Directly" class="md-nav__link">
+      Using the Request Directly
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/sql-databases-peewee/" title="SQL (Relational) Databases with Peewee" class="md-nav__link">
+      SQL (Relational) Databases with Peewee
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/async-sql-databases/" title="Async SQL (Relational) Databases" class="md-nav__link">
+      Async SQL (Relational) Databases
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/nosql-databases/" title="NoSQL (Distributed / Big Data) Databases" class="md-nav__link">
+      NoSQL (Distributed / Big Data) Databases
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/sub-applications-proxy/" title="Sub Applications - Behind a Proxy" class="md-nav__link">
+      Sub Applications - Behind a Proxy
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/templates/" title="Templates" class="md-nav__link">
+      Templates
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/graphql/" title="GraphQL" class="md-nav__link">
+      GraphQL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/websockets/" title="WebSockets" class="md-nav__link">
+      WebSockets
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/events/" title="Events: startup - shutdown" class="md-nav__link">
+      Events: startup - shutdown
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/custom-request-and-route/" title="Custom Request and APIRoute class" class="md-nav__link">
+      Custom Request and APIRoute class
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/testing-websockets/" title="Testing WebSockets" class="md-nav__link">
+      Testing WebSockets
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/testing-events/" title="Testing Events: startup - shutdown" class="md-nav__link">
+      Testing Events: startup - shutdown
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/testing-dependencies/" title="Testing Dependencies with Overrides" class="md-nav__link">
+      Testing Dependencies with Overrides
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/extending-openapi/" title="Extending OpenAPI" class="md-nav__link">
+      Extending OpenAPI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../advanced/openapi-callbacks/" title="OpenAPI Callbacks" class="md-nav__link">
+      OpenAPI Callbacks
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../async/" title="Concurrency and async / await" class="md-nav__link">
+      Concurrency and async / await
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../deployment/" title="Deployment" class="md-nav__link">
+      Deployment
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../project-generation/" title="Project Generation - Template" class="md-nav__link">
+      Project Generation - Template
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../alternatives/" title="Alternatives, Inspiration and Comparisons" class="md-nav__link">
+      Alternatives, Inspiration and Comparisons
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../history-design-future/" title="History, Design and Future" class="md-nav__link">
+      History, Design and Future
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../external-links/" title="External Links and Articles" class="md-nav__link">
+      External Links and Articles
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../benchmarks/" title="Benchmarks" class="md-nav__link">
+      Benchmarks
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../help-fastapi/" title="Help FastAPI - Get Help" class="md-nav__link">
+      Help FastAPI - Get Help
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../contributing/" title="Development - Contributing" class="md-nav__link">
+      Development - Contributing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../release-notes/" title="Release Notes" class="md-nav__link">
+      Release Notes
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#an-example-file-structure" class="md-nav__link">
+    An example file structure
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#apirouter" class="md-nav__link">
+    APIRouter
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#import-apirouter" class="md-nav__link">
+    Import APIRouter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#path-operations-with-apirouter" class="md-nav__link">
+    Path operations with APIRouter
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#another-module-with-apirouter" class="md-nav__link">
+    Another module with APIRouter
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add-some-custom-tags-responses-and-dependencies" class="md-nav__link">
+    Add some custom tags, responses, and dependencies
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-main-fastapi" class="md-nav__link">
+    The main FastAPI
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#import-fastapi" class="md-nav__link">
+    Import FastAPI
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#import-the-apirouter" class="md-nav__link">
+    Import the APIRouter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-the-importing-works" class="md-nav__link">
+    How the importing works
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avoid-name-collisions" class="md-nav__link">
+    Avoid name collisions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#include-an-apirouter" class="md-nav__link">
+    Include an APIRouter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#include-an-apirouter-with-a-prefix-tags-responses-and-dependencies" class="md-nav__link">
+    Include an APIRouter with a prefix, tags, responses, and dependencies
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-the-automatic-api-docs" class="md-nav__link">
+    Check the automatic API docs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#include-the-same-router-multiple-times-with-different-prefix" class="md-nav__link">
+    Include the same router multiple times with different prefix
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>Bigger Applications - Multiple Files</h1>
+                
+                <p>If you are building an application or a web API, it's rarely the case that you can put everything on a single file.</p>
+<p><strong>FastAPI</strong> provides a convenience tool to structure your application while keeping all the flexibility.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>If you come from Flask, this would be the equivalent of Flask's Blueprints.</p>
+</div>
+<h2 id="an-example-file-structure">An example file structure<a class="headerlink" href="#an-example-file-structure" title="Permanent link">&para;</a></h2>
+<p>Let's say you have a file structure like this:</p>
+<div class="codehilite"><pre><span></span><code>.
+├── app
+│   ├── __init__.py
+│   ├── main.py
+│   └── routers
+│       ├── __init__.py
+│       ├── items.py
+│       └── users.py
+</code></pre></div>
+
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>There are two <code>__init__.py</code> files: one in each directory or subdirectory.</p>
+<p>This is what allows importing code from one file into another.</p>
+<p>For example, in <code>app/main.py</code> you could have a line like:</p>
+<div class="codehilite"><pre><span></span><code>from app.routers import items
+</code></pre></div>
+
+</div>
+<ul>
+<li>The <code>app</code> directory contains everything.</li>
+<li>This <code>app</code> directory has an empty file <code>app/__init__.py</code>.<ul>
+<li>So, the <code>app</code> directory is a "Python package" (a collection of "Python modules").</li>
+</ul>
+</li>
+<li>The <code>app</code> directory also has a <code>app/main.py</code> file.<ul>
+<li>As it is inside a Python package directory (because there's a file <code>__init__.py</code>), it is a "module" of that package: <code>app.main</code>.</li>
+</ul>
+</li>
+<li>There's a subdirectory <code>app/routers/</code>.</li>
+<li>The subdirectory <code>app/routers</code> also has an empty file <code>__init__.py</code>.<ul>
+<li>So, it is a "Python subpackage".</li>
+</ul>
+</li>
+<li>The file <code>app/routers/items.py</code> is beside the <code>app/routers/__init__.py</code>.<ul>
+<li>So, it's a submodule: <code>app.routers.items</code>.</li>
+</ul>
+</li>
+<li>The file <code>app/routers/users.py</code> is beside the <code>app/routers/__init__.py</code>.<ul>
+<li>So, it's a submodule: <code>app.routers.users</code>.</li>
+</ul>
+</li>
+</ul>
+<h2 id="apirouter"><code>APIRouter</code><a class="headerlink" href="#apirouter" title="Permanent link">&para;</a></h2>
+<p>Let's say the file dedicated to handling just users is the submodule at <code>/app/routers/users.py</code>.</p>
+<p>You want to have the <em>path operations</em> related to your users separated from the rest of the code, to keep it organized.</p>
+<p>But it's still part of the same <strong>FastAPI</strong> application/web API (it's part of the same "Python Package").</p>
+<p>You can create the <em>path operations</em> for that module using <code>APIRouter</code>.</p>
+<h3 id="import-apirouter">Import <code>APIRouter</code><a class="headerlink" href="#import-apirouter" title="Permanent link">&para;</a></h3>
+<p>You import it and create an "instance" the same way you would with the class <code>FastAPI</code>:</p>
+<div class="codehilite"><pre><span></span><code><span class="hll"><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">APIRouter</span>
+</span>
+<span class="hll"><span class="n">router</span> <span class="o">=</span> <span class="n">APIRouter</span><span class="p">()</span>
+</span>
+
+<span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/users/&quot;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;users&quot;</span><span class="p">])</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">read_users</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">[{</span><span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="s2">&quot;Foo&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="s2">&quot;Bar&quot;</span><span class="p">}]</span>
+
+
+<span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/users/me&quot;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;users&quot;</span><span class="p">])</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">read_user_me</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="s2">&quot;fakecurrentuser&quot;</span><span class="p">}</span>
+
+
+<span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/users/</span><span class="si">{username}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;users&quot;</span><span class="p">])</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">read_user</span><span class="p">(</span><span class="n">username</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="n">username</span><span class="p">}</span>
+</code></pre></div>
+
+<h3 id="path-operations-with-apirouter"><em>Path operations</em> with <code>APIRouter</code><a class="headerlink" href="#path-operations-with-apirouter" title="Permanent link">&para;</a></h3>
+<p>And then you use it to declare your <em>path operations</em>.</p>
+<p>Use it the same way you would use the <code>FastAPI</code> class:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">APIRouter</span>
+
+<span class="n">router</span> <span class="o">=</span> <span class="n">APIRouter</span><span class="p">()</span>
+
+
+<span class="hll"><span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/users/&quot;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;users&quot;</span><span class="p">])</span>
+</span><span class="k">async</span> <span class="k">def</span> <span class="nf">read_users</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">[{</span><span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="s2">&quot;Foo&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="s2">&quot;Bar&quot;</span><span class="p">}]</span>
+
+
+<span class="hll"><span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/users/me&quot;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;users&quot;</span><span class="p">])</span>
+</span><span class="k">async</span> <span class="k">def</span> <span class="nf">read_user_me</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="s2">&quot;fakecurrentuser&quot;</span><span class="p">}</span>
+
+
+<span class="hll"><span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/users/</span><span class="si">{username}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;users&quot;</span><span class="p">])</span>
+</span><span class="k">async</span> <span class="k">def</span> <span class="nf">read_user</span><span class="p">(</span><span class="n">username</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="n">username</span><span class="p">}</span>
+</code></pre></div>
+
+<p>You can think of <code>APIRouter</code> as a "mini <code>FastAPI</code>" class.</p>
+<p>All the same options are supported.</p>
+<p>All the same parameters, responses, dependencies, tags, etc.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>In this example, the variable is called <code>router</code>, but you can name it however you want.</p>
+</div>
+<p>We are going to include this <code>APIrouter</code> in the main <code>FastAPI</code> app, but first, let's add another <code>APIRouter</code>.</p>
+<h2 id="another-module-with-apirouter">Another module with <code>APIRouter</code><a class="headerlink" href="#another-module-with-apirouter" title="Permanent link">&para;</a></h2>
+<p>Let's say you also have the endpoints dedicated to handling "Items" from your application in the module at <code>app/routers/items.py</code>.</p>
+<p>You have <em>path operations</em> for:</p>
+<ul>
+<li><code>/items/</code></li>
+<li><code>/items/{item_id}</code></li>
+</ul>
+<p>It's all the same structure as with <code>app/routers/users.py</code>.</p>
+<p>But let's say that this time we are more lazy.</p>
+<p>And we don't want to have to explicitly type <code>/items/</code> and <code>tags=["items"]</code> in every <em>path operation</em> (we will be able to do it later):</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">APIRouter</span><span class="p">,</span> <span class="n">HTTPException</span>
+
+<span class="n">router</span> <span class="o">=</span> <span class="n">APIRouter</span><span class="p">()</span>
+
+
+<span class="hll"><span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+</span><span class="k">async</span> <span class="k">def</span> <span class="nf">read_items</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">[{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Item Foo&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;item Bar&quot;</span><span class="p">}]</span>
+
+
+<span class="hll"><span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/</span><span class="si">{item_id}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span class="k">async</span> <span class="k">def</span> <span class="nf">read_item</span><span class="p">(</span><span class="n">item_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Fake Specific Item&quot;</span><span class="p">,</span> <span class="s2">&quot;item_id&quot;</span><span class="p">:</span> <span class="n">item_id</span><span class="p">}</span>
+
+
+<span class="nd">@router</span><span class="o">.</span><span class="n">put</span><span class="p">(</span>
+    <span class="s2">&quot;/</span><span class="si">{item_id}</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;custom&quot;</span><span class="p">],</span>
+    <span class="n">responses</span><span class="o">=</span><span class="p">{</span><span class="mi">403</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Operation forbidden&quot;</span><span class="p">}},</span>
+<span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">update_item</span><span class="p">(</span><span class="n">item_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">item_id</span> <span class="o">!=</span> <span class="s2">&quot;foo&quot;</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="mi">403</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;You can only update the item: foo&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;item_id&quot;</span><span class="p">:</span> <span class="n">item_id</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;The Fighters&quot;</span><span class="p">}</span>
+</code></pre></div>
+
+<h3 id="add-some-custom-tags-responses-and-dependencies">Add some custom <code>tags</code>, <code>responses</code>, and <code>dependencies</code><a class="headerlink" href="#add-some-custom-tags-responses-and-dependencies" title="Permanent link">&para;</a></h3>
+<p>We are not adding the prefix <code>/items/</code> nor the <code>tags=["items"]</code> to add them later.</p>
+<p>But we can add custom <code>tags</code> and <code>responses</code> that will be applied to a specific <em>path operation</em>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">APIRouter</span><span class="p">,</span> <span class="n">HTTPException</span>
+
+<span class="n">router</span> <span class="o">=</span> <span class="n">APIRouter</span><span class="p">()</span>
+
+
+<span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">read_items</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">[{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Item Foo&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;item Bar&quot;</span><span class="p">}]</span>
+
+
+<span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/</span><span class="si">{item_id}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">read_item</span><span class="p">(</span><span class="n">item_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Fake Specific Item&quot;</span><span class="p">,</span> <span class="s2">&quot;item_id&quot;</span><span class="p">:</span> <span class="n">item_id</span><span class="p">}</span>
+
+
+<span class="nd">@router</span><span class="o">.</span><span class="n">put</span><span class="p">(</span>
+    <span class="s2">&quot;/</span><span class="si">{item_id}</span><span class="s2">&quot;</span><span class="p">,</span>
+<span class="hll">    <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;custom&quot;</span><span class="p">],</span>
+</span><span class="hll">    <span class="n">responses</span><span class="o">=</span><span class="p">{</span><span class="mi">403</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Operation forbidden&quot;</span><span class="p">}},</span>
+</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">update_item</span><span class="p">(</span><span class="n">item_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">item_id</span> <span class="o">!=</span> <span class="s2">&quot;foo&quot;</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="mi">403</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;You can only update the item: foo&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;item_id&quot;</span><span class="p">:</span> <span class="n">item_id</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;The Fighters&quot;</span><span class="p">}</span>
+</code></pre></div>
+
+<h2 id="the-main-fastapi">The main <code>FastAPI</code><a class="headerlink" href="#the-main-fastapi" title="Permanent link">&para;</a></h2>
+<p>Now, let's see the module at <code>app/main.py</code>.</p>
+<p>Here's where you import and use the class <code>FastAPI</code>.</p>
+<p>This will be the main file in your application that ties everything together.</p>
+<h3 id="import-fastapi">Import <code>FastAPI</code><a class="headerlink" href="#import-fastapi" title="Permanent link">&para;</a></h3>
+<p>You import and create a <code>FastAPI</code> class as normally:</p>
+<div class="codehilite"><pre><span></span><code><span class="hll"><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">Depends</span><span class="p">,</span> <span class="n">FastAPI</span><span class="p">,</span> <span class="n">Header</span><span class="p">,</span> <span class="n">HTTPException</span>
+</span>
+<span class="kn">from</span> <span class="nn">.routers</span> <span class="kn">import</span> <span class="n">items</span><span class="p">,</span> <span class="n">users</span>
+
+<span class="hll"><span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+</span>
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">get_token_header</span><span class="p">(</span><span class="n">x_token</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Header</span><span class="p">(</span><span class="o">...</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="n">x_token</span> <span class="o">!=</span> <span class="s2">&quot;fake-super-secret-token&quot;</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;X-Token header invalid&quot;</span><span class="p">)</span>
+
+
+<span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span><span class="n">users</span><span class="o">.</span><span class="n">router</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span>
+    <span class="n">items</span><span class="o">.</span><span class="n">router</span><span class="p">,</span>
+    <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;/items&quot;</span><span class="p">,</span>
+    <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;items&quot;</span><span class="p">],</span>
+    <span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_token_header</span><span class="p">)],</span>
+    <span class="n">responses</span><span class="o">=</span><span class="p">{</span><span class="mi">404</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Not found&quot;</span><span class="p">}},</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<h3 id="import-the-apirouter">Import the <code>APIRouter</code><a class="headerlink" href="#import-the-apirouter" title="Permanent link">&para;</a></h3>
+<p>But this time we are not adding <em>path operations</em> directly with the <code>FastAPI</code> <code>app</code>.</p>
+<p>We import the other submodules that have <code>APIRouter</code>s:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">Depends</span><span class="p">,</span> <span class="n">FastAPI</span><span class="p">,</span> <span class="n">Header</span><span class="p">,</span> <span class="n">HTTPException</span>
+
+<span class="hll"><span class="kn">from</span> <span class="nn">.routers</span> <span class="kn">import</span> <span class="n">items</span><span class="p">,</span> <span class="n">users</span>
+</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">get_token_header</span><span class="p">(</span><span class="n">x_token</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Header</span><span class="p">(</span><span class="o">...</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="n">x_token</span> <span class="o">!=</span> <span class="s2">&quot;fake-super-secret-token&quot;</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;X-Token header invalid&quot;</span><span class="p">)</span>
+
+
+<span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span><span class="n">users</span><span class="o">.</span><span class="n">router</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span>
+    <span class="n">items</span><span class="o">.</span><span class="n">router</span><span class="p">,</span>
+    <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;/items&quot;</span><span class="p">,</span>
+    <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;items&quot;</span><span class="p">],</span>
+    <span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_token_header</span><span class="p">)],</span>
+    <span class="n">responses</span><span class="o">=</span><span class="p">{</span><span class="mi">404</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Not found&quot;</span><span class="p">}},</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>As the file <code>app/routers/items.py</code> is part of the same Python package, we can import it using "dot notation".</p>
+<h3 id="how-the-importing-works">How the importing works<a class="headerlink" href="#how-the-importing-works" title="Permanent link">&para;</a></h3>
+<p>The section:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">.routers</span> <span class="kn">import</span> <span class="n">items</span><span class="p">,</span> <span class="n">users</span>
+</code></pre></div>
+
+<p>Means:</p>
+<ul>
+<li>Starting in the same package that this module (the file <code>app/main.py</code>) lives in (the directory <code>app/</code>)...</li>
+<li>look for the subpackage <code>routers</code> (the directory at <code>app/routers/</code>)...</li>
+<li>and from it, import the submodule <code>items</code> (the file at <code>app/routers/items.py</code>) and <code>users</code> (the file at <code>app/routers/users.py</code>)...</li>
+</ul>
+<p>The module <code>items</code> will have a variable <code>router</code> (<code>items.router</code>). This is the same one we created in the file <code>app/routers/items.py</code>. It's an <code>APIRouter</code>. The same for the module <code>users</code>.</p>
+<p>We could also import them like:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">app.routers</span> <span class="kn">import</span> <span class="n">items</span><span class="p">,</span> <span class="n">users</span>
+</code></pre></div>
+
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>The first version is a "relative import".</p>
+<p>The second version is an "absolute import".</p>
+<p>To learn more about Python Packages and Modules, read <a href="https://docs.python.org/3/tutorial/modules.html" class="external-link" target="_blank">the official Python documentation about Modules</a>.</p>
+</div>
+<h3 id="avoid-name-collisions">Avoid name collisions<a class="headerlink" href="#avoid-name-collisions" title="Permanent link">&para;</a></h3>
+<p>We are importing the submodule <code>items</code> directly, instead of importing just its variable <code>router</code>.</p>
+<p>This is because we also have another variable named <code>router</code> in the submodule <code>users</code>.</p>
+<p>If we had imported one after the other, like:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">.routers.items</span> <span class="kn">import</span> <span class="n">router</span>
+<span class="kn">from</span> <span class="nn">.routers.users</span> <span class="kn">import</span> <span class="n">router</span>
+</code></pre></div>
+
+<p>The <code>router</code> from <code>users</code> would overwrite the one from <code>items</code> and we wouldn't be able to use them at the same time.</p>
+<p>So, to be able to use both of them in the same file, we import the submodules directly:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">Depends</span><span class="p">,</span> <span class="n">FastAPI</span><span class="p">,</span> <span class="n">Header</span><span class="p">,</span> <span class="n">HTTPException</span>
+
+<span class="hll"><span class="kn">from</span> <span class="nn">.routers</span> <span class="kn">import</span> <span class="n">items</span><span class="p">,</span> <span class="n">users</span>
+</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">get_token_header</span><span class="p">(</span><span class="n">x_token</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Header</span><span class="p">(</span><span class="o">...</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="n">x_token</span> <span class="o">!=</span> <span class="s2">&quot;fake-super-secret-token&quot;</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;X-Token header invalid&quot;</span><span class="p">)</span>
+
+
+<span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span><span class="n">users</span><span class="o">.</span><span class="n">router</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span>
+    <span class="n">items</span><span class="o">.</span><span class="n">router</span><span class="p">,</span>
+    <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;/items&quot;</span><span class="p">,</span>
+    <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;items&quot;</span><span class="p">],</span>
+    <span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_token_header</span><span class="p">)],</span>
+    <span class="n">responses</span><span class="o">=</span><span class="p">{</span><span class="mi">404</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Not found&quot;</span><span class="p">}},</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<h3 id="include-an-apirouter">Include an <code>APIRouter</code><a class="headerlink" href="#include-an-apirouter" title="Permanent link">&para;</a></h3>
+<p>Now, let's include the <code>router</code> from the submodule <code>users</code>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">Depends</span><span class="p">,</span> <span class="n">FastAPI</span><span class="p">,</span> <span class="n">Header</span><span class="p">,</span> <span class="n">HTTPException</span>
+
+<span class="kn">from</span> <span class="nn">.routers</span> <span class="kn">import</span> <span class="n">items</span><span class="p">,</span> <span class="n">users</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">get_token_header</span><span class="p">(</span><span class="n">x_token</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Header</span><span class="p">(</span><span class="o">...</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="n">x_token</span> <span class="o">!=</span> <span class="s2">&quot;fake-super-secret-token&quot;</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;X-Token header invalid&quot;</span><span class="p">)</span>
+
+
+<span class="hll"><span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span><span class="n">users</span><span class="o">.</span><span class="n">router</span><span class="p">)</span>
+</span><span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span>
+    <span class="n">items</span><span class="o">.</span><span class="n">router</span><span class="p">,</span>
+    <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;/items&quot;</span><span class="p">,</span>
+    <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;items&quot;</span><span class="p">],</span>
+    <span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_token_header</span><span class="p">)],</span>
+    <span class="n">responses</span><span class="o">=</span><span class="p">{</span><span class="mi">404</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Not found&quot;</span><span class="p">}},</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><code>users.router</code> contains the <code>APIRouter</code> inside of the file <code>app/routers/users.py</code>.</p>
+</div>
+<p>With <code>app.include_router()</code> we can add an <code>APIRouter</code> to the main <code>FastAPI</code> application.</p>
+<p>It will include all the routes from that router as part of it.</p>
+<div class="admonition note">
+<p class="admonition-title">Technical Details</p>
+<p>It will actually internally create a <em>path operation</em> for each <em>path operation</em> that was declared in the <code>APIRouter</code>.</p>
+<p>So, behind the scenes, it will actually work as if everything was the same single app.</p>
+</div>
+<div class="admonition check">
+<p class="admonition-title">Check</p>
+<p>You don't have to worry about performance when including routers.</p>
+<p>This will take microseconds and will only happen at startup.</p>
+<p>So it won't affect performance.</p>
+</div>
+<h3 id="include-an-apirouter-with-a-prefix-tags-responses-and-dependencies">Include an <code>APIRouter</code> with a <code>prefix</code>, <code>tags</code>, <code>responses</code>, and <code>dependencies</code><a class="headerlink" href="#include-an-apirouter-with-a-prefix-tags-responses-and-dependencies" title="Permanent link">&para;</a></h3>
+<p>Now, let's include the router from the <code>items</code> submodule.</p>
+<p>But, remember that we were lazy and didn't add <code>/items/</code> nor <code>tags</code> to all the <em>path operations</em>?</p>
+<p>We can add a prefix to all the <em>path operations</em> using the parameter <code>prefix</code> of <code>app.include_router()</code>.</p>
+<p>As the path of each <em>path operation</em> has to start with <code>/</code>, like in:</p>
+<div class="codehilite"><pre><span></span><code><span class="hll"><span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/</span><span class="si">{item_id}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span class="k">async</span> <span class="k">def</span> <span class="nf">read_item</span><span class="p">(</span><span class="n">item_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="o">...</span>
+</code></pre></div>
+
+<p>...the prefix must not include a final <code>/</code>.</p>
+<p>So, the prefix in this case would be <code>/items</code>.</p>
+<p>We can also add a list of <code>tags</code> that will be applied to all the <em>path operations</em> included in this router.</p>
+<p>And we can add predefined <code>responses</code> that will be included in all the <em>path operations</em> too.</p>
+<p>And we can add a list of <code>dependencies</code> that will be added to all the <em>path operations</em> in the router and will be executed/solved for each request made to them. Note that, much like dependencies in <em>path operation decorators</em>, no value will be passed to your <em>path operation function</em>.</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">Depends</span><span class="p">,</span> <span class="n">FastAPI</span><span class="p">,</span> <span class="n">Header</span><span class="p">,</span> <span class="n">HTTPException</span>
+
+<span class="kn">from</span> <span class="nn">.routers</span> <span class="kn">import</span> <span class="n">items</span><span class="p">,</span> <span class="n">users</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+
+
+<span class="hll"><span class="k">async</span> <span class="k">def</span> <span class="nf">get_token_header</span><span class="p">(</span><span class="n">x_token</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Header</span><span class="p">(</span><span class="o">...</span><span class="p">)):</span>
+</span><span class="hll">    <span class="k">if</span> <span class="n">x_token</span> <span class="o">!=</span> <span class="s2">&quot;fake-super-secret-token&quot;</span><span class="p">:</span>
+</span><span class="hll">        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;X-Token header invalid&quot;</span><span class="p">)</span>
+</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span><span class="n">users</span><span class="o">.</span><span class="n">router</span><span class="p">)</span>
+<span class="hll"><span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span>
+</span><span class="hll">    <span class="n">items</span><span class="o">.</span><span class="n">router</span><span class="p">,</span>
+</span><span class="hll">    <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;/items&quot;</span><span class="p">,</span>
+</span><span class="hll">    <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;items&quot;</span><span class="p">],</span>
+</span><span class="hll">    <span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_token_header</span><span class="p">)],</span>
+</span><span class="hll">    <span class="n">responses</span><span class="o">=</span><span class="p">{</span><span class="mi">404</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Not found&quot;</span><span class="p">}},</span>
+</span><span class="hll"><span class="p">)</span>
+</span></code></pre></div>
+
+<p>The end result is that the item paths are now:</p>
+<ul>
+<li><code>/items/</code></li>
+<li><code>/items/{item_id}</code></li>
+</ul>
+<p>...as we intended.</p>
+<ul>
+<li>They will be marked with a list of tags that contain a single string <code>"items"</code>.</li>
+<li>The <em>path operation</em> that declared a <code>"custom"</code> tag will have both tags, <code>items</code> and <code>custom</code>.<ul>
+<li>These "tags" are especially useful for the automatic interactive documentation systems (using OpenAPI).</li>
+</ul>
+</li>
+<li>All of them will include the predefined <code>responses</code>.</li>
+<li>The <em>path operation</em> that declared a custom <code>403</code> response will have both the predefined responses (<code>404</code>) and the <code>403</code> declared in it directly.</li>
+<li>All these <em>path operations</em> will have the list of <code>dependencies</code> evaluated/executed before them.<ul>
+<li>If you also declare dependencies in a specific <em>path operation</em>, <strong>they will be executed too</strong>.</li>
+<li>The router dependencies are executed first, then the <a class="internal-link" href="../dependencies/dependencies-in-path-operation-decorators/" target="_blank"><code>dependencies</code> in the decorator</a>, and then the normal parameter dependencies.</li>
+<li>You can also add <a class="internal-link" href="../../advanced/security/oauth2-scopes/" target="_blank"><code>Security</code> dependencies with <code>scopes</code></a>.</li>
+</ul>
+</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Having <code>dependencies</code> in a decorator can be used, for example, to require authentication for a whole group of <em>path operations</em>. Even if the dependencies are not added individually to each one of them.</p>
+</div>
+<div class="admonition check">
+<p class="admonition-title">Check</p>
+<p>The <code>prefix</code>, <code>tags</code>, <code>responses</code> and <code>dependencies</code> parameters are (as in many other cases) just a feature from <strong>FastAPI</strong> to help you avoid code duplication.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You could also add <em>path operations</em> directly, for example with: <code>@app.get(...)</code>.</p>
+<p>Apart from <code>app.include_router()</code>, in the same <strong>FastAPI</strong> app.</p>
+<p>It would still work the same.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Very Technical Details</p>
+<p><strong>Note</strong>: this is a very technical detail that you probably can <strong>just skip</strong>.</p>
+<hr />
+<p>The <code>APIRouter</code>s are not "mounted", they are not isolated from the rest of the application.</p>
+<p>This is because we want to include their <em>path operations</em> in the OpenAPI schema and the user interfaces.</p>
+<p>As we cannot just isolate them and "mount" them independently of the rest, the <em>path operations</em> are "cloned" (re-created), not included directly.</p>
+</div>
+<h2 id="check-the-automatic-api-docs">Check the automatic API docs<a class="headerlink" href="#check-the-automatic-api-docs" title="Permanent link">&para;</a></h2>
+<p>Now, run <code>uvicorn</code>, using the module <code>app.main</code> and the variable <code>app</code>:</p>
+<div class="codehilite"><pre><span></span><code>uvicorn app.main:app --reload
+</code></pre></div>
+
+<p>And open the docs at <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.</p>
+<p>You will see the automatic API docs, including the paths from all the submodules, using the correct paths (and prefixes) and the correct tags:</p>
+<p><img src="/img/tutorial/bigger-applications/image01.png"></p>
+<h2 id="include-the-same-router-multiple-times-with-different-prefix">Include the same router multiple times with different <code>prefix</code><a class="headerlink" href="#include-the-same-router-multiple-times-with-different-prefix" title="Permanent link">&para;</a></h2>
+<p>You can also use <code>.include_router()</code> multiple times with the <em>same</em> router using different prefixes.</p>
+<p>This could be useful, for example, to expose the same API under different prefixes, e.g. <code>/api/v1</code> and <code>/api/latest</code>.</p>
+<p>This is an advanced usage that you might not really need, but it's there in case you do.</p>
+                
+                  
+                
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../sql-databases/" title="SQL (Relational) Databases" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                SQL (Relational) Databases
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../background-tasks/" title="Background Tasks" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Background Tasks
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org" target="_blank" rel="noopener">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.c33a9706.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+    
+  </body>
+</html>

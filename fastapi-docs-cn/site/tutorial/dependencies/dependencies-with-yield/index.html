@@ -1,0 +1,1803 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="FastAPI framework, high performance, easy to learn, fast to code, ready for production">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../../img/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.6.3">
+    
+    
+      
+        <title>Dependencies with yield - FastAPI Docs CN</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/application.adb8469c.css">
+      
+        <link rel="stylesheet" href="../../../assets/stylesheets/application-palette.a8b3c06d.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#009688">
+      
+    
+    
+      <script src="../../../assets/javascripts/modernizr.86422ebf.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../../assets/fonts/material-icons.css">
+    
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="teal" data-md-color-accent="amber">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#dependencies-with-yield" tabindex="0" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../../.." title="FastAPI Docs CN" aria-label="FastAPI Docs CN" class="md-header-nav__button md-logo">
+          
+            <img alt="logo" src="../../../img/icon-white.svg" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              FastAPI Docs CN
+            </span>
+            <span class="md-header-nav__topic">
+              
+                Dependencies with yield
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" aria-label="search" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../../.." title="FastAPI Docs CN" class="md-nav__button md-logo">
+      
+        <img alt="logo" src="../../../img/icon-white.svg" width="48" height="48">
+      
+    </a>
+    FastAPI Docs CN
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." title="FastAPI" class="md-nav__link">
+      FastAPI
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../features/" title="Features" class="md-nav__link">
+      Features
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../python-types/" title="Python types intro" class="md-nav__link">
+      Python types intro
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      Tutorial - User Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Tutorial - User Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../" title="Tutorial - User Guide - Intro" class="md-nav__link">
+      Tutorial - User Guide - Intro
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../first-steps/" title="First Steps" class="md-nav__link">
+      First Steps
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../path-params/" title="Path Parameters" class="md-nav__link">
+      Path Parameters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../query-params/" title="Query Parameters" class="md-nav__link">
+      Query Parameters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../body/" title="Request Body" class="md-nav__link">
+      Request Body
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../query-params-str-validations/" title="Query Parameters and String Validations" class="md-nav__link">
+      Query Parameters and String Validations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../path-params-numeric-validations/" title="Path Parameters and Numeric Validations" class="md-nav__link">
+      Path Parameters and Numeric Validations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../body-multiple-params/" title="Body - Multiple Parameters" class="md-nav__link">
+      Body - Multiple Parameters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../body-fields/" title="Body - Fields" class="md-nav__link">
+      Body - Fields
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../body-nested-models/" title="Body - Nested Models" class="md-nav__link">
+      Body - Nested Models
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../extra-data-types/" title="Extra data types" class="md-nav__link">
+      Extra data types
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cookie-params/" title="Cookie Parameters" class="md-nav__link">
+      Cookie Parameters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../header-params/" title="Header Parameters" class="md-nav__link">
+      Header Parameters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../response-model/" title="Response Model" class="md-nav__link">
+      Response Model
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../extra-models/" title="Extra Models" class="md-nav__link">
+      Extra Models
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../response-status-code/" title="Response Status Code" class="md-nav__link">
+      Response Status Code
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../request-forms/" title="Form Data" class="md-nav__link">
+      Form Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../request-files/" title="Request Files" class="md-nav__link">
+      Request Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../request-forms-and-files/" title="Request Forms and Files" class="md-nav__link">
+      Request Forms and Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../handling-errors/" title="Handling Errors" class="md-nav__link">
+      Handling Errors
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../path-operation-configuration/" title="Path Operation Configuration" class="md-nav__link">
+      Path Operation Configuration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../encoder/" title="JSON Compatible Encoder" class="md-nav__link">
+      JSON Compatible Encoder
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../body-updates/" title="Body - updates" class="md-nav__link">
+      Body - updates
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-24" type="checkbox" id="nav-4-24" checked>
+    
+    <label class="md-nav__link" for="nav-4-24">
+      Dependencies
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-24">
+        Dependencies
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../" title="First Steps" class="md-nav__link">
+      First Steps
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../classes-as-dependencies/" title="Classes as Dependencies" class="md-nav__link">
+      Classes as Dependencies
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../sub-dependencies/" title="Sub-dependencies" class="md-nav__link">
+      Sub-dependencies
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../dependencies-in-path-operation-decorators/" title="Dependencies in path operation decorators" class="md-nav__link">
+      Dependencies in path operation decorators
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Dependencies with yield
+      </label>
+    
+    <a href="./" title="Dependencies with yield" class="md-nav__link md-nav__link--active">
+      Dependencies with yield
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#a-database-dependency-with-yield" class="md-nav__link">
+    A database dependency with yield
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-dependency-with-yield-and-try" class="md-nav__link">
+    A dependency with yield and try
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sub-dependencies-with-yield" class="md-nav__link">
+    Sub-dependencies with yield
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependencies-with-yield-and-httpexception" class="md-nav__link">
+    Dependencies with yield and HTTPException
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#context-managers" class="md-nav__link">
+    Context Managers
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-are-context-managers" class="md-nav__link">
+    What are "Context Managers"
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-context-managers-in-dependencies-with-yield" class="md-nav__link">
+    Using context managers in dependencies with yield
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-25" type="checkbox" id="nav-4-25">
+    
+    <label class="md-nav__link" for="nav-4-25">
+      Security
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-25">
+        Security
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../security/" title="Security Intro" class="md-nav__link">
+      Security Intro
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../security/first-steps/" title="First Steps" class="md-nav__link">
+      First Steps
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../security/get-current-user/" title="Get Current User" class="md-nav__link">
+      Get Current User
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../security/simple-oauth2/" title="Simple OAuth2 with Password and Bearer" class="md-nav__link">
+      Simple OAuth2 with Password and Bearer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../security/oauth2-jwt/" title="OAuth2 with Password (and hashing), Bearer with JWT tokens" class="md-nav__link">
+      OAuth2 with Password (and hashing), Bearer with JWT tokens
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../middleware/" title="Middleware" class="md-nav__link">
+      Middleware
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../cors/" title="CORS (Cross-Origin Resource Sharing)" class="md-nav__link">
+      CORS (Cross-Origin Resource Sharing)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../sql-databases/" title="SQL (Relational) Databases" class="md-nav__link">
+      SQL (Relational) Databases
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../bigger-applications/" title="Bigger Applications - Multiple Files" class="md-nav__link">
+      Bigger Applications - Multiple Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../background-tasks/" title="Background Tasks" class="md-nav__link">
+      Background Tasks
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../application-configuration/" title="Application Configuration" class="md-nav__link">
+      Application Configuration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../static-files/" title="Static Files" class="md-nav__link">
+      Static Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../testing/" title="Testing" class="md-nav__link">
+      Testing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../debugging/" title="Debugging" class="md-nav__link">
+      Debugging
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Advanced User Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Advanced User Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../advanced/" title="Advanced User Guide - Intro" class="md-nav__link">
+      Advanced User Guide - Intro
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../advanced/path-operation-advanced-configuration/" title="Path Operation Advanced Configuration" class="md-nav__link">
+      Path Operation Advanced Configuration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../advanced/additional-status-codes/" title="Additional Status Codes" class="md-nav__link">
+      Additional Status Codes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../advanced/response-directly/" title="Return a Response Directly" class="md-nav__link">
+      Return a Response Directly
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../advanced/custom-response/" title="Custom Response Class" class="md-nav__link">
+      Custom Response Class
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../advanced/additional-responses/" title="Additional Responses in OpenAPI" class="md-nav__link">
+      Additional Responses in OpenAPI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../advanced/response-cookies/" title="Response Cookies" class="md-nav__link">
+      Response Cookies
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../advanced/response-headers/" title="Response Headers" class="md-nav__link">
+      Response Headers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../advanced/response-change-status-code/" title="Response - Change Status Code" class="md-nav__link">
+      Response - Change Status Code
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../advanced/advanced-dependencies/" title="Advanced Dependencies" class="md-nav__link">
+      Advanced Dependencies
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-11" type="checkbox" id="nav-5-11">
+    
+    <label class="md-nav__link" for="nav-5-11">
+      Advanced Security
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-11">
+        Advanced Security
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../advanced/security/" title="Advanced Security - Intro" class="md-nav__link">
+      Advanced Security - Intro
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../advanced/security/oauth2-scopes/" title="OAuth2 scopes" class="md-nav__link">
+      OAuth2 scopes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../advanced/security/http-basic-auth/" title="HTTP Basic Auth" class="md-nav__link">
+      HTTP Basic Auth
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../advanced/using-request-directly/" title="Using the Request Directly" class="md-nav__link">
+      Using the Request Directly
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../advanced/sql-databases-peewee/" title="SQL (Relational) Databases with Peewee" class="md-nav__link">
+      SQL (Relational) Databases with Peewee
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../advanced/async-sql-databases/" title="Async SQL (Relational) Databases" class="md-nav__link">
+      Async SQL (Relational) Databases
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../advanced/nosql-databases/" title="NoSQL (Distributed / Big Data) Databases" class="md-nav__link">
+      NoSQL (Distributed / Big Data) Databases
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../advanced/sub-applications-proxy/" title="Sub Applications - Behind a Proxy" class="md-nav__link">
+      Sub Applications - Behind a Proxy
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../advanced/templates/" title="Templates" class="md-nav__link">
+      Templates
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../advanced/graphql/" title="GraphQL" class="md-nav__link">
+      GraphQL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../advanced/websockets/" title="WebSockets" class="md-nav__link">
+      WebSockets
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../advanced/events/" title="Events: startup - shutdown" class="md-nav__link">
+      Events: startup - shutdown
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../advanced/custom-request-and-route/" title="Custom Request and APIRoute class" class="md-nav__link">
+      Custom Request and APIRoute class
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../advanced/testing-websockets/" title="Testing WebSockets" class="md-nav__link">
+      Testing WebSockets
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../advanced/testing-events/" title="Testing Events: startup - shutdown" class="md-nav__link">
+      Testing Events: startup - shutdown
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../advanced/testing-dependencies/" title="Testing Dependencies with Overrides" class="md-nav__link">
+      Testing Dependencies with Overrides
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../advanced/extending-openapi/" title="Extending OpenAPI" class="md-nav__link">
+      Extending OpenAPI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../advanced/openapi-callbacks/" title="OpenAPI Callbacks" class="md-nav__link">
+      OpenAPI Callbacks
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../async/" title="Concurrency and async / await" class="md-nav__link">
+      Concurrency and async / await
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../deployment/" title="Deployment" class="md-nav__link">
+      Deployment
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../project-generation/" title="Project Generation - Template" class="md-nav__link">
+      Project Generation - Template
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../alternatives/" title="Alternatives, Inspiration and Comparisons" class="md-nav__link">
+      Alternatives, Inspiration and Comparisons
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../history-design-future/" title="History, Design and Future" class="md-nav__link">
+      History, Design and Future
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../external-links/" title="External Links and Articles" class="md-nav__link">
+      External Links and Articles
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../benchmarks/" title="Benchmarks" class="md-nav__link">
+      Benchmarks
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../help-fastapi/" title="Help FastAPI - Get Help" class="md-nav__link">
+      Help FastAPI - Get Help
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../contributing/" title="Development - Contributing" class="md-nav__link">
+      Development - Contributing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../release-notes/" title="Release Notes" class="md-nav__link">
+      Release Notes
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#a-database-dependency-with-yield" class="md-nav__link">
+    A database dependency with yield
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-dependency-with-yield-and-try" class="md-nav__link">
+    A dependency with yield and try
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sub-dependencies-with-yield" class="md-nav__link">
+    Sub-dependencies with yield
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependencies-with-yield-and-httpexception" class="md-nav__link">
+    Dependencies with yield and HTTPException
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#context-managers" class="md-nav__link">
+    Context Managers
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-are-context-managers" class="md-nav__link">
+    What are "Context Managers"
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-context-managers-in-dependencies-with-yield" class="md-nav__link">
+    Using context managers in dependencies with yield
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="dependencies-with-yield">Dependencies with <code>yield</code><a class="headerlink" href="#dependencies-with-yield" title="Permanent link">&para;</a></h1>
+<p>FastAPI supports dependencies that do some <abbr title='sometimes also called "exit", "cleanup", "teardown", "close", "context managers", ...'>extra steps after finishing</abbr>.</p>
+<p>To do this, use <code>yield</code> instead of <code>return</code>, and write the extra steps after.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Make sure to use <code>yield</code> one single time.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>For this to work, you need to use <strong>Python 3.7</strong> or above, or in <strong>Python 3.6</strong>, install the "backports":</p>
+<div class="codehilite"><pre><span></span><code>pip install async-exit-stack async-generator
+</code></pre></div>
+
+<p>This installs <a href="https://github.com/sorcio/async_exit_stack" class="external-link" target="_blank">async-exit-stack</a> and <a href="https://github.com/python-trio/async_generator" class="external-link" target="_blank">async-generator</a>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Technical Details</p>
+<p>Any function that is valid to use with:</p>
+<ul>
+<li><a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank"><code>@contextlib.contextmanager</code></a> or </li>
+<li><a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank"><code>@contextlib.asynccontextmanager</code></a></li>
+</ul>
+<p>would be valid to use as a <strong>FastAPI</strong> dependency.</p>
+<p>In fact, FastAPI uses those two decorators internally.</p>
+</div>
+<h2 id="a-database-dependency-with-yield">A database dependency with <code>yield</code><a class="headerlink" href="#a-database-dependency-with-yield" title="Permanent link">&para;</a></h2>
+<p>For example, you could use this to create a database session and close it after finishing.</p>
+<p>Only the code prior to and including the <code>yield</code> statement is executed before sending a response:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">get_db</span><span class="p">():</span>
+<span class="hll">    <span class="n">db</span> <span class="o">=</span> <span class="n">DBSession</span><span class="p">()</span>
+</span><span class="hll">    <span class="k">try</span><span class="p">:</span>
+</span><span class="hll">        <span class="k">yield</span> <span class="n">db</span>
+</span>    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div>
+
+<p>The yielded value is what is injected into <em>path operations</em> and other dependencies:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">get_db</span><span class="p">():</span>
+    <span class="n">db</span> <span class="o">=</span> <span class="n">DBSession</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+<span class="hll">        <span class="k">yield</span> <span class="n">db</span>
+</span>    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div>
+
+<p>The code following the <code>yield</code> statement is executed after the response has been delivered:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">get_db</span><span class="p">():</span>
+    <span class="n">db</span> <span class="o">=</span> <span class="n">DBSession</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">db</span>
+<span class="hll">    <span class="k">finally</span><span class="p">:</span>
+</span><span class="hll">        <span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span></code></pre></div>
+
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can use <code>async</code> or normal functions.</p>
+<p><strong>FastAPI</strong> will do the right thing with each, the same as with normal dependencies.</p>
+</div>
+<h2 id="a-dependency-with-yield-and-try">A dependency with <code>yield</code> and <code>try</code><a class="headerlink" href="#a-dependency-with-yield-and-try" title="Permanent link">&para;</a></h2>
+<p>If you use a <code>try</code> block in a dependency with <code>yield</code>, you'll receive any exception that was thrown when using the dependency.</p>
+<p>For example, if some code at some point in the middle, in another dependency or in a <em>path operation</em>, made a database transaction "rollback" or create any other error, you will receive the exception in your dependency.</p>
+<p>So, you can look for that specific exception inside the dependency with <code>except SomeException</code>.</p>
+<p>In the same way, you can use <code>finally</code> to make sure the exit steps are executed, no matter if there was an exception or not.</p>
+<div class="codehilite"><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">get_db</span><span class="p">():</span>
+    <span class="n">db</span> <span class="o">=</span> <span class="n">DBSession</span><span class="p">()</span>
+<span class="hll">    <span class="k">try</span><span class="p">:</span>
+</span>        <span class="k">yield</span> <span class="n">db</span>
+<span class="hll">    <span class="k">finally</span><span class="p">:</span>
+</span>        <span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div>
+
+<h2 id="sub-dependencies-with-yield">Sub-dependencies with <code>yield</code><a class="headerlink" href="#sub-dependencies-with-yield" title="Permanent link">&para;</a></h2>
+<p>You can have sub-dependencies and "trees" of sub-dependencies of any size and shape, and any or all of them can use <code>yield</code>.</p>
+<p><strong>FastAPI</strong> will make sure that the "exit code" in each dependency with <code>yield</code> is run in the correct order.</p>
+<p>For example, <code>dependency_c</code> can have a dependency on <code>dependency_b</code>, and <code>dependency_b</code> on <code>dependency_a</code>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">Depends</span>
+
+
+<span class="hll"><span class="k">async</span> <span class="k">def</span> <span class="nf">dependency_a</span><span class="p">():</span>
+</span>    <span class="n">dep_a</span> <span class="o">=</span> <span class="n">generate_dep_a</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">dep_a</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">dep_a</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+
+<span class="hll"><span class="k">async</span> <span class="k">def</span> <span class="nf">dependency_b</span><span class="p">(</span><span class="n">dep_a</span><span class="o">=</span><span class="n">Depends</span><span class="p">(</span><span class="n">dependency_a</span><span class="p">)):</span>
+</span>    <span class="n">dep_b</span> <span class="o">=</span> <span class="n">generate_dep_b</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">dep_b</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">dep_b</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">dep_a</span><span class="p">)</span>
+
+
+<span class="hll"><span class="k">async</span> <span class="k">def</span> <span class="nf">dependency_c</span><span class="p">(</span><span class="n">dep_b</span><span class="o">=</span><span class="n">Depends</span><span class="p">(</span><span class="n">dependency_b</span><span class="p">)):</span>
+</span>    <span class="n">dep_c</span> <span class="o">=</span> <span class="n">generate_dep_c</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">dep_c</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">dep_c</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">dep_b</span><span class="p">)</span>
+</code></pre></div>
+
+<p>And all of them can use <code>yield</code>.</p>
+<p>In this case <code>dependency_c</code>, to execute its exit code, needs the value from <code>dependency_b</code> (here named <code>dep_b</code>) to still be available.</p>
+<p>And, in turn, <code>dependency_b</code> needs the value from <code>dependency_a</code> (here named <code>dep_a</code>) to be available for its exit code.</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">Depends</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">dependency_a</span><span class="p">():</span>
+    <span class="n">dep_a</span> <span class="o">=</span> <span class="n">generate_dep_a</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">dep_a</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">dep_a</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">dependency_b</span><span class="p">(</span><span class="n">dep_a</span><span class="o">=</span><span class="n">Depends</span><span class="p">(</span><span class="n">dependency_a</span><span class="p">)):</span>
+    <span class="n">dep_b</span> <span class="o">=</span> <span class="n">generate_dep_b</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">dep_b</span>
+<span class="hll">    <span class="k">finally</span><span class="p">:</span>
+</span><span class="hll">        <span class="n">dep_b</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">dep_a</span><span class="p">)</span>
+</span>
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">dependency_c</span><span class="p">(</span><span class="n">dep_b</span><span class="o">=</span><span class="n">Depends</span><span class="p">(</span><span class="n">dependency_b</span><span class="p">)):</span>
+    <span class="n">dep_c</span> <span class="o">=</span> <span class="n">generate_dep_c</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">dep_c</span>
+<span class="hll">    <span class="k">finally</span><span class="p">:</span>
+</span><span class="hll">        <span class="n">dep_c</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">dep_b</span><span class="p">)</span>
+</span></code></pre></div>
+
+<p>The same way, you could have dependencies with <code>yield</code> and <code>return</code> mixed.</p>
+<p>And you could have a single dependency that requires several other dependencies with <code>yield</code>, etc.</p>
+<p>You can have any combinations of dependencies that you want.</p>
+<p><strong>FastAPI</strong> will make sure everything is run in the correct order.</p>
+<div class="admonition note">
+<p class="admonition-title">Technical Details</p>
+<p>This works thanks to Python's <a href="https://docs.python.org/3/library/contextlib.html" class="external-link" target="_blank">Context Managers</a>.</p>
+<p><strong>FastAPI</strong> uses them internally to achieve this.</p>
+</div>
+<h2 id="dependencies-with-yield-and-httpexception">Dependencies with <code>yield</code> and <code>HTTPException</code><a class="headerlink" href="#dependencies-with-yield-and-httpexception" title="Permanent link">&para;</a></h2>
+<p>You saw that you can use dependencies with <code>yield</code> and have <code>try</code> blocks that catch exceptions.</p>
+<p>It might be tempting to raise an <code>HTTPException</code> or similar in the exit code, after the <code>yield</code>. But <strong>it won't work</strong>.</p>
+<p>The exit code in dependencies with <code>yield</code> is executed <em>after</em> <a class="internal-link" href="../../handling-errors/#install-custom-exception-handlers" target="_blank">Exception Handlers</a>. There's nothing catching exceptions thrown by your dependencies in the exit code (after the <code>yield</code>).</p>
+<p>So, if you raise an <code>HTTPException</code> after the <code>yield</code>, the default (or any custom) exception handler that catches <code>HTTPException</code>s and returns an HTTP 400 response won't be there to catch that exception anymore.</p>
+<p>This is what allows anything set in the dependency (e.g. a DB session) to, for example, be used by background tasks.</p>
+<p>Background tasks are run <em>after</em> the response has been sent. So there's no way to raise an <code>HTTPException</code> because there's not even a way to change the response that is <em>already sent</em>.</p>
+<p>But if a background task creates a DB error, at least you can rollback or cleanly close the session in the dependency with <code>yield</code>, and maybe log the error or report it to a remote tracking system.</p>
+<p>If you have some code that you know could raise an exception, do the most normal/"Pythonic" thing and add a <code>try</code> block in that section of the code.</p>
+<p>If you have custom exceptions that you would like to handle <em>before</em> returning the response and possibly modifying the response, maybe even raising an <code>HTTPException</code>, create a <a class="internal-link" href="../../handling-errors/#install-custom-exception-handlers" target="_blank">Custom Exception Handler</a>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can still raise exceptions including <code>HTTPException</code> <em>before</em> the <code>yield</code>. But not after.</p>
+</div>
+<p>The sequence of execution is more or less like this diagram. Time flows from top to bottom. And each column is one of the parts interacting or executing code.</p>
+<div class="mermaid">sequenceDiagram
+
+participant client as Client
+participant handler as Exception handler
+participant dep as Dep with yield
+participant operation as Path Operation
+participant tasks as Background tasks
+
+    Note over client,tasks: Can raise exception for dependency, handled after response is sent
+    Note over client,operation: Can raise HTTPException and can change the response
+    client -&gt;&gt; dep: Start request
+    Note over dep: Run code up to yield
+    opt raise
+        dep --&gt;&gt; handler: Raise HTTPException
+        handler --&gt;&gt; client: HTTP error response
+        dep --&gt;&gt; dep: Raise other exception
+    end
+    dep -&gt;&gt; operation: Run dependency, e.g. DB session
+    opt raise
+        operation --&gt;&gt; handler: Raise HTTPException
+        handler --&gt;&gt; client: HTTP error response
+        operation --&gt;&gt; dep: Raise other exception
+    end
+    operation -&gt;&gt; client: Return response to client
+    Note over client,operation: Response is already sent, can't change it anymore
+    opt Tasks
+        operation --&gt;&gt; tasks: Send background tasks
+    end
+    opt Raise other exception
+        tasks --&gt;&gt; dep: Raise other exception
+    end
+    Note over dep: After yield
+    opt Handle other exception
+        dep --&gt;&gt; dep: Handle exception, can't change response. E.g. close DB session.
+    end</div>
+
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Only <strong>one response</strong> will be sent to the client. It might be one of the error responses or it will be the response from the <em>path operation</em>.</p>
+<p>After one of those responses is sent, no other response can be sent.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>This diagram shows <code>HTTPException</code>, but you could also raise any other exception for which you create a <a class="internal-link" href="../../handling-errors/#install-custom-exception-handlers" target="_blank">Custom Exception Handler</a>. And that exception would be handled by that custom exception handler instead of the dependency exit code.</p>
+<p>But if you raise an exception that is not handled by the exception handlers, it will be handled by the exit code of the dependency.</p>
+</div>
+<h2 id="context-managers">Context Managers<a class="headerlink" href="#context-managers" title="Permanent link">&para;</a></h2>
+<h3 id="what-are-context-managers">What are "Context Managers"<a class="headerlink" href="#what-are-context-managers" title="Permanent link">&para;</a></h3>
+<p>"Context Managers" are any of those Python objects that you can use in a <code>with</code> statement.</p>
+<p>For example, <a href="https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files" class="external-link" target="_blank">you can use <code>with</code> to read a file</a>:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;./somefile.txt&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">contents</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">contents</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Underneath, the <code>open("./somefile.txt")</code> creates an object that is a called a "Context Manager".</p>
+<p>When the <code>with</code> block finishes, it makes sure to close the file, even if there were exceptions.</p>
+<p>When you create a dependency with <code>yield</code>, <strong>FastAPI</strong> will internally convert it to a context manager, and combine it with some other related tools.</p>
+<h3 id="using-context-managers-in-dependencies-with-yield">Using context managers in dependencies with <code>yield</code><a class="headerlink" href="#using-context-managers-in-dependencies-with-yield" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This is, more or less, an "advanced" idea.</p>
+<p>If you are just starting with <strong>FastAPI</strong> you might want to skip it for now.</p>
+</div>
+<p>In Python, you can create Context Managers by <a href="https://docs.python.org/3/reference/datamodel.html#context-managers" class="external-link" target="_blank">creating a class with two methods: <code>__enter__()</code> and <code>__exit__()</code></a>.</p>
+<p>You can also use them inside of <strong>FastAPI</strong> dependencies with <code>yield</code> by using
+<code>with</code> or <code>async with</code> statements inside of the dependency function:</p>
+<div class="codehilite"><pre><span></span><code><span class="hll"><span class="k">class</span> <span class="nc">MySuperContextManager</span><span class="p">:</span>
+</span><span class="hll">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span class="hll">        <span class="bp">self</span><span class="o">.</span><span class="n">db</span> <span class="o">=</span> <span class="n">DBSession</span><span class="p">()</span>
+</span><span class="hll">
+</span><span class="hll">    <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span class="hll">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">db</span>
+</span><span class="hll">
+</span><span class="hll">    <span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_value</span><span class="p">,</span> <span class="n">traceback</span><span class="p">):</span>
+</span><span class="hll">        <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span>
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">get_db</span><span class="p">():</span>
+<span class="hll">    <span class="k">with</span> <span class="n">MySuperContextManager</span><span class="p">()</span> <span class="k">as</span> <span class="n">db</span><span class="p">:</span>
+</span>        <span class="k">yield</span> <span class="n">db</span>
+</code></pre></div>
+
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Another way to create a context manager is with:</p>
+<ul>
+<li><a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank"><code>@contextlib.contextmanager</code></a> or </li>
+<li><a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank"><code>@contextlib.asynccontextmanager</code></a></li>
+</ul>
+<p>using them to decorate a function with a single <code>yield</code>.</p>
+<p>That's what <strong>FastAPI</strong> uses internally for dependencies with <code>yield</code>.</p>
+<p>But you don't have to use the decorators for FastAPI dependencies (and you shouldn't).</p>
+<p>FastAPI will do it for you internally.</p>
+</div>
+                
+                  
+                
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../dependencies-in-path-operation-decorators/" title="Dependencies in path operation decorators" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Dependencies in path operation decorators
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../../security/" title="Security Intro" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Security Intro
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org" target="_blank" rel="noopener">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/application.c33a9706.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../../.."}})</script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,3071 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="FastAPI framework, high performance, easy to learn, fast to code, ready for production">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../img/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.6.3">
+    
+    
+      
+        <title>SQL (Relational) Databases with Peewee - FastAPI Docs CN</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.adb8469c.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.a8b3c06d.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#009688">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.86422ebf.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="teal" data-md-color-accent="amber">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#peewee-for-async" tabindex="0" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../.." title="FastAPI Docs CN" aria-label="FastAPI Docs CN" class="md-header-nav__button md-logo">
+          
+            <img alt="logo" src="../../img/icon-white.svg" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              FastAPI Docs CN
+            </span>
+            <span class="md-header-nav__topic">
+              
+                SQL (Relational) Databases with Peewee
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" aria-label="search" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../.." title="FastAPI Docs CN" class="md-nav__button md-logo">
+      
+        <img alt="logo" src="../../img/icon-white.svg" width="48" height="48">
+      
+    </a>
+    FastAPI Docs CN
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="FastAPI" class="md-nav__link">
+      FastAPI
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../features/" title="Features" class="md-nav__link">
+      Features
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../python-types/" title="Python types intro" class="md-nav__link">
+      Python types intro
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Tutorial - User Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Tutorial - User Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/" title="Tutorial - User Guide - Intro" class="md-nav__link">
+      Tutorial - User Guide - Intro
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/first-steps/" title="First Steps" class="md-nav__link">
+      First Steps
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/path-params/" title="Path Parameters" class="md-nav__link">
+      Path Parameters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/query-params/" title="Query Parameters" class="md-nav__link">
+      Query Parameters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/body/" title="Request Body" class="md-nav__link">
+      Request Body
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/query-params-str-validations/" title="Query Parameters and String Validations" class="md-nav__link">
+      Query Parameters and String Validations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/path-params-numeric-validations/" title="Path Parameters and Numeric Validations" class="md-nav__link">
+      Path Parameters and Numeric Validations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/body-multiple-params/" title="Body - Multiple Parameters" class="md-nav__link">
+      Body - Multiple Parameters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/body-fields/" title="Body - Fields" class="md-nav__link">
+      Body - Fields
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/body-nested-models/" title="Body - Nested Models" class="md-nav__link">
+      Body - Nested Models
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/extra-data-types/" title="Extra data types" class="md-nav__link">
+      Extra data types
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/cookie-params/" title="Cookie Parameters" class="md-nav__link">
+      Cookie Parameters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/header-params/" title="Header Parameters" class="md-nav__link">
+      Header Parameters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/response-model/" title="Response Model" class="md-nav__link">
+      Response Model
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/extra-models/" title="Extra Models" class="md-nav__link">
+      Extra Models
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/response-status-code/" title="Response Status Code" class="md-nav__link">
+      Response Status Code
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/request-forms/" title="Form Data" class="md-nav__link">
+      Form Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/request-files/" title="Request Files" class="md-nav__link">
+      Request Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/request-forms-and-files/" title="Request Forms and Files" class="md-nav__link">
+      Request Forms and Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/handling-errors/" title="Handling Errors" class="md-nav__link">
+      Handling Errors
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/path-operation-configuration/" title="Path Operation Configuration" class="md-nav__link">
+      Path Operation Configuration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/encoder/" title="JSON Compatible Encoder" class="md-nav__link">
+      JSON Compatible Encoder
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/body-updates/" title="Body - updates" class="md-nav__link">
+      Body - updates
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-24" type="checkbox" id="nav-4-24">
+    
+    <label class="md-nav__link" for="nav-4-24">
+      Dependencies
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-24">
+        Dependencies
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/dependencies/" title="First Steps" class="md-nav__link">
+      First Steps
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/dependencies/classes-as-dependencies/" title="Classes as Dependencies" class="md-nav__link">
+      Classes as Dependencies
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/dependencies/sub-dependencies/" title="Sub-dependencies" class="md-nav__link">
+      Sub-dependencies
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/dependencies/dependencies-in-path-operation-decorators/" title="Dependencies in path operation decorators" class="md-nav__link">
+      Dependencies in path operation decorators
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/dependencies/dependencies-with-yield/" title="Dependencies with yield" class="md-nav__link">
+      Dependencies with yield
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-25" type="checkbox" id="nav-4-25">
+    
+    <label class="md-nav__link" for="nav-4-25">
+      Security
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-25">
+        Security
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/security/" title="Security Intro" class="md-nav__link">
+      Security Intro
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/security/first-steps/" title="First Steps" class="md-nav__link">
+      First Steps
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/security/get-current-user/" title="Get Current User" class="md-nav__link">
+      Get Current User
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/security/simple-oauth2/" title="Simple OAuth2 with Password and Bearer" class="md-nav__link">
+      Simple OAuth2 with Password and Bearer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/security/oauth2-jwt/" title="OAuth2 with Password (and hashing), Bearer with JWT tokens" class="md-nav__link">
+      OAuth2 with Password (and hashing), Bearer with JWT tokens
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/middleware/" title="Middleware" class="md-nav__link">
+      Middleware
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/cors/" title="CORS (Cross-Origin Resource Sharing)" class="md-nav__link">
+      CORS (Cross-Origin Resource Sharing)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/sql-databases/" title="SQL (Relational) Databases" class="md-nav__link">
+      SQL (Relational) Databases
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/bigger-applications/" title="Bigger Applications - Multiple Files" class="md-nav__link">
+      Bigger Applications - Multiple Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/background-tasks/" title="Background Tasks" class="md-nav__link">
+      Background Tasks
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/application-configuration/" title="Application Configuration" class="md-nav__link">
+      Application Configuration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/static-files/" title="Static Files" class="md-nav__link">
+      Static Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/testing/" title="Testing" class="md-nav__link">
+      Testing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/debugging/" title="Debugging" class="md-nav__link">
+      Debugging
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+    
+    <label class="md-nav__link" for="nav-5">
+      Advanced User Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Advanced User Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../" title="Advanced User Guide - Intro" class="md-nav__link">
+      Advanced User Guide - Intro
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../path-operation-advanced-configuration/" title="Path Operation Advanced Configuration" class="md-nav__link">
+      Path Operation Advanced Configuration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../additional-status-codes/" title="Additional Status Codes" class="md-nav__link">
+      Additional Status Codes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../response-directly/" title="Return a Response Directly" class="md-nav__link">
+      Return a Response Directly
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../custom-response/" title="Custom Response Class" class="md-nav__link">
+      Custom Response Class
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../additional-responses/" title="Additional Responses in OpenAPI" class="md-nav__link">
+      Additional Responses in OpenAPI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../response-cookies/" title="Response Cookies" class="md-nav__link">
+      Response Cookies
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../response-headers/" title="Response Headers" class="md-nav__link">
+      Response Headers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../response-change-status-code/" title="Response - Change Status Code" class="md-nav__link">
+      Response - Change Status Code
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../advanced-dependencies/" title="Advanced Dependencies" class="md-nav__link">
+      Advanced Dependencies
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-11" type="checkbox" id="nav-5-11">
+    
+    <label class="md-nav__link" for="nav-5-11">
+      Advanced Security
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-11">
+        Advanced Security
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../security/" title="Advanced Security - Intro" class="md-nav__link">
+      Advanced Security - Intro
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../security/oauth2-scopes/" title="OAuth2 scopes" class="md-nav__link">
+      OAuth2 scopes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../security/http-basic-auth/" title="HTTP Basic Auth" class="md-nav__link">
+      HTTP Basic Auth
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../using-request-directly/" title="Using the Request Directly" class="md-nav__link">
+      Using the Request Directly
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        SQL (Relational) Databases with Peewee
+      </label>
+    
+    <a href="./" title="SQL (Relational) Databases with Peewee" class="md-nav__link md-nav__link--active">
+      SQL (Relational) Databases with Peewee
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#peewee-for-async" class="md-nav__link">
+    Peewee for async
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-same-app" class="md-nav__link">
+    The same app
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-structure" class="md-nav__link">
+    File structure
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-the-peewee-parts" class="md-nav__link">
+    Create the Peewee parts
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-standard-peewee-code" class="md-nav__link">
+    The standard Peewee code
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#note" class="md-nav__link">
+    Note
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#make-peewee-async-compatible-peeweeconnectionstate" class="md-nav__link">
+    Make Peewee async-compatible PeeweeConnectionState
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-the-custom-peeweeconnectionstate-class" class="md-nav__link">
+    Use the custom PeeweeConnectionState class
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-the-database-models" class="md-nav__link">
+    Create the database models
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-peewee-models-for-our-data" class="md-nav__link">
+    Create Peewee models for our data
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-the-pydantic-models" class="md-nav__link">
+    Create the Pydantic models
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-the-pydantic-models-schemas" class="md-nav__link">
+    Create the Pydantic models / schemas
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-a-peeweegetterdict-for-the-pydantic-models-schemas" class="md-nav__link">
+    Create a PeeweeGetterDict for the Pydantic models / schemas
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#crud-utils" class="md-nav__link">
+    CRUD utils
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-all-the-crud-utils" class="md-nav__link">
+    Create all the CRUD utils
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#main-fastapi-app" class="md-nav__link">
+    Main FastAPI app
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-the-database-tables" class="md-nav__link">
+    Create the database tables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-a-dependency" class="md-nav__link">
+    Create a dependency
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#context-variable-sub-dependency" class="md-nav__link">
+    Context variable sub-dependency
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#peewee-proxy" class="md-nav__link">
+    Peewee Proxy
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-your-fastapi-path-operations" class="md-nav__link">
+    Create your FastAPI path operations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#about-def-vs-async-def" class="md-nav__link">
+    About def vs async def
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-peewee-with-async" class="md-nav__link">
+    Testing Peewee with async
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-happens" class="md-nav__link">
+    What happens
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fix-peewee-with-fastapi" class="md-nav__link">
+    Fix Peewee with FastAPI
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-all-the-files" class="md-nav__link">
+    Review all the files
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#set-context-variables-in-the-async-dependency-reset_db_state" class="md-nav__link">
+    Set context variables in the async dependency reset_db_state()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-database-state-in-the-dependency-get_db" class="md-nav__link">
+    Set database state in the dependency get_db()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connect-and-disconnect-in-the-dependency-get_db" class="md-nav__link">
+    Connect and disconnect in the dependency get_db()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../async-sql-databases/" title="Async SQL (Relational) Databases" class="md-nav__link">
+      Async SQL (Relational) Databases
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../nosql-databases/" title="NoSQL (Distributed / Big Data) Databases" class="md-nav__link">
+      NoSQL (Distributed / Big Data) Databases
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../sub-applications-proxy/" title="Sub Applications - Behind a Proxy" class="md-nav__link">
+      Sub Applications - Behind a Proxy
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../templates/" title="Templates" class="md-nav__link">
+      Templates
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../graphql/" title="GraphQL" class="md-nav__link">
+      GraphQL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../websockets/" title="WebSockets" class="md-nav__link">
+      WebSockets
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../events/" title="Events: startup - shutdown" class="md-nav__link">
+      Events: startup - shutdown
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../custom-request-and-route/" title="Custom Request and APIRoute class" class="md-nav__link">
+      Custom Request and APIRoute class
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../testing-websockets/" title="Testing WebSockets" class="md-nav__link">
+      Testing WebSockets
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../testing-events/" title="Testing Events: startup - shutdown" class="md-nav__link">
+      Testing Events: startup - shutdown
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../testing-dependencies/" title="Testing Dependencies with Overrides" class="md-nav__link">
+      Testing Dependencies with Overrides
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../extending-openapi/" title="Extending OpenAPI" class="md-nav__link">
+      Extending OpenAPI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../openapi-callbacks/" title="OpenAPI Callbacks" class="md-nav__link">
+      OpenAPI Callbacks
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../async/" title="Concurrency and async / await" class="md-nav__link">
+      Concurrency and async / await
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../deployment/" title="Deployment" class="md-nav__link">
+      Deployment
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../project-generation/" title="Project Generation - Template" class="md-nav__link">
+      Project Generation - Template
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../alternatives/" title="Alternatives, Inspiration and Comparisons" class="md-nav__link">
+      Alternatives, Inspiration and Comparisons
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../history-design-future/" title="History, Design and Future" class="md-nav__link">
+      History, Design and Future
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../external-links/" title="External Links and Articles" class="md-nav__link">
+      External Links and Articles
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../benchmarks/" title="Benchmarks" class="md-nav__link">
+      Benchmarks
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../help-fastapi/" title="Help FastAPI - Get Help" class="md-nav__link">
+      Help FastAPI - Get Help
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../contributing/" title="Development - Contributing" class="md-nav__link">
+      Development - Contributing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../release-notes/" title="Release Notes" class="md-nav__link">
+      Release Notes
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#peewee-for-async" class="md-nav__link">
+    Peewee for async
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-same-app" class="md-nav__link">
+    The same app
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-structure" class="md-nav__link">
+    File structure
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-the-peewee-parts" class="md-nav__link">
+    Create the Peewee parts
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-standard-peewee-code" class="md-nav__link">
+    The standard Peewee code
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#note" class="md-nav__link">
+    Note
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#make-peewee-async-compatible-peeweeconnectionstate" class="md-nav__link">
+    Make Peewee async-compatible PeeweeConnectionState
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-the-custom-peeweeconnectionstate-class" class="md-nav__link">
+    Use the custom PeeweeConnectionState class
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-the-database-models" class="md-nav__link">
+    Create the database models
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-peewee-models-for-our-data" class="md-nav__link">
+    Create Peewee models for our data
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-the-pydantic-models" class="md-nav__link">
+    Create the Pydantic models
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-the-pydantic-models-schemas" class="md-nav__link">
+    Create the Pydantic models / schemas
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-a-peeweegetterdict-for-the-pydantic-models-schemas" class="md-nav__link">
+    Create a PeeweeGetterDict for the Pydantic models / schemas
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#crud-utils" class="md-nav__link">
+    CRUD utils
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-all-the-crud-utils" class="md-nav__link">
+    Create all the CRUD utils
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#main-fastapi-app" class="md-nav__link">
+    Main FastAPI app
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-the-database-tables" class="md-nav__link">
+    Create the database tables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-a-dependency" class="md-nav__link">
+    Create a dependency
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#context-variable-sub-dependency" class="md-nav__link">
+    Context variable sub-dependency
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#peewee-proxy" class="md-nav__link">
+    Peewee Proxy
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-your-fastapi-path-operations" class="md-nav__link">
+    Create your FastAPI path operations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#about-def-vs-async-def" class="md-nav__link">
+    About def vs async def
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-peewee-with-async" class="md-nav__link">
+    Testing Peewee with async
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-happens" class="md-nav__link">
+    What happens
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fix-peewee-with-fastapi" class="md-nav__link">
+    Fix Peewee with FastAPI
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-all-the-files" class="md-nav__link">
+    Review all the files
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#set-context-variables-in-the-async-dependency-reset_db_state" class="md-nav__link">
+    Set context variables in the async dependency reset_db_state()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-database-state-in-the-dependency-get_db" class="md-nav__link">
+    Set database state in the dependency get_db()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connect-and-disconnect-in-the-dependency-get_db" class="md-nav__link">
+    Connect and disconnect in the dependency get_db()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>SQL (Relational) Databases with Peewee</h1>
+                
+                <div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you are just starting, the tutorial <a class="internal-link" href="../../tutorial/sql-databases/" target="_blank">SQL (Relational) Databases</a> that uses SQLAlchemy should be enough.</p>
+<p>Feel free to skip this.</p>
+</div>
+<p>If you are starting a project from scratch, you are probably better off with SQLAlchemy ORM (<a class="internal-link" href="../../tutorial/sql-databases/" target="_blank">SQL (Relational) Databases</a>), or any other async ORM.</p>
+<p>If you already have a code base that uses <a href="http://docs.peewee-orm.com/en/latest/" class="external-link" target="_blank">Peewee ORM</a>, you can check here how to use it with <strong>FastAPI</strong>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Python 3.7+ required</p>
+<p>You will need Python 3.7 or above to safely use Peewee with FastAPI.</p>
+</div>
+<h2 id="peewee-for-async">Peewee for async<a class="headerlink" href="#peewee-for-async" title="Permanent link">&para;</a></h2>
+<p>Peewee was not designed for async frameworks, or with them in mind.</p>
+<p>Peewee has some heavy assumptions about its defaults and about how it should be used.</p>
+<p>If you are developing an application with an older non-async framework, and can work with all its defaults, <strong>it can be a great tool</strong>.</p>
+<p>But if you need to change some of the defaults, support more than one predefined database, work with an async framework (like FastAPI), etc, you will need to add quite some complex extra code to override those defaults.</p>
+<p>Nevertheless, it's possible to do it, and here you'll see exactly what code you have to add to be able to use Peewee with FastAPI.</p>
+<div class="admonition note">
+<p class="admonition-title">Technical Details</p>
+<p>You can read more about Peewee's stand about async in Python <a href="http://docs.peewee-orm.com/en/latest/peewee/database.html#async-with-gevent" class="external-link" target="_blank">in the docs</a>, <a href="https://github.com/coleifer/peewee/issues/263#issuecomment-517347032" class="external-link" target="_blank">an issue</a>, <a href="https://github.com/coleifer/peewee/pull/2072#issuecomment-563215132" class="external-link" target="_blank">a PR</a>.</p>
+</div>
+<h2 id="the-same-app">The same app<a class="headerlink" href="#the-same-app" title="Permanent link">&para;</a></h2>
+<p>We are going to create the same application as in the SQLAlchemy tutorial (<a class="internal-link" href="../../tutorial/sql-databases/" target="_blank">SQL (Relational) Databases</a>).</p>
+<p>Most of the code is actually the same.</p>
+<p>So, we are going to focus only on the differences.</p>
+<h2 id="file-structure">File structure<a class="headerlink" href="#file-structure" title="Permanent link">&para;</a></h2>
+<p>Let's say you have a directory named <code>my_super_project</code> that contains a sub-directory called <code>sql_app</code> with a structure like this:</p>
+<div class="codehilite"><pre><span></span><code>.
+└── sql_app
+    ├── __init__.py
+    ├── crud.py
+    ├── database.py
+    ├── main.py
+    └── schemas.py
+</code></pre></div>
+
+<p>This is almost the same structure as we had for the SQLAlchemy tutorial.</p>
+<p>Now let's see what each file/module does.</p>
+<h2 id="create-the-peewee-parts">Create the Peewee parts<a class="headerlink" href="#create-the-peewee-parts" title="Permanent link">&para;</a></h2>
+<p>Let's refer to the file <code>sql_app/database.py</code>.</p>
+<h3 id="the-standard-peewee-code">The standard Peewee code<a class="headerlink" href="#the-standard-peewee-code" title="Permanent link">&para;</a></h3>
+<p>Let's first check all the normal Peewee code, create a Peewee database:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">contextvars</span> <span class="kn">import</span> <span class="n">ContextVar</span>
+
+<span class="hll"><span class="kn">import</span> <span class="nn">peewee</span>
+</span>
+<span class="hll"><span class="n">DATABASE_NAME</span> <span class="o">=</span> <span class="s2">&quot;test.db&quot;</span>
+</span><span class="n">db_state_default</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;closed&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;conn&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;ctx&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;transactions&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+<span class="n">db_state</span> <span class="o">=</span> <span class="n">ContextVar</span><span class="p">(</span><span class="s2">&quot;db_state&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">db_state_default</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+
+
+<span class="k">class</span> <span class="nc">PeeweeConnectionState</span><span class="p">(</span><span class="n">peewee</span><span class="o">.</span><span class="n">_ConnectionState</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="s2">&quot;_state&quot;</span><span class="p">,</span> <span class="n">db_state</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_state</span><span class="o">.</span><span class="n">get</span><span class="p">()[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_state</span><span class="o">.</span><span class="n">get</span><span class="p">()[</span><span class="n">name</span><span class="p">]</span>
+
+
+<span class="hll"><span class="n">db</span> <span class="o">=</span> <span class="n">peewee</span><span class="o">.</span><span class="n">SqliteDatabase</span><span class="p">(</span><span class="n">DATABASE_NAME</span><span class="p">,</span> <span class="n">check_same_thread</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span>
+<span class="n">db</span><span class="o">.</span><span class="n">_state</span> <span class="o">=</span> <span class="n">PeeweeConnectionState</span><span class="p">()</span>
+</code></pre></div>
+
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Have in mind that if you wanted to use a different database, like PostgreSQL, you couldn't just change the string. You would need to use a different Peewee database class.</p>
+</div>
+<h4 id="note">Note<a class="headerlink" href="#note" title="Permanent link">&para;</a></h4>
+<p>The argument:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">check_same_thread</span><span class="o">=</span><span class="kc">False</span>
+</code></pre></div>
+
+<p>is equivalent to the one in the SQLAlchemy tutorial:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">connect_args</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;check_same_thread&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}</span>
+</code></pre></div>
+
+<p>...it is needed only for <code>SQLite</code>.</p>
+<div class="admonition info">
+<p class="admonition-title">Technical Details</p>
+<p>Exactly the same technical details as in <a class="internal-link" href="../../tutorial/sql-databases/#note" target="_blank">SQL (Relational) Databases</a> apply.</p>
+</div>
+<h3 id="make-peewee-async-compatible-peeweeconnectionstate">Make Peewee async-compatible <code>PeeweeConnectionState</code><a class="headerlink" href="#make-peewee-async-compatible-peeweeconnectionstate" title="Permanent link">&para;</a></h3>
+<p>The main issue with Peewee and FastAPI is that Peewee relies heavily on <a href="https://docs.python.org/3/library/threading.html#thread-local-data" class="external-link" target="_blank">Python's <code>threading.local</code></a>, and it doesn't have a direct way to override it or let you handle connections/sessions directly (as is done in the SQLAlchemy tutorial).</p>
+<p>And <code>threading.local</code> is not compatible with the new async features of modern Python.</p>
+<div class="admonition note">
+<p class="admonition-title">Technical Details</p>
+<p><code>threading.local</code> is used to have a "magic" variable that has a different value for each thread.</p>
+<p>This was useful in older frameworks designed to have one single thread per request, no more, no less.</p>
+<p>Using this, each request would have its own database connection/session, which is the actual final goal.</p>
+<p>But FastAPI, using the new async features, could handle more than one request on the same thread. And at the same time, for a single request, it could run multiple things in different threads (in a threadpool), depending on if you use <code>async def</code> or normal <code>def</code>. This is what gives all the performance improvements to FastAPI.</p>
+</div>
+<p>But Python 3.7 and above provide a more advanced alternative to <code>threading.local</code>, that can also be used in the places where <code>threading.local</code> would be used, but is compatible with the new async features.</p>
+<p>We are going to use that. It's called <a href="https://docs.python.org/3/library/contextvars.html" class="external-link" target="_blank"><code>contextvars</code></a>.</p>
+<p>We are going to override the internal parts of Peewee that use <code>threading.local</code> and replace them with <code>contextvars</code>, with the corresponding updates.</p>
+<p>This might seem a bit complex (and it actually is), you don't really need to completely understand how it works to use it.</p>
+<p>We will create a <code>PeeweeConnectionState</code>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">contextvars</span> <span class="kn">import</span> <span class="n">ContextVar</span>
+
+<span class="kn">import</span> <span class="nn">peewee</span>
+
+<span class="n">DATABASE_NAME</span> <span class="o">=</span> <span class="s2">&quot;test.db&quot;</span>
+<span class="n">db_state_default</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;closed&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;conn&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;ctx&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;transactions&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+<span class="n">db_state</span> <span class="o">=</span> <span class="n">ContextVar</span><span class="p">(</span><span class="s2">&quot;db_state&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">db_state_default</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+
+
+<span class="hll"><span class="k">class</span> <span class="nc">PeeweeConnectionState</span><span class="p">(</span><span class="n">peewee</span><span class="o">.</span><span class="n">_ConnectionState</span><span class="p">):</span>
+</span><span class="hll">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+</span><span class="hll">        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="s2">&quot;_state&quot;</span><span class="p">,</span> <span class="n">db_state</span><span class="p">)</span>
+</span><span class="hll">        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</span><span class="hll">
+</span><span class="hll">    <span class="k">def</span> <span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+</span><span class="hll">        <span class="bp">self</span><span class="o">.</span><span class="n">_state</span><span class="o">.</span><span class="n">get</span><span class="p">()[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+</span><span class="hll">
+</span><span class="hll">    <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+</span><span class="hll">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_state</span><span class="o">.</span><span class="n">get</span><span class="p">()[</span><span class="n">name</span><span class="p">]</span>
+</span>
+
+<span class="n">db</span> <span class="o">=</span> <span class="n">peewee</span><span class="o">.</span><span class="n">SqliteDatabase</span><span class="p">(</span><span class="n">DATABASE_NAME</span><span class="p">,</span> <span class="n">check_same_thread</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">db</span><span class="o">.</span><span class="n">_state</span> <span class="o">=</span> <span class="n">PeeweeConnectionState</span><span class="p">()</span>
+</code></pre></div>
+
+<p>This class inherits from a special internal class used by Peewee.</p>
+<p>It has all the logic to make Peewee use <code>contextvars</code> instead of <code>threading.local</code>.</p>
+<p><code>contextvars</code> works a bit differently than <code>threading.local</code>. But the rest of Peewee's internal code assumes that this class works with <code>threading.local</code>.</p>
+<p>So, we need to do some extra tricks to make it work as if it was just using <code>threading.local</code>. The <code>__init__</code>, <code>__setattr__</code>, and <code>__getattr__</code> implement all the required tricks for this to be used by Peewee without knowing that it is now compatible with FastAPI.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>This will just make Peewee behave correctly when used with FastAPI. Not randomly opening or closing connections that are being used, creating errors, etc.</p>
+<p>But it doesn't give Peewee async super-powers. You should still use normal <code>def</code> functions and not <code>async def</code>.</p>
+</div>
+<h3 id="use-the-custom-peeweeconnectionstate-class">Use the custom <code>PeeweeConnectionState</code> class<a class="headerlink" href="#use-the-custom-peeweeconnectionstate-class" title="Permanent link">&para;</a></h3>
+<p>Now, overwrite the <code>._state</code> internal attribute in the Peewee database <code>db</code> object using the new <code>PeeweeConnectionState</code>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">contextvars</span> <span class="kn">import</span> <span class="n">ContextVar</span>
+
+<span class="kn">import</span> <span class="nn">peewee</span>
+
+<span class="n">DATABASE_NAME</span> <span class="o">=</span> <span class="s2">&quot;test.db&quot;</span>
+<span class="n">db_state_default</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;closed&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;conn&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;ctx&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;transactions&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+<span class="n">db_state</span> <span class="o">=</span> <span class="n">ContextVar</span><span class="p">(</span><span class="s2">&quot;db_state&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">db_state_default</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+
+
+<span class="k">class</span> <span class="nc">PeeweeConnectionState</span><span class="p">(</span><span class="n">peewee</span><span class="o">.</span><span class="n">_ConnectionState</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="s2">&quot;_state&quot;</span><span class="p">,</span> <span class="n">db_state</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_state</span><span class="o">.</span><span class="n">get</span><span class="p">()[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_state</span><span class="o">.</span><span class="n">get</span><span class="p">()[</span><span class="n">name</span><span class="p">]</span>
+
+
+<span class="n">db</span> <span class="o">=</span> <span class="n">peewee</span><span class="o">.</span><span class="n">SqliteDatabase</span><span class="p">(</span><span class="n">DATABASE_NAME</span><span class="p">,</span> <span class="n">check_same_thread</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="hll"><span class="n">db</span><span class="o">.</span><span class="n">_state</span> <span class="o">=</span> <span class="n">PeeweeConnectionState</span><span class="p">()</span>
+</span></code></pre></div>
+
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Make sure you overwrite <code>db._state</code> <em>after</em> creating <code>db</code>.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You would do the same for any other Peewee database, including <code>PostgresqlDatabase</code>, <code>MySQLDatabase</code>, etc.</p>
+</div>
+<h2 id="create-the-database-models">Create the database models<a class="headerlink" href="#create-the-database-models" title="Permanent link">&para;</a></h2>
+<p>Let's now see the file <code>sql_app/models.py</code>.</p>
+<h3 id="create-peewee-models-for-our-data">Create Peewee models for our data<a class="headerlink" href="#create-peewee-models-for-our-data" title="Permanent link">&para;</a></h3>
+<p>Now create the Peewee models (classes) for <code>User</code> and <code>Item</code>.</p>
+<p>This is the same you would do if you followed the Peewee tutorial and updated the models to have the same data as in the SQLAlchemy tutorial.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Peewee also uses the term "<strong>model</strong>" to refer to these classes and instances that interact with the database.</p>
+<p>But Pydantic also uses the term "<strong>model</strong>" to refer to something different, the data validation, conversion, and documentation classes and instances.</p>
+</div>
+<p>Import <code>db</code> from <code>database</code> (the file <code>database.py</code> from above) and use it here.</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">peewee</span>
+
+<span class="hll"><span class="kn">from</span> <span class="nn">.database</span> <span class="kn">import</span> <span class="n">db</span>
+</span>
+
+<span class="hll"><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">peewee</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+</span><span class="hll">    <span class="n">email</span> <span class="o">=</span> <span class="n">peewee</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">unique</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span class="hll">    <span class="n">hashed_password</span> <span class="o">=</span> <span class="n">peewee</span><span class="o">.</span><span class="n">CharField</span><span class="p">()</span>
+</span><span class="hll">    <span class="n">is_active</span> <span class="o">=</span> <span class="n">peewee</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span class="hll">
+</span><span class="hll">    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+</span><span class="hll">        <span class="n">database</span> <span class="o">=</span> <span class="n">db</span>
+</span>
+
+<span class="hll"><span class="k">class</span> <span class="nc">Item</span><span class="p">(</span><span class="n">peewee</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+</span><span class="hll">    <span class="n">title</span> <span class="o">=</span> <span class="n">peewee</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span class="hll">    <span class="n">description</span> <span class="o">=</span> <span class="n">peewee</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span class="hll">    <span class="n">owner</span> <span class="o">=</span> <span class="n">peewee</span><span class="o">.</span><span class="n">ForeignKeyField</span><span class="p">(</span><span class="n">User</span><span class="p">,</span> <span class="n">backref</span><span class="o">=</span><span class="s2">&quot;items&quot;</span><span class="p">)</span>
+</span><span class="hll">
+</span><span class="hll">    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+</span><span class="hll">        <span class="n">database</span> <span class="o">=</span> <span class="n">db</span>
+</span></code></pre></div>
+
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Peewee creates several magic attributes.</p>
+<p>It will automatically add an <code>id</code> attribute as an integer to be the primary key.</p>
+<p>It will chose the name of the tables based on the class names.</p>
+<p>For the <code>Item</code>, it will create an attribute <code>owner_id</code> with the integer ID of the <code>User</code>. But we don't declare it anywhere.</p>
+</div>
+<h2 id="create-the-pydantic-models">Create the Pydantic models<a class="headerlink" href="#create-the-pydantic-models" title="Permanent link">&para;</a></h2>
+<p>Now let's check the file <code>sql_app/schemas.py</code>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To avoid confusion between the Peewee <em>models</em> and the Pydantic <em>models</em>, we will have the file <code>models.py</code> with the Peewee models, and the file <code>schemas.py</code> with the Pydantic models.</p>
+<p>These Pydantic models define more or less a "schema" (a valid data shape).</p>
+<p>So this will help us avoiding confusion while using both.</p>
+</div>
+<h3 id="create-the-pydantic-models-schemas">Create the Pydantic <em>models</em> / schemas<a class="headerlink" href="#create-the-pydantic-models-schemas" title="Permanent link">&para;</a></h3>
+<p>Create all the same Pydantic models as in the SQLAlchemy tutorial:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span>
+
+<span class="kn">import</span> <span class="nn">peewee</span>
+<span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span>
+<span class="kn">from</span> <span class="nn">pydantic.utils</span> <span class="kn">import</span> <span class="n">GetterDict</span>
+
+
+<span class="k">class</span> <span class="nc">PeeweeGetterDict</span><span class="p">(</span><span class="n">GetterDict</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">default</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">peewee</span><span class="o">.</span><span class="n">ModelSelect</span><span class="p">):</span>
+            <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span>
+
+
+<span class="hll"><span class="k">class</span> <span class="nc">ItemBase</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span class="hll">    <span class="n">title</span><span class="p">:</span> <span class="nb">str</span>
+</span><span class="hll">    <span class="n">description</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span>
+</span>
+
+<span class="hll"><span class="k">class</span> <span class="nc">ItemCreate</span><span class="p">(</span><span class="n">ItemBase</span><span class="p">):</span>
+</span><span class="hll">    <span class="k">pass</span>
+</span>
+
+<span class="hll"><span class="k">class</span> <span class="nc">Item</span><span class="p">(</span><span class="n">ItemBase</span><span class="p">):</span>
+</span><span class="hll">    <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span>
+</span><span class="hll">    <span class="n">owner_id</span><span class="p">:</span> <span class="nb">int</span>
+</span><span class="hll">
+</span><span class="hll">    <span class="k">class</span> <span class="nc">Config</span><span class="p">:</span>
+</span><span class="hll">        <span class="n">orm_mode</span> <span class="o">=</span> <span class="kc">True</span>
+</span>        <span class="n">getter_dict</span> <span class="o">=</span> <span class="n">PeeweeGetterDict</span>
+
+
+<span class="hll"><span class="k">class</span> <span class="nc">UserBase</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span class="hll">    <span class="n">email</span><span class="p">:</span> <span class="nb">str</span>
+</span>
+
+<span class="hll"><span class="k">class</span> <span class="nc">UserCreate</span><span class="p">(</span><span class="n">UserBase</span><span class="p">):</span>
+</span><span class="hll">    <span class="n">password</span><span class="p">:</span> <span class="nb">str</span>
+</span>
+
+<span class="hll"><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">UserBase</span><span class="p">):</span>
+</span><span class="hll">    <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span>
+</span><span class="hll">    <span class="n">is_active</span><span class="p">:</span> <span class="nb">bool</span>
+</span><span class="hll">    <span class="n">items</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Item</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class="hll">
+</span><span class="hll">    <span class="k">class</span> <span class="nc">Config</span><span class="p">:</span>
+</span><span class="hll">        <span class="n">orm_mode</span> <span class="o">=</span> <span class="kc">True</span>
+</span>        <span class="n">getter_dict</span> <span class="o">=</span> <span class="n">PeeweeGetterDict</span>
+</code></pre></div>
+
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Here we are creating the models with an <code>id</code>.</p>
+<p>We didn't explicitly specify an <code>id</code> attribute in the Peewee models, but Peewee adds one automatically.</p>
+<p>We are also adding the magic <code>owner_id</code> attribute to <code>Item</code>.</p>
+</div>
+<h3 id="create-a-peeweegetterdict-for-the-pydantic-models-schemas">Create a <code>PeeweeGetterDict</code> for the Pydantic <em>models</em> / schemas<a class="headerlink" href="#create-a-peeweegetterdict-for-the-pydantic-models-schemas" title="Permanent link">&para;</a></h3>
+<p>When you access a relationship in a Peewee object, like in <code>some_user.items</code>, Peewee doesn't provide a <code>list</code> of <code>Item</code>.</p>
+<p>It provides a special custom object of class <code>ModelSelect</code>.</p>
+<p>It's possible to create a <code>list</code> of its items with <code>list(some_user.items)</code>.</p>
+<p>But the object itself is not a <code>list</code>. And it's also not an actual Python <a href="https://docs.python.org/3/glossary.html#term-generator" class="external-link" target="_blank">generator</a>. Because of this, Pydantic doesn't know by default how to convert it to a <code>list</code> of Pydantic <em>models</em> / schemas.</p>
+<p>But recent versions of Pydantic allow providing a custom class that inherits from <code>pydantic.utils.GetterDict</code>, to provide the functionality used when using the <code>orm_mode = True</code> to retrieve the values for ORM model attributes.</p>
+<p>We are going to create a custom <code>PeeweeGetterDict</code> class and use it in all the same Pydantic <em>models</em> / schemas that use <code>orm_mode</code>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span>
+
+<span class="hll"><span class="kn">import</span> <span class="nn">peewee</span>
+</span><span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span>
+<span class="kn">from</span> <span class="nn">pydantic.utils</span> <span class="kn">import</span> <span class="n">GetterDict</span>
+
+
+<span class="hll"><span class="k">class</span> <span class="nc">PeeweeGetterDict</span><span class="p">(</span><span class="n">GetterDict</span><span class="p">):</span>
+</span><span class="hll">    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+</span><span class="hll">        <span class="n">res</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">default</span><span class="p">)</span>
+</span><span class="hll">        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">peewee</span><span class="o">.</span><span class="n">ModelSelect</span><span class="p">):</span>
+</span><span class="hll">            <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+</span><span class="hll">        <span class="k">return</span> <span class="n">res</span>
+</span>
+
+<span class="k">class</span> <span class="nc">ItemBase</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">title</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">description</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span>
+
+
+<span class="k">class</span> <span class="nc">ItemCreate</span><span class="p">(</span><span class="n">ItemBase</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+
+<span class="k">class</span> <span class="nc">Item</span><span class="p">(</span><span class="n">ItemBase</span><span class="p">):</span>
+    <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">owner_id</span><span class="p">:</span> <span class="nb">int</span>
+
+    <span class="k">class</span> <span class="nc">Config</span><span class="p">:</span>
+        <span class="n">orm_mode</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="hll">        <span class="n">getter_dict</span> <span class="o">=</span> <span class="n">PeeweeGetterDict</span>
+</span>
+
+<span class="k">class</span> <span class="nc">UserBase</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">email</span><span class="p">:</span> <span class="nb">str</span>
+
+
+<span class="k">class</span> <span class="nc">UserCreate</span><span class="p">(</span><span class="n">UserBase</span><span class="p">):</span>
+    <span class="n">password</span><span class="p">:</span> <span class="nb">str</span>
+
+
+<span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">UserBase</span><span class="p">):</span>
+    <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">is_active</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">items</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Item</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">class</span> <span class="nc">Config</span><span class="p">:</span>
+        <span class="n">orm_mode</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="hll">        <span class="n">getter_dict</span> <span class="o">=</span> <span class="n">PeeweeGetterDict</span>
+</span></code></pre></div>
+
+<p>Here we are checking if the attribute that is being accessed (e.g. <code>.items</code> in <code>some_user.items</code>) is an instance of <code>peewee.ModelSelect</code>.</p>
+<p>And if that's the case, just return a <code>list</code> with it.</p>
+<p>And then we use it in the Pydantic <em>models</em> / schemas that use <code>orm_mode = True</code>, with the configuration variable <code>getter_dict = PeeweeGetterDict</code>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>We only need to create one <code>PeeweeGetterDict</code> class, and we can use it in all the Pydantic <em>models</em> / schemas.</p>
+</div>
+<h2 id="crud-utils">CRUD utils<a class="headerlink" href="#crud-utils" title="Permanent link">&para;</a></h2>
+<p>Now let's see the file <code>sql_app/crud.py</code>.</p>
+<h3 id="create-all-the-crud-utils">Create all the CRUD utils<a class="headerlink" href="#create-all-the-crud-utils" title="Permanent link">&para;</a></h3>
+<p>Create all the same CRUD utils as in the SQLAlchemy tutorial, all the code is very similar:</p>
+<div class="codehilite"><pre><span></span><code><span class="hll"><span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">models</span><span class="p">,</span> <span class="n">schemas</span>
+</span>
+
+<span class="hll"><span class="k">def</span> <span class="nf">get_user</span><span class="p">(</span><span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+</span><span class="hll">    <span class="k">return</span> <span class="n">models</span><span class="o">.</span><span class="n">User</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">User</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="n">user_id</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+</span>
+
+<span class="hll"><span class="k">def</span> <span class="nf">get_user_by_email</span><span class="p">(</span><span class="n">email</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+</span><span class="hll">    <span class="k">return</span> <span class="n">models</span><span class="o">.</span><span class="n">User</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">User</span><span class="o">.</span><span class="n">email</span> <span class="o">==</span> <span class="n">email</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+</span>
+
+<span class="hll"><span class="k">def</span> <span class="nf">get_users</span><span class="p">(</span><span class="n">skip</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">limit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">):</span>
+</span><span class="hll">    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">User</span><span class="o">.</span><span class="n">select</span><span class="p">()</span><span class="o">.</span><span class="n">offset</span><span class="p">(</span><span class="n">skip</span><span class="p">)</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="n">limit</span><span class="p">))</span>
+</span>
+
+<span class="hll"><span class="k">def</span> <span class="nf">create_user</span><span class="p">(</span><span class="n">user</span><span class="p">:</span> <span class="n">schemas</span><span class="o">.</span><span class="n">UserCreate</span><span class="p">):</span>
+</span><span class="hll">    <span class="n">fake_hashed_password</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">password</span> <span class="o">+</span> <span class="s2">&quot;notreallyhashed&quot;</span>
+</span><span class="hll">    <span class="n">db_user</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">User</span><span class="p">(</span><span class="n">email</span><span class="o">=</span><span class="n">user</span><span class="o">.</span><span class="n">email</span><span class="p">,</span> <span class="n">hashed_password</span><span class="o">=</span><span class="n">fake_hashed_password</span><span class="p">)</span>
+</span><span class="hll">    <span class="n">db_user</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</span><span class="hll">    <span class="k">return</span> <span class="n">db_user</span>
+</span>
+
+<span class="hll"><span class="k">def</span> <span class="nf">get_items</span><span class="p">(</span><span class="n">skip</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">limit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">):</span>
+</span><span class="hll">    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Item</span><span class="o">.</span><span class="n">select</span><span class="p">()</span><span class="o">.</span><span class="n">offset</span><span class="p">(</span><span class="n">skip</span><span class="p">)</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="n">limit</span><span class="p">))</span>
+</span>
+
+<span class="hll"><span class="k">def</span> <span class="nf">create_user_item</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="n">schemas</span><span class="o">.</span><span class="n">ItemCreate</span><span class="p">,</span> <span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+</span><span class="hll">    <span class="n">db_item</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">Item</span><span class="p">(</span><span class="o">**</span><span class="n">item</span><span class="o">.</span><span class="n">dict</span><span class="p">(),</span> <span class="n">owner_id</span><span class="o">=</span><span class="n">user_id</span><span class="p">)</span>
+</span><span class="hll">    <span class="n">db_item</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</span><span class="hll">    <span class="k">return</span> <span class="n">db_item</span>
+</span></code></pre></div>
+
+<p>There are some differences with the code for the SQLAlchemy tutorial.</p>
+<p>We don't pass a <code>db</code> attribute around. Instead we use the models directly. This is because the <code>db</code> object is a global object, that includes all the connection logic. That's why we had to do all the <code>contextvars</code> updates above.</p>
+<p>Aso, when returning several objects, like in <code>get_users</code>, we directly call <code>list</code>, like in:</p>
+<div class="codehilite"><pre><span></span><code><span class="nb">list</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">User</span><span class="o">.</span><span class="n">select</span><span class="p">())</span>
+</code></pre></div>
+
+<p>This is for the same reason that we had to create a custom <code>PeeweeGetterDict</code>. But by returning something that is already a <code>list</code> instead of the <code>peewee.ModelSelect</code> the <code>response_model</code> in the <em>path operation</em> with <code>List[models.User]</code> (that we'll see later) will work correctly.</p>
+<h2 id="main-fastapi-app">Main <strong>FastAPI</strong> app<a class="headerlink" href="#main-fastapi-app" title="Permanent link">&para;</a></h2>
+<p>And now in the file <code>sql_app/main.py</code> let's integrate and use all the other parts we created before.</p>
+<h3 id="create-the-database-tables">Create the database tables<a class="headerlink" href="#create-the-database-tables" title="Permanent link">&para;</a></h3>
+<p>In a very simplistic way create the database tables:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+
+<span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">Depends</span><span class="p">,</span> <span class="n">FastAPI</span><span class="p">,</span> <span class="n">HTTPException</span>
+
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">crud</span><span class="p">,</span> <span class="n">database</span><span class="p">,</span> <span class="n">models</span><span class="p">,</span> <span class="n">schemas</span>
+<span class="kn">from</span> <span class="nn">.database</span> <span class="kn">import</span> <span class="n">db_state_default</span>
+
+<span class="hll"><span class="n">database</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+</span><span class="hll"><span class="n">database</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">create_tables</span><span class="p">([</span><span class="n">models</span><span class="o">.</span><span class="n">User</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">Item</span><span class="p">])</span>
+</span><span class="hll"><span class="n">database</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+
+<span class="n">sleep_time</span> <span class="o">=</span> <span class="mi">10</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">reset_db_state</span><span class="p">():</span>
+    <span class="n">database</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">_state</span><span class="o">.</span><span class="n">_state</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">db_state_default</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+    <span class="n">database</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">_state</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">get_db</span><span class="p">(</span><span class="n">db_state</span><span class="o">=</span><span class="n">Depends</span><span class="p">(</span><span class="n">reset_db_state</span><span class="p">)):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">database</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+        <span class="k">yield</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">database</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">is_closed</span><span class="p">():</span>
+            <span class="n">database</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/users/&quot;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">schemas</span><span class="o">.</span><span class="n">User</span><span class="p">,</span> <span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_db</span><span class="p">)])</span>
+<span class="k">def</span> <span class="nf">create_user</span><span class="p">(</span><span class="n">user</span><span class="p">:</span> <span class="n">schemas</span><span class="o">.</span><span class="n">UserCreate</span><span class="p">):</span>
+    <span class="n">db_user</span> <span class="o">=</span> <span class="n">crud</span><span class="o">.</span><span class="n">get_user_by_email</span><span class="p">(</span><span class="n">email</span><span class="o">=</span><span class="n">user</span><span class="o">.</span><span class="n">email</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">db_user</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;Email already registered&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">crud</span><span class="o">.</span><span class="n">create_user</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">)</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/users/&quot;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">List</span><span class="p">[</span><span class="n">schemas</span><span class="o">.</span><span class="n">User</span><span class="p">],</span> <span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_db</span><span class="p">)])</span>
+<span class="k">def</span> <span class="nf">read_users</span><span class="p">(</span><span class="n">skip</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">limit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">):</span>
+    <span class="n">users</span> <span class="o">=</span> <span class="n">crud</span><span class="o">.</span><span class="n">get_users</span><span class="p">(</span><span class="n">skip</span><span class="o">=</span><span class="n">skip</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">users</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+    <span class="s2">&quot;/users/</span><span class="si">{user_id}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">schemas</span><span class="o">.</span><span class="n">User</span><span class="p">,</span> <span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_db</span><span class="p">)]</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">read_user</span><span class="p">(</span><span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="n">db_user</span> <span class="o">=</span> <span class="n">crud</span><span class="o">.</span><span class="n">get_user</span><span class="p">(</span><span class="n">user_id</span><span class="o">=</span><span class="n">user_id</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">db_user</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="mi">404</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;User not found&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">db_user</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+    <span class="s2">&quot;/users/</span><span class="si">{user_id}</span><span class="s2">/items/&quot;</span><span class="p">,</span>
+    <span class="n">response_model</span><span class="o">=</span><span class="n">schemas</span><span class="o">.</span><span class="n">Item</span><span class="p">,</span>
+    <span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_db</span><span class="p">)],</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">create_item_for_user</span><span class="p">(</span><span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">item</span><span class="p">:</span> <span class="n">schemas</span><span class="o">.</span><span class="n">ItemCreate</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">crud</span><span class="o">.</span><span class="n">create_user_item</span><span class="p">(</span><span class="n">item</span><span class="o">=</span><span class="n">item</span><span class="p">,</span> <span class="n">user_id</span><span class="o">=</span><span class="n">user_id</span><span class="p">)</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/items/&quot;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">List</span><span class="p">[</span><span class="n">schemas</span><span class="o">.</span><span class="n">Item</span><span class="p">],</span> <span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_db</span><span class="p">)])</span>
+<span class="k">def</span> <span class="nf">read_items</span><span class="p">(</span><span class="n">skip</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">limit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">):</span>
+    <span class="n">items</span> <span class="o">=</span> <span class="n">crud</span><span class="o">.</span><span class="n">get_items</span><span class="p">(</span><span class="n">skip</span><span class="o">=</span><span class="n">skip</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">items</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+    <span class="s2">&quot;/slowusers/&quot;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">List</span><span class="p">[</span><span class="n">schemas</span><span class="o">.</span><span class="n">User</span><span class="p">],</span> <span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_db</span><span class="p">)]</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">read_slow_users</span><span class="p">(</span><span class="n">skip</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">limit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">sleep_time</span>
+    <span class="n">sleep_time</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">sleep_time</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">sleep_time</span><span class="p">)</span>  <span class="c1"># Fake long processing request</span>
+    <span class="n">users</span> <span class="o">=</span> <span class="n">crud</span><span class="o">.</span><span class="n">get_users</span><span class="p">(</span><span class="n">skip</span><span class="o">=</span><span class="n">skip</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">users</span>
+</code></pre></div>
+
+<h3 id="create-a-dependency">Create a dependency<a class="headerlink" href="#create-a-dependency" title="Permanent link">&para;</a></h3>
+<p>Create a dependency that will connect the database right at the beginning of a request and disconnect it at the end:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+
+<span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">Depends</span><span class="p">,</span> <span class="n">FastAPI</span><span class="p">,</span> <span class="n">HTTPException</span>
+
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">crud</span><span class="p">,</span> <span class="n">database</span><span class="p">,</span> <span class="n">models</span><span class="p">,</span> <span class="n">schemas</span>
+<span class="kn">from</span> <span class="nn">.database</span> <span class="kn">import</span> <span class="n">db_state_default</span>
+
+<span class="n">database</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+<span class="n">database</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">create_tables</span><span class="p">([</span><span class="n">models</span><span class="o">.</span><span class="n">User</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">Item</span><span class="p">])</span>
+<span class="n">database</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+
+<span class="n">sleep_time</span> <span class="o">=</span> <span class="mi">10</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">reset_db_state</span><span class="p">():</span>
+    <span class="n">database</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">_state</span><span class="o">.</span><span class="n">_state</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">db_state_default</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+    <span class="n">database</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">_state</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+
+
+<span class="hll"><span class="k">def</span> <span class="nf">get_db</span><span class="p">(</span><span class="n">db_state</span><span class="o">=</span><span class="n">Depends</span><span class="p">(</span><span class="n">reset_db_state</span><span class="p">)):</span>
+</span><span class="hll">    <span class="k">try</span><span class="p">:</span>
+</span><span class="hll">        <span class="n">database</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+</span><span class="hll">        <span class="k">yield</span>
+</span><span class="hll">    <span class="k">finally</span><span class="p">:</span>
+</span><span class="hll">        <span class="k">if</span> <span class="ow">not</span> <span class="n">database</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">is_closed</span><span class="p">():</span>
+</span><span class="hll">            <span class="n">database</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/users/&quot;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">schemas</span><span class="o">.</span><span class="n">User</span><span class="p">,</span> <span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_db</span><span class="p">)])</span>
+<span class="k">def</span> <span class="nf">create_user</span><span class="p">(</span><span class="n">user</span><span class="p">:</span> <span class="n">schemas</span><span class="o">.</span><span class="n">UserCreate</span><span class="p">):</span>
+    <span class="n">db_user</span> <span class="o">=</span> <span class="n">crud</span><span class="o">.</span><span class="n">get_user_by_email</span><span class="p">(</span><span class="n">email</span><span class="o">=</span><span class="n">user</span><span class="o">.</span><span class="n">email</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">db_user</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;Email already registered&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">crud</span><span class="o">.</span><span class="n">create_user</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">)</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/users/&quot;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">List</span><span class="p">[</span><span class="n">schemas</span><span class="o">.</span><span class="n">User</span><span class="p">],</span> <span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_db</span><span class="p">)])</span>
+<span class="k">def</span> <span class="nf">read_users</span><span class="p">(</span><span class="n">skip</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">limit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">):</span>
+    <span class="n">users</span> <span class="o">=</span> <span class="n">crud</span><span class="o">.</span><span class="n">get_users</span><span class="p">(</span><span class="n">skip</span><span class="o">=</span><span class="n">skip</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">users</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+    <span class="s2">&quot;/users/</span><span class="si">{user_id}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">schemas</span><span class="o">.</span><span class="n">User</span><span class="p">,</span> <span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_db</span><span class="p">)]</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">read_user</span><span class="p">(</span><span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="n">db_user</span> <span class="o">=</span> <span class="n">crud</span><span class="o">.</span><span class="n">get_user</span><span class="p">(</span><span class="n">user_id</span><span class="o">=</span><span class="n">user_id</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">db_user</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="mi">404</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;User not found&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">db_user</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+    <span class="s2">&quot;/users/</span><span class="si">{user_id}</span><span class="s2">/items/&quot;</span><span class="p">,</span>
+    <span class="n">response_model</span><span class="o">=</span><span class="n">schemas</span><span class="o">.</span><span class="n">Item</span><span class="p">,</span>
+    <span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_db</span><span class="p">)],</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">create_item_for_user</span><span class="p">(</span><span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">item</span><span class="p">:</span> <span class="n">schemas</span><span class="o">.</span><span class="n">ItemCreate</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">crud</span><span class="o">.</span><span class="n">create_user_item</span><span class="p">(</span><span class="n">item</span><span class="o">=</span><span class="n">item</span><span class="p">,</span> <span class="n">user_id</span><span class="o">=</span><span class="n">user_id</span><span class="p">)</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/items/&quot;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">List</span><span class="p">[</span><span class="n">schemas</span><span class="o">.</span><span class="n">Item</span><span class="p">],</span> <span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_db</span><span class="p">)])</span>
+<span class="k">def</span> <span class="nf">read_items</span><span class="p">(</span><span class="n">skip</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">limit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">):</span>
+    <span class="n">items</span> <span class="o">=</span> <span class="n">crud</span><span class="o">.</span><span class="n">get_items</span><span class="p">(</span><span class="n">skip</span><span class="o">=</span><span class="n">skip</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">items</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+    <span class="s2">&quot;/slowusers/&quot;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">List</span><span class="p">[</span><span class="n">schemas</span><span class="o">.</span><span class="n">User</span><span class="p">],</span> <span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_db</span><span class="p">)]</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">read_slow_users</span><span class="p">(</span><span class="n">skip</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">limit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">sleep_time</span>
+    <span class="n">sleep_time</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">sleep_time</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">sleep_time</span><span class="p">)</span>  <span class="c1"># Fake long processing request</span>
+    <span class="n">users</span> <span class="o">=</span> <span class="n">crud</span><span class="o">.</span><span class="n">get_users</span><span class="p">(</span><span class="n">skip</span><span class="o">=</span><span class="n">skip</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">users</span>
+</code></pre></div>
+
+<p>Here we have an empty <code>yield</code> because we are actually not using the database object directly.</p>
+<p>It is connecting to the database and storing the connection data in an internal variable that is independent for each request (using the <code>contextvars</code> tricks from above).</p>
+<p>Because the database connection is potentially I/O blocking, this dependency is created with a normal <code>def</code> function.</p>
+<p>And then, in each <em>path operation function</em> that needs to access the database we add it as a dependency.</p>
+<p>But we are not using the value given by this dependency (it actually doesn't give any value, as it has an empty <code>yield</code>). So, we don't add it to the <em>path operation function</em> but to the <em>path operation decorator</em> in the <code>dependencies</code> parameter:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+
+<span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">Depends</span><span class="p">,</span> <span class="n">FastAPI</span><span class="p">,</span> <span class="n">HTTPException</span>
+
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">crud</span><span class="p">,</span> <span class="n">database</span><span class="p">,</span> <span class="n">models</span><span class="p">,</span> <span class="n">schemas</span>
+<span class="kn">from</span> <span class="nn">.database</span> <span class="kn">import</span> <span class="n">db_state_default</span>
+
+<span class="n">database</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+<span class="n">database</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">create_tables</span><span class="p">([</span><span class="n">models</span><span class="o">.</span><span class="n">User</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">Item</span><span class="p">])</span>
+<span class="n">database</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+
+<span class="n">sleep_time</span> <span class="o">=</span> <span class="mi">10</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">reset_db_state</span><span class="p">():</span>
+    <span class="n">database</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">_state</span><span class="o">.</span><span class="n">_state</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">db_state_default</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+    <span class="n">database</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">_state</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">get_db</span><span class="p">(</span><span class="n">db_state</span><span class="o">=</span><span class="n">Depends</span><span class="p">(</span><span class="n">reset_db_state</span><span class="p">)):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">database</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+        <span class="k">yield</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">database</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">is_closed</span><span class="p">():</span>
+            <span class="n">database</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+
+<span class="hll"><span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/users/&quot;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">schemas</span><span class="o">.</span><span class="n">User</span><span class="p">,</span> <span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_db</span><span class="p">)])</span>
+</span><span class="k">def</span> <span class="nf">create_user</span><span class="p">(</span><span class="n">user</span><span class="p">:</span> <span class="n">schemas</span><span class="o">.</span><span class="n">UserCreate</span><span class="p">):</span>
+    <span class="n">db_user</span> <span class="o">=</span> <span class="n">crud</span><span class="o">.</span><span class="n">get_user_by_email</span><span class="p">(</span><span class="n">email</span><span class="o">=</span><span class="n">user</span><span class="o">.</span><span class="n">email</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">db_user</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;Email already registered&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">crud</span><span class="o">.</span><span class="n">create_user</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">)</span>
+
+
+<span class="hll"><span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/users/&quot;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">List</span><span class="p">[</span><span class="n">schemas</span><span class="o">.</span><span class="n">User</span><span class="p">],</span> <span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_db</span><span class="p">)])</span>
+</span><span class="k">def</span> <span class="nf">read_users</span><span class="p">(</span><span class="n">skip</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">limit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">):</span>
+    <span class="n">users</span> <span class="o">=</span> <span class="n">crud</span><span class="o">.</span><span class="n">get_users</span><span class="p">(</span><span class="n">skip</span><span class="o">=</span><span class="n">skip</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">users</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+<span class="hll">    <span class="s2">&quot;/users/</span><span class="si">{user_id}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">schemas</span><span class="o">.</span><span class="n">User</span><span class="p">,</span> <span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_db</span><span class="p">)]</span>
+</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">read_user</span><span class="p">(</span><span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="n">db_user</span> <span class="o">=</span> <span class="n">crud</span><span class="o">.</span><span class="n">get_user</span><span class="p">(</span><span class="n">user_id</span><span class="o">=</span><span class="n">user_id</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">db_user</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="mi">404</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;User not found&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">db_user</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+    <span class="s2">&quot;/users/</span><span class="si">{user_id}</span><span class="s2">/items/&quot;</span><span class="p">,</span>
+    <span class="n">response_model</span><span class="o">=</span><span class="n">schemas</span><span class="o">.</span><span class="n">Item</span><span class="p">,</span>
+<span class="hll">    <span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_db</span><span class="p">)],</span>
+</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">create_item_for_user</span><span class="p">(</span><span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">item</span><span class="p">:</span> <span class="n">schemas</span><span class="o">.</span><span class="n">ItemCreate</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">crud</span><span class="o">.</span><span class="n">create_user_item</span><span class="p">(</span><span class="n">item</span><span class="o">=</span><span class="n">item</span><span class="p">,</span> <span class="n">user_id</span><span class="o">=</span><span class="n">user_id</span><span class="p">)</span>
+
+
+<span class="hll"><span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/items/&quot;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">List</span><span class="p">[</span><span class="n">schemas</span><span class="o">.</span><span class="n">Item</span><span class="p">],</span> <span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_db</span><span class="p">)])</span>
+</span><span class="k">def</span> <span class="nf">read_items</span><span class="p">(</span><span class="n">skip</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">limit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">):</span>
+    <span class="n">items</span> <span class="o">=</span> <span class="n">crud</span><span class="o">.</span><span class="n">get_items</span><span class="p">(</span><span class="n">skip</span><span class="o">=</span><span class="n">skip</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">items</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+<span class="hll">    <span class="s2">&quot;/slowusers/&quot;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">List</span><span class="p">[</span><span class="n">schemas</span><span class="o">.</span><span class="n">User</span><span class="p">],</span> <span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_db</span><span class="p">)]</span>
+</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">read_slow_users</span><span class="p">(</span><span class="n">skip</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">limit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">sleep_time</span>
+    <span class="n">sleep_time</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">sleep_time</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">sleep_time</span><span class="p">)</span>  <span class="c1"># Fake long processing request</span>
+    <span class="n">users</span> <span class="o">=</span> <span class="n">crud</span><span class="o">.</span><span class="n">get_users</span><span class="p">(</span><span class="n">skip</span><span class="o">=</span><span class="n">skip</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">users</span>
+</code></pre></div>
+
+<h3 id="context-variable-sub-dependency">Context variable sub-dependency<a class="headerlink" href="#context-variable-sub-dependency" title="Permanent link">&para;</a></h3>
+<p>For all the <code>contextvars</code> parts to work, we need to make sure we have an independent value in the <code>ContextVar</code> for each request that uses the database, and that value will be used as the database state (connection, transactions, etc) for the whole request.</p>
+<p>For that, we need to create another <code>async</code> dependency <code>reset_db_state()</code> that is used as a sub-dependency in <code>get_db()</code>. It will set the value for the context variable (with just a default <code>dict</code>) that will be used as the database state for the whole request. And then the dependency <code>get_db()</code> will store in it the database state (connection, transactions, etc).</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+
+<span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">Depends</span><span class="p">,</span> <span class="n">FastAPI</span><span class="p">,</span> <span class="n">HTTPException</span>
+
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">crud</span><span class="p">,</span> <span class="n">database</span><span class="p">,</span> <span class="n">models</span><span class="p">,</span> <span class="n">schemas</span>
+<span class="kn">from</span> <span class="nn">.database</span> <span class="kn">import</span> <span class="n">db_state_default</span>
+
+<span class="n">database</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+<span class="n">database</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">create_tables</span><span class="p">([</span><span class="n">models</span><span class="o">.</span><span class="n">User</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">Item</span><span class="p">])</span>
+<span class="n">database</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+
+<span class="n">sleep_time</span> <span class="o">=</span> <span class="mi">10</span>
+
+
+<span class="hll"><span class="k">async</span> <span class="k">def</span> <span class="nf">reset_db_state</span><span class="p">():</span>
+</span><span class="hll">    <span class="n">database</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">_state</span><span class="o">.</span><span class="n">_state</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">db_state_default</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+</span><span class="hll">    <span class="n">database</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">_state</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+</span>
+
+<span class="k">def</span> <span class="nf">get_db</span><span class="p">(</span><span class="n">db_state</span><span class="o">=</span><span class="n">Depends</span><span class="p">(</span><span class="n">reset_db_state</span><span class="p">)):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">database</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+        <span class="k">yield</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">database</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">is_closed</span><span class="p">():</span>
+            <span class="n">database</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/users/&quot;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">schemas</span><span class="o">.</span><span class="n">User</span><span class="p">,</span> <span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_db</span><span class="p">)])</span>
+<span class="k">def</span> <span class="nf">create_user</span><span class="p">(</span><span class="n">user</span><span class="p">:</span> <span class="n">schemas</span><span class="o">.</span><span class="n">UserCreate</span><span class="p">):</span>
+    <span class="n">db_user</span> <span class="o">=</span> <span class="n">crud</span><span class="o">.</span><span class="n">get_user_by_email</span><span class="p">(</span><span class="n">email</span><span class="o">=</span><span class="n">user</span><span class="o">.</span><span class="n">email</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">db_user</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;Email already registered&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">crud</span><span class="o">.</span><span class="n">create_user</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">)</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/users/&quot;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">List</span><span class="p">[</span><span class="n">schemas</span><span class="o">.</span><span class="n">User</span><span class="p">],</span> <span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_db</span><span class="p">)])</span>
+<span class="k">def</span> <span class="nf">read_users</span><span class="p">(</span><span class="n">skip</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">limit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">):</span>
+    <span class="n">users</span> <span class="o">=</span> <span class="n">crud</span><span class="o">.</span><span class="n">get_users</span><span class="p">(</span><span class="n">skip</span><span class="o">=</span><span class="n">skip</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">users</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+    <span class="s2">&quot;/users/</span><span class="si">{user_id}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">schemas</span><span class="o">.</span><span class="n">User</span><span class="p">,</span> <span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_db</span><span class="p">)]</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">read_user</span><span class="p">(</span><span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="n">db_user</span> <span class="o">=</span> <span class="n">crud</span><span class="o">.</span><span class="n">get_user</span><span class="p">(</span><span class="n">user_id</span><span class="o">=</span><span class="n">user_id</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">db_user</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="mi">404</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;User not found&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">db_user</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+    <span class="s2">&quot;/users/</span><span class="si">{user_id}</span><span class="s2">/items/&quot;</span><span class="p">,</span>
+    <span class="n">response_model</span><span class="o">=</span><span class="n">schemas</span><span class="o">.</span><span class="n">Item</span><span class="p">,</span>
+    <span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_db</span><span class="p">)],</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">create_item_for_user</span><span class="p">(</span><span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">item</span><span class="p">:</span> <span class="n">schemas</span><span class="o">.</span><span class="n">ItemCreate</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">crud</span><span class="o">.</span><span class="n">create_user_item</span><span class="p">(</span><span class="n">item</span><span class="o">=</span><span class="n">item</span><span class="p">,</span> <span class="n">user_id</span><span class="o">=</span><span class="n">user_id</span><span class="p">)</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/items/&quot;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">List</span><span class="p">[</span><span class="n">schemas</span><span class="o">.</span><span class="n">Item</span><span class="p">],</span> <span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_db</span><span class="p">)])</span>
+<span class="k">def</span> <span class="nf">read_items</span><span class="p">(</span><span class="n">skip</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">limit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">):</span>
+    <span class="n">items</span> <span class="o">=</span> <span class="n">crud</span><span class="o">.</span><span class="n">get_items</span><span class="p">(</span><span class="n">skip</span><span class="o">=</span><span class="n">skip</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">items</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+    <span class="s2">&quot;/slowusers/&quot;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">List</span><span class="p">[</span><span class="n">schemas</span><span class="o">.</span><span class="n">User</span><span class="p">],</span> <span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_db</span><span class="p">)]</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">read_slow_users</span><span class="p">(</span><span class="n">skip</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">limit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">sleep_time</span>
+    <span class="n">sleep_time</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">sleep_time</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">sleep_time</span><span class="p">)</span>  <span class="c1"># Fake long processing request</span>
+    <span class="n">users</span> <span class="o">=</span> <span class="n">crud</span><span class="o">.</span><span class="n">get_users</span><span class="p">(</span><span class="n">skip</span><span class="o">=</span><span class="n">skip</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">users</span>
+</code></pre></div>
+
+<p>For the <strong>next request</strong>, as we will reset that context variable again in the <code>async</code> dependency <code>reset_db_state()</code> and then create a new connection in the <code>get_db()</code> dependency, that new request will have its own database state (connection, transactions, etc).</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>As FastAPI is an async framework, one request could start being processed, and before finishing, another request could be received and start processing as well, and it all could be processed in the same thread.</p>
+<p>But context variables are aware of these async features, so, a Peewee database state set in the <code>async</code> dependency <code>reset_db_state()</code> will keep its own data throughout the entire request.</p>
+<p>And at the same time, the other concurrent request will have its own database state that will be independent for the whole request.</p>
+</div>
+<h4 id="peewee-proxy">Peewee Proxy<a class="headerlink" href="#peewee-proxy" title="Permanent link">&para;</a></h4>
+<p>If you are using a <a href="http://docs.peewee-orm.com/en/latest/peewee/database.html#dynamically-defining-a-database" class="external-link" target="_blank">Peewee Proxy</a>, the actual database is at <code>db.obj</code>.</p>
+<p>So, you would reset it with:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">reset_db_state</span><span class="p">():</span>
+    <span class="n">database</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="n">_state</span><span class="o">.</span><span class="n">_state</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">db_state_default</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+<span class="hll">    <span class="n">database</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="n">_state</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+</span></code></pre></div>
+
+<h3 id="create-your-fastapi-path-operations">Create your <strong>FastAPI</strong> <em>path operations</em><a class="headerlink" href="#create-your-fastapi-path-operations" title="Permanent link">&para;</a></h3>
+<p>Now, finally, here's the standard <strong>FastAPI</strong> <em>path operations</em> code.</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+
+<span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">Depends</span><span class="p">,</span> <span class="n">FastAPI</span><span class="p">,</span> <span class="n">HTTPException</span>
+
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">crud</span><span class="p">,</span> <span class="n">database</span><span class="p">,</span> <span class="n">models</span><span class="p">,</span> <span class="n">schemas</span>
+<span class="kn">from</span> <span class="nn">.database</span> <span class="kn">import</span> <span class="n">db_state_default</span>
+
+<span class="n">database</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+<span class="n">database</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">create_tables</span><span class="p">([</span><span class="n">models</span><span class="o">.</span><span class="n">User</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">Item</span><span class="p">])</span>
+<span class="n">database</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+
+<span class="n">sleep_time</span> <span class="o">=</span> <span class="mi">10</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">reset_db_state</span><span class="p">():</span>
+    <span class="n">database</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">_state</span><span class="o">.</span><span class="n">_state</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">db_state_default</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+    <span class="n">database</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">_state</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">get_db</span><span class="p">(</span><span class="n">db_state</span><span class="o">=</span><span class="n">Depends</span><span class="p">(</span><span class="n">reset_db_state</span><span class="p">)):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">database</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+        <span class="k">yield</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">database</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">is_closed</span><span class="p">():</span>
+            <span class="n">database</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+
+<span class="hll"><span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/users/&quot;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">schemas</span><span class="o">.</span><span class="n">User</span><span class="p">,</span> <span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_db</span><span class="p">)])</span>
+</span><span class="hll"><span class="k">def</span> <span class="nf">create_user</span><span class="p">(</span><span class="n">user</span><span class="p">:</span> <span class="n">schemas</span><span class="o">.</span><span class="n">UserCreate</span><span class="p">):</span>
+</span><span class="hll">    <span class="n">db_user</span> <span class="o">=</span> <span class="n">crud</span><span class="o">.</span><span class="n">get_user_by_email</span><span class="p">(</span><span class="n">email</span><span class="o">=</span><span class="n">user</span><span class="o">.</span><span class="n">email</span><span class="p">)</span>
+</span><span class="hll">    <span class="k">if</span> <span class="n">db_user</span><span class="p">:</span>
+</span><span class="hll">        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;Email already registered&quot;</span><span class="p">)</span>
+</span><span class="hll">    <span class="k">return</span> <span class="n">crud</span><span class="o">.</span><span class="n">create_user</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">)</span>
+</span>
+
+<span class="hll"><span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/users/&quot;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">List</span><span class="p">[</span><span class="n">schemas</span><span class="o">.</span><span class="n">User</span><span class="p">],</span> <span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_db</span><span class="p">)])</span>
+</span><span class="hll"><span class="k">def</span> <span class="nf">read_users</span><span class="p">(</span><span class="n">skip</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">limit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">):</span>
+</span><span class="hll">    <span class="n">users</span> <span class="o">=</span> <span class="n">crud</span><span class="o">.</span><span class="n">get_users</span><span class="p">(</span><span class="n">skip</span><span class="o">=</span><span class="n">skip</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">)</span>
+</span><span class="hll">    <span class="k">return</span> <span class="n">users</span>
+</span>
+
+<span class="hll"><span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+</span><span class="hll">    <span class="s2">&quot;/users/</span><span class="si">{user_id}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">schemas</span><span class="o">.</span><span class="n">User</span><span class="p">,</span> <span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_db</span><span class="p">)]</span>
+</span><span class="hll"><span class="p">)</span>
+</span><span class="hll"><span class="k">def</span> <span class="nf">read_user</span><span class="p">(</span><span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+</span><span class="hll">    <span class="n">db_user</span> <span class="o">=</span> <span class="n">crud</span><span class="o">.</span><span class="n">get_user</span><span class="p">(</span><span class="n">user_id</span><span class="o">=</span><span class="n">user_id</span><span class="p">)</span>
+</span><span class="hll">    <span class="k">if</span> <span class="n">db_user</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span><span class="hll">        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="mi">404</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;User not found&quot;</span><span class="p">)</span>
+</span><span class="hll">    <span class="k">return</span> <span class="n">db_user</span>
+</span>
+
+<span class="hll"><span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+</span><span class="hll">    <span class="s2">&quot;/users/</span><span class="si">{user_id}</span><span class="s2">/items/&quot;</span><span class="p">,</span>
+</span><span class="hll">    <span class="n">response_model</span><span class="o">=</span><span class="n">schemas</span><span class="o">.</span><span class="n">Item</span><span class="p">,</span>
+</span><span class="hll">    <span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_db</span><span class="p">)],</span>
+</span><span class="hll"><span class="p">)</span>
+</span><span class="hll"><span class="k">def</span> <span class="nf">create_item_for_user</span><span class="p">(</span><span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">item</span><span class="p">:</span> <span class="n">schemas</span><span class="o">.</span><span class="n">ItemCreate</span><span class="p">):</span>
+</span><span class="hll">    <span class="k">return</span> <span class="n">crud</span><span class="o">.</span><span class="n">create_user_item</span><span class="p">(</span><span class="n">item</span><span class="o">=</span><span class="n">item</span><span class="p">,</span> <span class="n">user_id</span><span class="o">=</span><span class="n">user_id</span><span class="p">)</span>
+</span>
+
+<span class="hll"><span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/items/&quot;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">List</span><span class="p">[</span><span class="n">schemas</span><span class="o">.</span><span class="n">Item</span><span class="p">],</span> <span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_db</span><span class="p">)])</span>
+</span><span class="hll"><span class="k">def</span> <span class="nf">read_items</span><span class="p">(</span><span class="n">skip</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">limit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">):</span>
+</span><span class="hll">    <span class="n">items</span> <span class="o">=</span> <span class="n">crud</span><span class="o">.</span><span class="n">get_items</span><span class="p">(</span><span class="n">skip</span><span class="o">=</span><span class="n">skip</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">)</span>
+</span><span class="hll">    <span class="k">return</span> <span class="n">items</span>
+</span>
+
+<span class="hll"><span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+</span><span class="hll">    <span class="s2">&quot;/slowusers/&quot;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">List</span><span class="p">[</span><span class="n">schemas</span><span class="o">.</span><span class="n">User</span><span class="p">],</span> <span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_db</span><span class="p">)]</span>
+</span><span class="hll"><span class="p">)</span>
+</span><span class="hll"><span class="k">def</span> <span class="nf">read_slow_users</span><span class="p">(</span><span class="n">skip</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">limit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">):</span>
+</span><span class="hll">    <span class="k">global</span> <span class="n">sleep_time</span>
+</span><span class="hll">    <span class="n">sleep_time</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">sleep_time</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</span><span class="hll">    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">sleep_time</span><span class="p">)</span>  <span class="c1"># Fake long processing request</span>
+</span><span class="hll">    <span class="n">users</span> <span class="o">=</span> <span class="n">crud</span><span class="o">.</span><span class="n">get_users</span><span class="p">(</span><span class="n">skip</span><span class="o">=</span><span class="n">skip</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">)</span>
+</span><span class="hll">    <span class="k">return</span> <span class="n">users</span>
+</span></code></pre></div>
+
+<h3 id="about-def-vs-async-def">About <code>def</code> vs <code>async def</code><a class="headerlink" href="#about-def-vs-async-def" title="Permanent link">&para;</a></h3>
+<p>The same as with SQLAlchemy, we are not doing something like:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">user</span> <span class="o">=</span> <span class="k">await</span> <span class="n">models</span><span class="o">.</span><span class="n">User</span><span class="o">.</span><span class="n">select</span><span class="p">()</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+</code></pre></div>
+
+<p>...but instead we are using:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">user</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">User</span><span class="o">.</span><span class="n">select</span><span class="p">()</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+</code></pre></div>
+
+<p>So, again, we should declare the <em>path operation functions</em> and the dependency without <code>async def</code>, just with a normal <code>def</code>, as:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Something goes here</span>
+<span class="hll"><span class="k">def</span> <span class="nf">read_users</span><span class="p">(</span><span class="n">skip</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">limit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">):</span>
+</span>    <span class="c1"># Something goes here</span>
+</code></pre></div>
+
+<h2 id="testing-peewee-with-async">Testing Peewee with async<a class="headerlink" href="#testing-peewee-with-async" title="Permanent link">&para;</a></h2>
+<p>This example includes an extra <em>path operation</em> that simulates a long processing request with <code>time.sleep(sleep_time)</code>.</p>
+<p>It will have the database connection open at the beginning and will just wait some seconds before replying back. And each new request will wait one second less.</p>
+<p>This will easily let you test that your app with Peewee and FastAPI is behaving correctly with all the stuff about threads.</p>
+<p>If you want to check how Peewee would break your app if used without modification, go the the <code>sql_app/database.py</code> file and comment the line:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># db._state = PeeweeConnectionState()</span>
+</code></pre></div>
+
+<p>And in the file <code>sql_app/main.py</code> file, comment the body of the <code>async</code> dependency <code>reset_db_state()</code> and replace it with a <code>pass</code>:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">reset_db_state</span><span class="p">():</span>
+<span class="c1">#     database.db._state._state.set(db_state_default.copy())</span>
+<span class="c1">#     database.db._state.reset()</span>
+    <span class="k">pass</span>
+</code></pre></div>
+
+<p>Then run your app with Uvicorn:</p>
+<div class="codehilite"><pre><span></span><code>uvicorn sql_app.main:app --reload
+</code></pre></div>
+
+<p>Open your browser at <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>  and create a couple of users.</p>
+<p>Then open 10 tabs at <a href="http://127.0.0.1:8000/docs#/default/read_slow_users_slowusers__get" class="external-link" target="_blank">http://127.0.0.1:8000/docs#/default/read_slow_users_slowusers__get</a> at the same time.</p>
+<p>Go to the <em>path operation</em> "Get <code>/slowusers/</code>" in all of the tabs. Use the "Try it out" button and execute the request in each tab, one right after the other.</p>
+<p>The tabs will wait for a bit and then some of them will show <code>Internal Server Error</code>.</p>
+<h3 id="what-happens">What happens<a class="headerlink" href="#what-happens" title="Permanent link">&para;</a></h3>
+<p>The first tab will make your app create a connection to the database and wait for some seconds before replying back and closing the database connection.</p>
+<p>Then, for the request in the next tab, your app will wait for one second less, and so on.</p>
+<p>This means that it will end up finishing some of the last tabs' requests earlier than some of the previous ones.</p>
+<p>Then one the last requests that wait less seconds will try to open a database connection, but as one of those previous requests for the other tabs will probably be handled in the same thread as the first one, it will have the same database connection that is already open, and Peewee will throw an error and you will see it in the terminal, and the response will have an <code>Internal Server Error</code>.</p>
+<p>This will probably happen for more than one of those tabs.</p>
+<p>If you had multiple clients talking to your app exactly at the same time, this is what could happen.</p>
+<p>And as your app starts to handle more and more clients at the same time, the waiting time in a single request needs to be shorter and shorter to trigger the error.</p>
+<h3 id="fix-peewee-with-fastapi">Fix Peewee with FastAPI<a class="headerlink" href="#fix-peewee-with-fastapi" title="Permanent link">&para;</a></h3>
+<p>Now go back to the file <code>sql_app/database.py</code>, and uncomment the line:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">db</span><span class="o">.</span><span class="n">_state</span> <span class="o">=</span> <span class="n">PeeweeConnectionState</span><span class="p">()</span>
+</code></pre></div>
+
+<p>And in the file <code>sql_app/main.py</code> file, uncomment the body of the <code>async</code> dependency <code>reset_db_state()</code>:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">reset_db_state</span><span class="p">():</span>
+    <span class="n">database</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">_state</span><span class="o">.</span><span class="n">_state</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">db_state_default</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+    <span class="n">database</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">_state</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+</code></pre></div>
+
+<p>Terminate your running app and start it again.</p>
+<p>Repeat the same process with the 10 tabs. This time all of them will wait and you will get all the results without errors.</p>
+<p>...You fixed it!</p>
+<h2 id="review-all-the-files">Review all the files<a class="headerlink" href="#review-all-the-files" title="Permanent link">&para;</a></h2>
+<p>Remember you should have a directory named <code>my_super_project</code> (or however you want) that contains a sub-directory called <code>sql_app</code>.</p>
+<p><code>sql_app</code> should have the following files:</p>
+<ul>
+<li>
+<p><code>sql_app/__init__.py</code>: is an empty file.</p>
+</li>
+<li>
+<p><code>sql_app/database.py</code>:</p>
+</li>
+</ul>
+<p>```Python hl_lines=""
+from contextvars import ContextVar</p>
+<p>import peewee</p>
+<p>DATABASE_NAME = "test.db"
+db_state_default = {"closed": None, "conn": None, "ctx": None, "transactions": None}
+db_state = ContextVar("db_state", default=db_state_default.copy())</p>
+<p>class PeeweeConnectionState(peewee._ConnectionState):
+    def <strong>init</strong>(self, <strong>kwargs):
+        super().<strong>setattr</strong>("_state", db_state)
+        super().<strong>init</strong>(</strong>kwargs)</p>
+<div class="codehilite"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">__setattr__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+<span class="w">    </span><span class="n">self</span><span class="p">.</span><span class="n">_state</span><span class="p">.</span><span class="k">get</span><span class="p">()</span><span class="o">[</span><span class="n">name</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">value</span><span class="w"></span>
+
+<span class="n">def</span><span class="w"> </span><span class="n">__getattr__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">_state</span><span class="p">.</span><span class="k">get</span><span class="p">()</span><span class="o">[</span><span class="n">name</span><span class="o">]</span><span class="w"></span>
+</code></pre></div>
+
+
+<p>db = peewee.SqliteDatabase(DATABASE_NAME, check_same_thread=False)</p>
+<p>db._state = PeeweeConnectionState()
+<div class="codehilite"><pre><span></span><code>* `sql_app/models.py`:
+
+```Python hl_lines=&quot;&quot;
+import peewee
+
+from .database import db
+
+
+class User(peewee.Model):
+    email = peewee.CharField(unique=True, index=True)
+    hashed_password = peewee.CharField()
+    is_active = peewee.BooleanField(default=True)
+
+    class Meta:
+        database = db
+
+
+class Item(peewee.Model):
+    title = peewee.CharField(index=True)
+    description = peewee.CharField(index=True)
+    owner = peewee.ForeignKeyField(User, backref=&quot;items&quot;)
+
+    class Meta:
+        database = db
+</code></pre></div></p>
+<ul>
+<li><code>sql_app/schemas.py</code>:</li>
+</ul>
+<p>```Python hl_lines=""
+from typing import Any, List</p>
+<p>import peewee
+from pydantic import BaseModel
+from pydantic.utils import GetterDict</p>
+<p>class PeeweeGetterDict(GetterDict):
+    def get(self, key: Any, default: Any = None):
+        res = getattr(self._obj, key, default)
+        if isinstance(res, peewee.ModelSelect):
+            return list(res)
+        return res</p>
+<p>class ItemBase(BaseModel):
+    title: str
+    description: str = None</p>
+<p>class ItemCreate(ItemBase):
+    pass</p>
+<p>class Item(ItemBase):
+    id: int
+    owner_id: int</p>
+<div class="codehilite"><pre><span></span><code><span class="err">class Config:</span>
+<span class="err">    orm_mode = True</span>
+<span class="err">    getter_dict = PeeweeGetterDict</span>
+</code></pre></div>
+
+
+<p>class UserBase(BaseModel):
+    email: str</p>
+<p>class UserCreate(UserBase):
+    password: str</p>
+<p>class User(UserBase):
+    id: int
+    is_active: bool
+    items: List[Item] = []</p>
+<div class="codehilite"><pre><span></span><code><span class="err">class Config:</span>
+<span class="err">    orm_mode = True</span>
+<span class="err">    getter_dict = PeeweeGetterDict</span>
+</code></pre></div>
+
+
+<p><code>* `sql_app/crud.py`:</code>Python hl_lines=""
+from . import models, schemas
+
+
+def get_user(user_id: int):
+    return models.User.filter(models.User.id == user_id).first()
+
+
+def get_user_by_email(email: str):
+    return models.User.filter(models.User.email == email).first()
+
+
+def get_users(skip: int = 0, limit: int = 100):
+    return list(models.User.select().offset(skip).limit(limit))
+
+
+def create_user(user: schemas.UserCreate):
+    fake_hashed_password = user.password + "notreallyhashed"
+    db_user = models.User(email=user.email, hashed_password=fake_hashed_password)
+    db_user.save()
+    return db_user
+
+
+def get_items(skip: int = 0, limit: int = 100):
+    return list(models.Item.select().offset(skip).limit(limit))
+
+
+def create_user_item(item: schemas.ItemCreate, user_id: int):
+    db_item = models.Item(**item.dict(), owner_id=user_id)
+    db_item.save()
+    return db_item
+```</p>
+<ul>
+<li><code>sql_app/main.py</code>:</li>
+</ul>
+<p>```Python hl_lines=""
+import time
+from typing import List</p>
+<p>from fastapi import Depends, FastAPI, HTTPException</p>
+<p>from . import crud, database, models, schemas
+from .database import db_state_default</p>
+<p>database.db.connect()
+database.db.create_tables([models.User, models.Item])
+database.db.close()</p>
+<p>app = FastAPI()</p>
+<p>sleep_time = 10</p>
+<p>async def reset_db_state():
+    database.db._state._state.set(db_state_default.copy())
+    database.db._state.reset()</p>
+<p>def get_db(db_state=Depends(reset_db_state)):
+    try:
+        database.db.connect()
+        yield
+    finally:
+        if not database.db.is_closed():
+            database.db.close()</p>
+<p>@app.post("/users/", response_model=schemas.User, dependencies=[Depends(get_db)])
+def create_user(user: schemas.UserCreate):
+    db_user = crud.get_user_by_email(email=user.email)
+    if db_user:
+        raise HTTPException(status_code=400, detail="Email already registered")
+    return crud.create_user(user=user)</p>
+<p>@app.get("/users/", response_model=List[schemas.User], dependencies=[Depends(get_db)])
+def read_users(skip: int = 0, limit: int = 100):
+    users = crud.get_users(skip=skip, limit=limit)
+    return users</p>
+<p>@app.get(
+    "/users/{user_id}", response_model=schemas.User, dependencies=[Depends(get_db)]
+)
+def read_user(user_id: int):
+    db_user = crud.get_user(user_id=user_id)
+    if db_user is None:
+        raise HTTPException(status_code=404, detail="User not found")
+    return db_user</p>
+<p>@app.post(
+    "/users/{user_id}/items/",
+    response_model=schemas.Item,
+    dependencies=[Depends(get_db)],
+)
+def create_item_for_user(user_id: int, item: schemas.ItemCreate):
+    return crud.create_user_item(item=item, user_id=user_id)</p>
+<p>@app.get("/items/", response_model=List[schemas.Item], dependencies=[Depends(get_db)])
+def read_items(skip: int = 0, limit: int = 100):
+    items = crud.get_items(skip=skip, limit=limit)
+    return items</p>
+<p>@app.get(
+    "/slowusers/", response_model=List[schemas.User], dependencies=[Depends(get_db)]
+)
+def read_slow_users(skip: int = 0, limit: int = 100):
+    global sleep_time
+    sleep_time = max(0, sleep_time - 1)
+    time.sleep(sleep_time)  # Fake long processing request
+    users = crud.get_users(skip=skip, limit=limit)
+    return users
+<div class="codehilite"><pre><span></span><code>## Technical Details
+
+!!! warning
+    These are very technical details that you probably don&#39;t need.
+
+### The problem
+
+Peewee uses &lt;a href=&quot;https://docs.python.org/3/library/threading.html#thread-local-data&quot; class=&quot;external-link&quot; target=&quot;_blank&quot;&gt;`threading.local`&lt;/a&gt; by default to store it&#39;s database &quot;state&quot; data (connection, transactions, etc).
+
+`threading.local` creates a value exclusive to the current thread, but an async framework would run all the code (e.g. for each request) in the same thread, and possibly not in order.
+
+On top of that, an async framework could run some sync code in a threadpool (using `asyncio.run_in_executor`), but belonging to the same request.
+
+This means that, with Peewee&#39;s current implementation, multiple tasks could be using the same `threading.local` variable and end up sharing the same connection and data (that they shouldn&#39;t), and at the same time, if they execute sync I/O-blocking code in a threadpool (as with normal `def` functions in FastAPI, in *path operations*  and dependencies), that code won&#39;t have access to the database state variables, even while it&#39;s part of the same request and it should be able to get access to the same database state.
+
+### Context variables
+
+Python 3.7 has &lt;a href=&quot;https://docs.python.org/3/library/contextvars.html&quot; class=&quot;external-link&quot; target=&quot;_blank&quot;&gt;`contextvars`&lt;/a&gt; that can create a local variable very similar to `threading.local`, but also supporting these async features.
+
+There are several things to have in mind.
+
+The `ContextVar` has to be created at the top of the module, like:
+
+```Python
+some_var = ContextVar(&quot;some_var&quot;, default=&quot;default value&quot;)
+</code></pre></div></p>
+<p>To set a value used in the current "context" (e.g. for the current request) use:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">some_var</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;new value&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>To get a value anywhere inside of the context (e.g. in any part handling the current request) use:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">some_var</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+</code></pre></div>
+
+<h3 id="set-context-variables-in-the-async-dependency-reset_db_state">Set context variables in the <code>async</code> dependency <code>reset_db_state()</code><a class="headerlink" href="#set-context-variables-in-the-async-dependency-reset_db_state" title="Permanent link">&para;</a></h3>
+<p>If some part of the async code sets the value with <code>some_var.set("updated in function")</code> (e.g. like the <code>async</code> dependency), the rest of the code in it and the code that goes after (including code inside of <code>async</code> functions called with <code>await</code>) will see that new value.</p>
+<p>So, in our case, if we set the Peewee state variable (with a default <code>dict</code>) in the <code>async</code> dependency, all the rest of the internal code in our app will see this value and will be able to reuse it for the whole request.</p>
+<p>And the context variable would be set again for the next request, even if they are concurrent.</p>
+<h3 id="set-database-state-in-the-dependency-get_db">Set database state in the dependency <code>get_db()</code><a class="headerlink" href="#set-database-state-in-the-dependency-get_db" title="Permanent link">&para;</a></h3>
+<p>As <code>get_db()</code> is a normal <code>def</code> function, <strong>FastAPI</strong> will make it run in a threadpool, with a <em>copy</em> of the "context", holding the same value for the context variable (the <code>dict</code> with the reset database state). Then it can add database state to that <code>dict</code>, like the connection, etc.</p>
+<p>But if the value of the context variable (the default <code>dict</code>) was set in that normal <code>def</code> function, it would create a new value that would stay only in that thread of the threadpool, and the rest of the code (like the <em>path operation functions</em>) wouldn't have access to it. In <code>get_db()</code> we can only set values in the <code>dict</code>, but not the entire <code>dict</code> itself.</p>
+<p>So, we need to have the <code>async</code> dependency <code>reset_db_state()</code> to set the <code>dict</code> in the context variable. That way, all the code has access to the same <code>dict</code> for the database state for a single request.</p>
+<h3 id="connect-and-disconnect-in-the-dependency-get_db">Connect and disconnect in the dependency <code>get_db()</code><a class="headerlink" href="#connect-and-disconnect-in-the-dependency-get_db" title="Permanent link">&para;</a></h3>
+<p>Then the next question would be, why not just connect and disconnect the database in the <code>async</code> dependency itself, instead of in <code>get_db()</code>?</p>
+<p>The <code>async</code> dependency has to be <code>async</code> for the context variable to be preserved for the rest of the request, but creating and closing the database connection is potentially blocking, so it could degrade performance if it was there.</p>
+<p>So we also need the normal <code>def</code> dependency <code>get_db()</code>.</p>
+                
+                  
+                
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../using-request-directly/" title="Using the Request Directly" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Using the Request Directly
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../async-sql-databases/" title="Async SQL (Relational) Databases" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Async SQL (Relational) Databases
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org" target="_blank" rel="noopener">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.c33a9706.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+    
+  </body>
+</html>
